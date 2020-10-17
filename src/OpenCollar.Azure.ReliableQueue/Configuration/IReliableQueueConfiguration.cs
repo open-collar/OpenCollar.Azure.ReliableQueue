@@ -25,6 +25,21 @@ namespace OpenCollar.Azure.ReliableQueue.Configuration
 {
     /// <summary>The configuration for a single reliable queue.</summary>
     /// <seealso cref="OpenCollar.Extensions.Configuration.IConfigurationObject"/>
+    /// <example>
+    /// A typical section of the configuration file might look like this:
+    /// <code lang="json">
+    ///     "ReliableQueues": {
+    ///         "Queues": {
+    ///             "TEST+1": {
+    ///                 "StorageConnectionString": "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;",
+    ///                 "Mode": "Send",
+    ///                 "IsEnabled": "true"
+    ///             }
+    ///         }
+    ///     }
+    /// </code>
+    /// This class represents the elements under the "Queues" node in that hierarchy (e.g. below "TEST+1").
+    /// </example>
     public interface IReliableQueueConfiguration : IConfigurationObject
     {
         /// <summary>The value to assign to the <see cref="Mode"/> property if the service should be permitted to send messages.</summary>

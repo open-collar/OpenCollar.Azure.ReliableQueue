@@ -66,6 +66,28 @@ namespace OpenCollar.Azure.ReliableQueue
         /// <exception cref="System.ArgumentNullException"><paramref name="base64"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentException"><paramref name="base64"/> was zero-length or contains only white-space characters.</exception>
         /// <returns>A task that processes the message supplied.</returns>
+        /// <example>
+        /// An example of what a storage queue function might look like is below:
+        /// <code lang="c#">
+        ///    public sealed class StorageQueueMessageReceivedFunction
+        ///    {
+        ///        private readonly IReliableQueue _reliableQueue;
+        ///
+        ///        public StorageQueueMessageReceivedFunction(IReliableQueueService ReliableQueueService)
+        ///        {
+        ///            _reliableQueue = ReliableQueueService["TEST+1"];
+        ///        }
+        ///
+        ///        [FunctionName("StorageQueueMessageReceivedFunction")]
+        ///        public void Run([QueueTrigger("message-queue-test-1", Connection = "ReliableQueues:Queues:TEST+1:StorageConnectionString")] string myQueueItem, ILogger log)
+        ///        {
+        ///            _reliableQueue.OnReceivedAsync(myQueueItem);
+        ///        }
+        ///    }
+        /// </code>
+        /// Note that the connection string must be under the "Values" section in the appsettings.json file, as well as in the configuration node.
+        /// Also, the ReliableQueueService must be initialized on startup to ensure the queue has been created; this can be done using a timer function.
+        /// </example>
         public Task OnReceivedAsync([NotNull] string base64, TimeSpan? timeout = null, [CanBeNull] CancellationToken? cancellationToken = null);
 
         /// <summary>Sends the message body provided on the reliable queue, optionally on the topic given.</summary>

@@ -23,6 +23,21 @@ namespace OpenCollar.Azure.ReliableQueue.Configuration
 {
     /// <summary>The root configuration object in which all configuration for reliable queues is defined.</summary>
     /// <seealso cref="OpenCollar.Extensions.Configuration.IConfigurationObject"/>
+    /// <example>
+    /// A typical section of the configuration file might look like this:
+    /// <code lang="json">
+    ///     "ReliableQueues": {
+    ///         "Queues": {
+    ///             "TEST+1": {
+    ///                 "StorageConnectionString": "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;",
+    ///                 "Mode": "Send",
+    ///                 "IsEnabled": "true"
+    ///             }
+    ///         }
+    ///     }
+    /// </code>
+    /// This class represents the top level of that hierarchy (starting at "ReliableQueues").
+    /// </example>
     public interface IReliableQueuesConfiguration : IConfigurationObject
     {
         /// <summary>Gets or sets a dictionary of the configuration for the individual reliable queues.</summary>
