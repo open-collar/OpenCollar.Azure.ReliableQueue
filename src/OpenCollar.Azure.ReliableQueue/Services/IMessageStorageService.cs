@@ -41,7 +41,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to delete the message body to the BLOB storage.</param>
         /// <returns>A task that deletes the message body to the BLOB storage.</returns>
         [NotNull]
-        public Task DeleteMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, TimeSpan? timeout = null,
+        public Task DeleteMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
 
         /// <summary>Reads the body of a message from BLOB storage, asynchronously.</summary>
@@ -52,7 +52,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to read the message body to the BLOB storage.</param>
         /// <returns>A task that returns a stream containing the message body from the BLOB storage, or <see langword="null"/> if there is no body.</returns>
         [NotNull]
-        public Task<Stream?> ReadMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, [NotNull] Stream blob,
+        public Task<Stream?> ReadMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [NotNull] Stream blob,
             TimeSpan? timeout = null, CancellationToken? cancellationToken = null);
 
         /// <summary>Writes the body of a message to BLOB storage, asynchronously.</summary>
@@ -69,7 +69,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
         [NotNull]
-        public Task<MessageRecord> WriteMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, Stream? blob,
+        public Task<Message> WriteMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, Stream? blob,
             TimeSpan? timeout = null, CancellationToken? cancellationToken = null);
     }
 }

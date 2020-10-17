@@ -62,7 +62,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     indicate that the message should be re-queued and tried again.
         /// </returns>
         /// <exception cref="InvalidOperationException">Message queue is configured to be send-only.</exception>
-        public bool OnProcessMessage([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message);
+        public bool OnProcessMessage([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message);
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
         /// <param name="reliableQueueKey">The key identifying the reliable queue for which to create the message.</param>

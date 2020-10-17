@@ -44,7 +44,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     cancellation.
         /// </param>
         [NotNull]
-        public Task<MessageRecord> AddNewMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, TimeSpan? timeout = null,
+        public Task<Message> AddNewMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
 
         /// <summary>Gets all messages that are in a <see cref="MessageState.Queued"/> state for the topic specified, in order of their sequence number.</summary>
@@ -64,7 +64,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </returns>
         [NotNull]
         [ItemNotNull]
-        public IEnumerable<MessageRecord> GetQueuedMessagesInTopic([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Topic topic, TimeSpan? timeout = null,
+        public IEnumerable<Message> GetQueuedMessagesInTopic([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Topic topic, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
 
         /// <summary>Processes the message given, raising events on the queue service specified in <paramref name="reliableQueueService"/>,</summary>
@@ -76,7 +76,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     later.
         /// </returns>
         public bool ProcessMessage([NotNull] IReliableQueueServiceInternal reliableQueueService, [NotNull] ReliableQueueKey reliableQueueKey,
-            [NotNull] MessageRecord message);
+            [NotNull] Message message);
 
         /// <summary>
         ///     Changes the state of the message specified to queued asynchronously and returns the new state of the message that was updated, with updated
@@ -94,7 +94,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     cancellation.
         /// </param>
         [NotNull]
-        public Task<MessageRecord> QueueMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, TimeSpan? timeout = null,
+        public Task<Message> QueueMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
     }
 }

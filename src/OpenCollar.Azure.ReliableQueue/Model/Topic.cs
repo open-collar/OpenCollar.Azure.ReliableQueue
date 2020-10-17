@@ -53,7 +53,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     <see langword="null"/>, zero-length or contain only white-space characters.
         /// </summary>
         [CanBeNull]
-        private readonly string _key;
+        private readonly string? _key;
 
         /// <summary>Initializes a new instance of the <see cref="Topic"/> class.</summary>
         /// <param name="key">
@@ -73,7 +73,9 @@ namespace OpenCollar.Azure.ReliableQueue.Model
             else
             {
                 _key = key;
+#pragma warning disable CA1308 // Normalize strings to uppercase
                 _identifier = Identifiers.MakeSafe(_key.ToLowerInvariant());
+#pragma warning restore CA1308 // Normalize strings to uppercase
             }
         }
 

@@ -25,6 +25,8 @@ using JetBrains.Annotations;
 using OpenCollar.Azure.ReliableQueue.Model;
 using OpenCollar.Extensions.Validation;
 
+#pragma warning disable CA1032 // Implement standard exception constructors
+
 namespace OpenCollar.Azure.ReliableQueue
 {
 #pragma warning disable CA1032 // Add standard constructors.
@@ -80,11 +82,7 @@ namespace OpenCollar.Azure.ReliableQueue
         protected ReliableQueueException([CanBeNull] SerializationInfo info, StreamingContext context) : base(info, context)
         {
             var reliableQueueKey = info.GetString(nameof(ReliableQueueKey));
-            if(reliableQueueKey is null)
-            {
-                ReliableQueueKey = null;
-            }
-            else
+            if(!(reliableQueueKey is null))
             {
                 ReliableQueueKey = new ReliableQueueKey(reliableQueueKey);
             }

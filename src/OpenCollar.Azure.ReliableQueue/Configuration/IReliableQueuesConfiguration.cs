@@ -43,6 +43,6 @@ namespace OpenCollar.Azure.ReliableQueue.Configuration
         /// <summary>Gets or sets a dictionary of the configuration for the individual reliable queues.</summary>
         /// <value>The dictionary of the configuration for the individual reliable queues.</value>
         [Path(PathIs.Absolute, @"ReliableQueues:Queues")]
-        public IConfigurationDictionary<IReliableQueueConfiguration> Queues { get; set; }
+        public IConfigurationDictionary<IReliableQueueConfiguration> Queues { get; }
     }
 }

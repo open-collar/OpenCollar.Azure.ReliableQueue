@@ -79,7 +79,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <see langword="null"/>, meaning there can be no
         ///     cancellation.
         /// </param>
-        public async Task<MessageRecord> SendMessageAsync(ReliableQueueKey reliableQueueKey, MessageRecord message, TimeSpan? timeout = null,
+        public async Task<Message> SendMessageAsync(ReliableQueueKey reliableQueueKey, Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             var token = cancellationToken ?? CancellationToken.None;
@@ -90,7 +90,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             var base64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
             try
             {
-                await queueClient.SendMessageAsync(base64, token);
+                await queueClient.SendMessageAsync(base64, token).ConfigureAwait(true);
             }
             catch(RequestFailedException ex)
             {
@@ -101,8 +101,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         { "ReliableQueueKey", reliableQueueKey.ToString() },
                         { "ReliableQueueIdentifier", reliableQueueKey.Identifier }
                     };
-                    await queueClient.CreateIfNotExistsAsync(metadata, token);
-                    await queueClient.SendMessageAsync(base64, token);
+                    await queueClient.CreateIfNotExistsAsync(metadata, token).ConfigureAwait(true);
+                    await queueClient.SendMessageAsync(base64, token).ConfigureAwait(true);
                 }
                 else
                 {

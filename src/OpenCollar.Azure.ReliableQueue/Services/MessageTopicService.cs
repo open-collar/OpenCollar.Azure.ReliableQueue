@@ -101,7 +101,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             var table = _storageResourceService.GetStateTable(reliableQueueKey);
 
-            var topicMessageQuery = new TableQuery().Select(new[] { nameof(MessageRecord.Topic) }).OrderBy(nameof(MessageRecord.Timestamp));
+            var topicMessageQuery = new TableQuery().Select(new[] { nameof(Message.Topic) }).OrderBy(nameof(Message.Timestamp));
 
             IEnumerable<DynamicTableEntity> topicMessageResult;
             try
@@ -135,7 +135,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 return Enumerable.Empty<Topic>();
             }
 
-            return topicMessageResult.Select(t => t[nameof(MessageRecord.Topic)].StringValue).Distinct().Select(t => new Topic(t));
+            return topicMessageResult.Select(t => t[nameof(Message.Topic)].StringValue).Distinct().Select(t => new Topic(t));
         }
 
         /// <summary>Called when a trigger (e.g. EventGrid or StorageQueue) receives a notification of a message to be processed.</summary>
@@ -153,7 +153,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     A task that processes the message supplied and returns <see langword="true"/> if the message will be processed; otherwise,
         ///     <see langword="false"/> if it is to be ignored.
         /// </returns>
-        public async Task<bool> OnReceivedAsync(MessageRecord message, IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
+        public async Task<bool> OnReceivedAsync(Message message, IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             // 1) Always accept default topic.
@@ -198,25 +198,25 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             var selectQuery = TableOperation.Retrieve(message.ReliableQueueKey.Identifier, message.Topic.Identifier);
 
-            TopicAffinityRecord? currentAffinityRecord = null;
+            TopicAffinity? currentAffinityRecord = null;
 
             bool retrySelect;
             do
             {
                 // Attempt to select the current record.
-                var selectResult = await table.ExecuteAsync(selectQuery, options, context, token);
+                var selectResult = await table.ExecuteAsync(selectQuery, options, context, token).ConfigureAwait(true);
 
                 switch(selectResult.HttpStatusCode)
                 {
                     case 404:
                         // Attempt to insert a new record.
-                        var insertQuery = TableOperation.Insert(new TopicAffinityRecord(message.ReliableQueueKey, Identity.Current, message.Topic)
+                        var insertQuery = TableOperation.Insert(new TopicAffinity(message.ReliableQueueKey, Identity.Current, message.Topic)
                         {
                             LastUpdated = now
                         }.Serialize(context));
                         try
                         {
-                            await table.ExecuteAsync(insertQuery, options, context, token);
+                            await table.ExecuteAsync(insertQuery, options, context, token).ConfigureAwait(true);
                         }
                         catch(StorageException ex)
                         {
@@ -224,7 +224,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                             {
                                 case 404:
                                     // The table doesn't exists!
-                                    await table.CreateIfNotExistsAsync(options, context, token);
+                                    await table.CreateIfNotExistsAsync(options, context, token).ConfigureAwait(true);
                                     break;
 
                                 case 409:
@@ -241,7 +241,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         break;
 
                     case 200:
-                        currentAffinityRecord = ((DynamicTableEntity)selectResult.Result).Deserialize<TopicAffinityRecord>(context);
+                        currentAffinityRecord = ((DynamicTableEntity)selectResult.Result).Deserialize<TopicAffinity>(context);
                         retrySelect = false;
                         break;
 
@@ -272,7 +272,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 updateQuery = TableOperation.Replace(currentAffinityRecord.Serialize(context));
                 try
                 {
-                    await table.ExecuteAsync(updateQuery, options, context, token);
+                    await table.ExecuteAsync(updateQuery, options, context, token).ConfigureAwait(true);
                     return true;
                 }
                 catch(StorageException ex)
@@ -301,7 +301,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             updateQuery = TableOperation.Replace(currentAffinityRecord.Serialize(context));
             try
             {
-                await table.ExecuteAsync(updateQuery, options, context, token);
+                await table.ExecuteAsync(updateQuery, options, context, token).ConfigureAwait(true);
                 return true;
             }
             catch(StorageException ex)

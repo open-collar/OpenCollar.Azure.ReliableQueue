@@ -24,10 +24,10 @@ using JetBrains.Annotations;
 
 using OpenCollar.Azure.ReliableQueue.Model;
 
-namespace OpenCollar.Azure.ReliableQueue
-{
 #pragma warning disable CA1032 // Add standard constructors.
 
+namespace OpenCollar.Azure.ReliableQueue
+{
     /// <summary>A class used to represent an exception that occurs when a reliable queue or its configuration cannot be found.</summary>
     /// <seealso cref="OpenCollar.Azure.ReliableQueue.ReliableQueueException"/>
     [Serializable]

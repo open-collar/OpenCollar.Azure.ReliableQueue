@@ -97,7 +97,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
-        public async Task<MessageRecord> WriteMessageAsync(ReliableQueueKey reliableQueueKey, MessageRecord message, Stream? blob, TimeSpan? timeout = null,
+        public async Task<Message> WriteMessageAsync(ReliableQueueKey reliableQueueKey, Message message, Stream? blob, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             if(blob is null)
@@ -140,7 +140,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 try
                 {
                     leaseId = await blobReference.AcquireLeaseAsync(MaxLeaseDuration, context.ClientRequestID, AccessCondition.GenerateEmptyCondition(),
-                        options, context, token);
+                        options, context, token).ConfigureAwait(true);
 
                     if(!string.IsNullOrWhiteSpace(leaseId))
                     {
@@ -154,14 +154,14 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         case 404:
                             if(string.Equals(ex.RequestInformation.ErrorCode, @"ContainerNotFound", StringComparison.Ordinal))
                             {
-                                await containerReference.CreateIfNotExistsAsync(BlobContainerPublicAccessType.Container, options, context, token);
+                                await containerReference.CreateIfNotExistsAsync(BlobContainerPublicAccessType.Container, options, context, token).ConfigureAwait(true);
                             }
                             else
                             {
                                 if(string.Equals(ex.RequestInformation.ErrorCode, @"BlobNotFound", StringComparison.Ordinal))
                                 {
                                     // If the blob doesn't already exist, create it and default it zero.
-                                    await blobReference.UploadFromStreamAsync(blob, AccessCondition.GenerateEmptyCondition(), options, context, token);
+                                    await blobReference.UploadFromStreamAsync(blob, AccessCondition.GenerateEmptyCondition(), options, context, token).ConfigureAwait(true);
                                     leaseId = null;
                                     uploaded = true;
                                 }
@@ -175,7 +175,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
                         case 409:
                             // We expect to receive this if someone else already holds the lease.
-                            await Task.Delay(TimeSpan.FromMilliseconds(_random.Next(MinSleep, MaxSleep)), token);
+                            await Task.Delay(TimeSpan.FromMilliseconds(_random.Next(MinSleep, MaxSleep)), token).ConfigureAwait(true);
                             break;
 
                         default:
@@ -194,10 +194,10 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             {
                 if(!uploaded)
                 {
-                    await blobReference.UploadFromStreamAsync(blob, AccessCondition.GenerateLeaseCondition(leaseId), options, context, token);
+                    await blobReference.UploadFromStreamAsync(blob, AccessCondition.GenerateLeaseCondition(leaseId), options, context, token).ConfigureAwait(true);
                 }
 
-                await blobReference.FetchAttributesAsync();
+                await blobReference.FetchAttributesAsync().ConfigureAwait(true);
                 var length = blobReference.Properties.Length;
                 if(length > 0)
                 {
@@ -219,7 +219,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                     await blobReference.ReleaseLeaseAsync(new AccessCondition
                     {
                         LeaseId = leaseId
-                    }, options, context, token);
+                    }, options, context, token).ConfigureAwait(true);
                 }
             }
         }
@@ -231,7 +231,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="timeout">The maximum period of time to wait whilst attempting to read the message body to the BLOB storage before failing with an error.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to read the message body to the BLOB storage.</param>
         /// <returns>A task that returns a stream containing the message body from the BLOB storage, or <see langword="null"/> if there is no body.</returns>
-        public async Task<Stream?> ReadMessageAsync(ReliableQueueKey reliableQueueKey, MessageRecord message, Stream blob, TimeSpan? timeout = null,
+        public async Task<Stream?> ReadMessageAsync(ReliableQueueKey reliableQueueKey, Message message, Stream blob, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             if(message.BodyIsNull || message.Size is null)
@@ -272,7 +272,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 try
                 {
                     leaseId = await blobReference.AcquireLeaseAsync(MaxLeaseDuration, context.ClientRequestID, AccessCondition.GenerateEmptyCondition(),
-                        options, context, token);
+                        options, context, token).ConfigureAwait(true);
 
                     if(!string.IsNullOrWhiteSpace(leaseId))
                     {
@@ -286,7 +286,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         case 404:
                             if(string.Equals(ex.RequestInformation.ErrorCode, @"ContainerNotFound", StringComparison.Ordinal))
                             {
-                                await containerReference.CreateIfNotExistsAsync(BlobContainerPublicAccessType.Container, options, context, token);
+                                await containerReference.CreateIfNotExistsAsync(BlobContainerPublicAccessType.Container, options, context, token).ConfigureAwait(true);
                             }
                             else
                             {
@@ -304,7 +304,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
                         case 409:
                             // We expect to receive this if someone else already holds the lease.
-                            await Task.Delay(TimeSpan.FromMilliseconds(_random.Next(MinSleep, MaxSleep)), token);
+                            await Task.Delay(TimeSpan.FromMilliseconds(_random.Next(MinSleep, MaxSleep)), token).ConfigureAwait(true);
                             break;
 
                         default:
@@ -321,7 +321,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             try
             {
-                await blobReference.DownloadToStreamAsync(blob, AccessCondition.GenerateEmptyCondition(), options, context, token);
+                await blobReference.DownloadToStreamAsync(blob, AccessCondition.GenerateEmptyCondition(), options, context, token).ConfigureAwait(true);
 
                 return blob;
             }
@@ -330,7 +330,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 await blobReference.ReleaseLeaseAsync(new AccessCondition
                 {
                     LeaseId = leaseId
-                }, options, context, token);
+                }, options, context, token).ConfigureAwait(true);
             }
         }
 
@@ -343,7 +343,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to delete the message body to the BLOB storage.</param>
         /// <returns>A task that deletes the message body to the BLOB storage.</returns>
-        public async Task DeleteMessageAsync(ReliableQueueKey reliableQueueKey, MessageRecord message, TimeSpan? timeout = null,
+        public async Task DeleteMessageAsync(ReliableQueueKey reliableQueueKey, Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             if(message.BodyIsNull || message.Size is null)
@@ -383,7 +383,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 try
                 {
                     leaseId = await blobReference.AcquireLeaseAsync(MaxLeaseDuration, context.ClientRequestID, AccessCondition.GenerateEmptyCondition(),
-                        options, context, token);
+                        options, context, token).ConfigureAwait(true);
 
                     if(!string.IsNullOrWhiteSpace(leaseId))
                     {
@@ -413,7 +413,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
                         case 409:
                             // We expect to receive this if someone else already holds the lease.
-                            await Task.Delay(TimeSpan.FromMilliseconds(_random.Next(MinSleep, MaxSleep)), token);
+                            await Task.Delay(TimeSpan.FromMilliseconds(_random.Next(MinSleep, MaxSleep)), token).ConfigureAwait(true);
                             break;
 
                         default:
@@ -434,7 +434,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 await blobReference.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, new AccessCondition
                 {
                     LeaseId = leaseId
-                }, options, context, token);
+                }, options, context, token).ConfigureAwait(true);
 
                 deleted = true;
             }
@@ -445,7 +445,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                     await blobReference.ReleaseLeaseAsync(new AccessCondition
                     {
                         LeaseId = leaseId
-                    }, options, context, token);
+                    }, options, context, token).ConfigureAwait(true);
                 }
             }
         }

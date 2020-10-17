@@ -24,6 +24,8 @@ using JetBrains.Annotations;
 
 using OpenCollar.Azure.ReliableQueue.Model;
 
+#pragma warning disable CA1032 // Implement standard exception constructors
+
 namespace OpenCollar.Azure.ReliableQueue
 {
     /// <summary>An exception thrown when a message is not in the expected state.</summary>

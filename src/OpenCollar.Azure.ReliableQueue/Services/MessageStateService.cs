@@ -109,7 +109,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <see langword="null"/>, meaning there can be no
         ///     cancellation.
         /// </param>
-        public async Task<MessageRecord> AddNewMessageAsync(ReliableQueueKey reliableQueueKey, MessageRecord message, TimeSpan? timeout = null,
+        public async Task<Message> AddNewMessageAsync(ReliableQueueKey reliableQueueKey, Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             // Create the table client on we'll use for maintaining
@@ -139,29 +139,29 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             try
             {
                 // Attempt to insert the new message record.
-                insertResult = await table.ExecuteAsync(insertQuery, options, context, token);
+                insertResult = await table.ExecuteAsync(insertQuery, options, context, token).ConfigureAwait(true);
                 if(insertResult.HttpStatusCode < 200 || insertResult.HttpStatusCode >= 300)
                 {
                     throw new ReliableQueueException(reliableQueueKey,
                         $"Unable to read message record for queue: {ReliableQueueException.GetReliableQueueKey(reliableQueueKey)}; Message ID {message.Id.ToString("D", CultureInfo.InvariantCulture)}.  Result: {insertResult.HttpStatusCode}.");
                 }
 
-                message = ((DynamicTableEntity)insertResult.Result).Deserialize<MessageRecord>(context);
+                message = ((DynamicTableEntity)insertResult.Result).Deserialize<Message>(context);
             }
             catch(StorageException ex)
             {
                 if(ex.RequestInformation.ExtendedErrorInformation.ErrorCode == TableErrorCodeStrings.TableNotFound)
                 {
-                    await table.CreateIfNotExistsAsync(options, context, token);
+                    await table.CreateIfNotExistsAsync(options, context, token).ConfigureAwait(true);
 
-                    insertResult = await table.ExecuteAsync(insertQuery, options, context, token);
+                    insertResult = await table.ExecuteAsync(insertQuery, options, context, token).ConfigureAwait(true);
                     if(insertResult.HttpStatusCode < 200 || insertResult.HttpStatusCode >= 300)
                     {
                         throw new ReliableQueueException(reliableQueueKey,
                             $"Unable to read message record for queue: {ReliableQueueException.GetReliableQueueKey(reliableQueueKey)}; Message ID {message.Id.ToString("D", CultureInfo.InvariantCulture)}.  Result: {insertResult.HttpStatusCode}.");
                     }
 
-                    message = ((DynamicTableEntity)insertResult.Result).Deserialize<MessageRecord>(context);
+                    message = ((DynamicTableEntity)insertResult.Result).Deserialize<Message>(context);
                 }
                 else
                 {
@@ -187,7 +187,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <see langword="null"/>, meaning there can be no
         ///     cancellation.
         /// </param>
-        public async Task<MessageRecord> QueueMessageAsync(ReliableQueueKey reliableQueueKey, MessageRecord message, TimeSpan? timeout = null,
+        public async Task<Message> QueueMessageAsync(ReliableQueueKey reliableQueueKey, Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             var configuration = _reliableQueueConfigurationService[reliableQueueKey];
@@ -211,15 +211,15 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             message.MessageState = MessageState.Queued;
 
             var merge = new DynamicTableEntity(message.Topic.Identifier, message.Id.ToString("D", CultureInfo.InvariantCulture));
-            merge.Properties.Add(nameof(MessageRecord.LastUpdated), new EntityProperty(message.LastUpdated));
-            merge.Properties.Add(nameof(MessageRecord.MessageState), new EntityProperty(message.MessageState.ToString()));
+            merge.Properties.Add(nameof(Message.LastUpdated), new EntityProperty(message.LastUpdated));
+            merge.Properties.Add(nameof(Message.MessageState), new EntityProperty(message.MessageState.ToString()));
             merge.ETag = message.ETag;
             var insertQuery = TableOperation.Merge(merge);
             TableResult mergeResult;
             try
             {
                 // Attempt to insert the new message record.
-                mergeResult = await table.ExecuteAsync(insertQuery, options, context, token);
+                mergeResult = await table.ExecuteAsync(insertQuery, options, context, token).ConfigureAwait(true);
                 if(mergeResult.HttpStatusCode < 200 || mergeResult.HttpStatusCode >= 300)
                 {
                     throw new ReliableQueueException(reliableQueueKey,
@@ -234,9 +234,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             {
                 if(ex.RequestInformation.ExtendedErrorInformation.ErrorCode == TableErrorCodeStrings.TableNotFound)
                 {
-                    await table.CreateIfNotExistsAsync(options, context, token);
+                    await table.CreateIfNotExistsAsync(options, context, token).ConfigureAwait(true);
 
-                    mergeResult = await table.ExecuteAsync(insertQuery, options, context, token);
+                    mergeResult = await table.ExecuteAsync(insertQuery, options, context, token).ConfigureAwait(true);
                     if(mergeResult.HttpStatusCode < 200 || mergeResult.HttpStatusCode >= 300)
                     {
                         throw new ReliableQueueException(reliableQueueKey,
@@ -271,7 +271,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     An sequence of all the messages that are in a <see cref="MessageState.Queued"/> state for the topic specified, in order of their sequence
         ///     number.
         /// </returns>
-        public IEnumerable<MessageRecord> GetQueuedMessagesInTopic(ReliableQueueKey reliableQueueKey, Topic topic, TimeSpan? timeout = null,
+        public IEnumerable<Message> GetQueuedMessagesInTopic(ReliableQueueKey reliableQueueKey, Topic topic, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             var configuration = _reliableQueueConfigurationService[reliableQueueKey];
@@ -290,8 +290,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             var table = _storageResourceService.GetStateTable(reliableQueueKey);
 
             var topicMessageQuery = new TableQuery().Where(TableQuery.CombineFilters(
-                TableQuery.GenerateFilterCondition(nameof(MessageRecord.Topic), QueryComparisons.Equal, topic), TableOperators.And,
-                TableQuery.GenerateFilterCondition(nameof(MessageRecord.MessageState), QueryComparisons.Equal, MessageState.Queued.ToString())));
+                TableQuery.GenerateFilterCondition(nameof(Message.Topic), QueryComparisons.Equal, topic), TableOperators.And,
+                TableQuery.GenerateFilterCondition(nameof(Message.MessageState), QueryComparisons.Equal, MessageState.Queued.ToString())));
 
             IEnumerable<DynamicTableEntity> topicMessageResult;
             try
@@ -322,10 +322,10 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             if(topicMessageResult is null)
             {
-                return Enumerable.Empty<MessageRecord>();
+                return Enumerable.Empty<Message>();
             }
 
-            return topicMessageResult.Select(m => m.Deserialize<MessageRecord>(context)).OrderBy(m => m);
+            return topicMessageResult.Select(m => m.Deserialize<Message>(context)).OrderBy(m => m);
         }
 
         /// <summary>Processes the message given, raising events on the queue service specified in <paramref name="reliableQueueService"/>,</summary>
@@ -336,7 +336,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     <see langword="true"/> if the message was successfully processed; otherwise, <see langword="false"/> to return the queue and try again
         ///     later.
         /// </returns>
-        public bool ProcessMessage(IReliableQueueServiceInternal reliableQueueService, ReliableQueueKey reliableQueueKey, MessageRecord message)
+        public bool ProcessMessage(IReliableQueueServiceInternal reliableQueueService, ReliableQueueKey reliableQueueKey, Message message)
         {
             // If there is no-one listening don't increment the attempts count and just skip.
             if(!reliableQueueService.IsSubscribed(reliableQueueKey))
@@ -491,7 +491,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="context">The operation context.</param>
         /// <param name="tableName">The name of the table.</param>
         /// <returns>The current version of the message.</returns>
-        private static MessageRecord GetCurrentMessageState(ReliableQueueKey reliableQueueKey, MessageRecord message, CloudTable table,
+        private static Message GetCurrentMessageState(ReliableQueueKey reliableQueueKey, Message message, CloudTable table,
             TableRequestOptions options, OperationContext context, string tableName)
         {
             var currentMessageQuery = TableOperation.Retrieve(message.PartitionKey, message.RowKey);
@@ -530,7 +530,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                     $@"Unable to find existing message {MessageException.GetMessageId(message.Id)} in table ""{tableName}"" on queue {ReliableQueueException.GetReliableQueueKey(reliableQueueKey)}.");
             }
 
-            var currentMessage = ((DynamicTableEntity)currentMessageResult.Result).Deserialize<MessageRecord>(context);
+            var currentMessage = ((DynamicTableEntity)currentMessageResult.Result).Deserialize<Message>(context);
 
             return currentMessage;
         }

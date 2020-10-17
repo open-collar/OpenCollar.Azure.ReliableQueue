@@ -13,7 +13,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Authors>Jonathan David Evans (jevans@open-collar.org.uk)</Authors>
-        <Description>Reliable messagine queues using Azure Storage Accounts.</Description>
+        <Description>This library provides a reliable messaging service using Azure Storage Accounts.  Features included guaranteed ordering within topics and guaranteed delivery.</Description>
         <Copyright>Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).</Copyright>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageProjectUrl>https://open-collar.github.io/OpenCollar.Azure.ReliableQueue/index.html</PackageProjectUrl>

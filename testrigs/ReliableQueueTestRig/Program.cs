@@ -106,7 +106,7 @@ namespace ReliableQueueTestRig
 
             for(var n = 0; n < max; ++n)
             {
-                var message = MessageRecord.CreateNew(queueName, configuration, "topic-1");
+                var message = Message.CreateNew(queueName, configuration, "topic-1");
 
                 var start = DateTime.UtcNow;
                 await queue.SendMessageAsync(queueName, message);
@@ -133,7 +133,7 @@ namespace ReliableQueueTestRig
 
             for(var n = 0; n < max; ++n)
             {
-                var message = MessageRecord.CreateNew(queue, configuration, "topic-1");
+                var message = Message.CreateNew(queue, configuration, "topic-1");
 
                 var start = DateTime.UtcNow;
                 await state.AddNewMessageAsync(queue, message);
@@ -163,7 +163,7 @@ namespace ReliableQueueTestRig
 
             for(var n = 0; n < max; ++n)
             {
-                var message = MessageRecord.CreateNew(queue, configuration, "topic-1");
+                var message = Message.CreateNew(queue, configuration, "topic-1");
                 var testBody = $@"Test BLOB Content ({n}): ""{message.Id.ToString("D", CultureInfo.InvariantCulture)}""";
 
                 using(var stream = new MemoryStream())

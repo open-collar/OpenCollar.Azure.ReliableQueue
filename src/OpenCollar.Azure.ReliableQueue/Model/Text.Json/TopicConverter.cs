@@ -25,13 +25,11 @@ using JetBrains.Annotations;
 
 using OpenCollar.Extensions.Validation;
 
-#nullable enable
-
 namespace OpenCollar.Azure.ReliableQueue.Model.Text.Json
 {
     /// <summary>A converter that ensures that reliable queue topics are represented in the correct format.</summary>
     /// <seealso cref="OpenCollar.Azure.ReliableQueue.Model.Topic"/>
-    public sealed class TopicConverter : JsonConverter<Topic>
+    public sealed class TopicConverter : JsonConverter<Topic?>
     {
         /// <summary>Gets a common instance of the converter that can be reused as necessary.</summary>
         /// <value>A common instance of the converter that can be reused as necessary.</value>
@@ -43,7 +41,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Text.Json
         /// <param name="typeToConvert">The type to convert.</param>
         /// <param name="options">An object that specifies serialization options to use.</param>
         /// <returns>The converted value.</returns>
-        public override Topic Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override Topic? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if(reader.TokenType == JsonTokenType.Null)
             {
@@ -62,11 +60,18 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Text.Json
         /// <param name="writer">The writer to write to.</param>
         /// <param name="value">The value to convert to JSON.</param>
         /// <param name="options">An object that specifies serialization options to use.</param>
-        public override void Write(Utf8JsonWriter writer, Topic value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, Topic? value, JsonSerializerOptions options)
         {
             writer.Validate(nameof(writer), ObjectIs.NotNull);
 
-            writer.WriteStringValue(value.ToString());
+            if(value is null)
+            {
+                writer.WriteNullValue();
+            }
+            else
+            {
+                writer.WriteStringValue(value.ToString());
+            }
         }
     }
 }

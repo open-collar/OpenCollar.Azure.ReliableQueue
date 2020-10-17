@@ -25,6 +25,8 @@ using JetBrains.Annotations;
 
 using OpenCollar.Azure.ReliableQueue.Model;
 
+#pragma warning disable CA1032 // Implement standard exception constructors
+
 namespace OpenCollar.Azure.ReliableQueue
 {
 #pragma warning disable CA1032 // Add standard constructors.

@@ -134,7 +134,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             // safe to assume that all un-encoded messages will start with an open-brace.
             string json = (base64[0] != '{') ? Encoding.UTF8.GetString(Convert.FromBase64String(base64)) : base64;
 
-            var message = MessageRecord.FromJson(json);
+            var message = Message.FromJson(json);
 
             if(message is null)
             {
@@ -145,7 +145,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             try
             {
                 // First, we'll pass it to the topic service to be filtered for affinity and queued
-                if(await _messageTopicService.OnReceivedAsync(message, reliableQueueService, timeout, cancellationToken))
+                if(await _messageTopicService.OnReceivedAsync(message, reliableQueueService, timeout, cancellationToken).ConfigureAwait(true))
                 {
                     if(IsDisposed)
                     {
@@ -198,7 +198,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
                 // Further messages could be added at any time (that really is the idea of using topic affinity and the sliding window).
                 // We keep looking for messages until no more are added.
-                ImmutableArray<MessageRecord> snapshot;
+                ImmutableArray<Message> snapshot;
                 do
                 {
                     if(IsDisposed)
@@ -305,7 +305,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <summary>Queues the message given for processing.</summary>
         /// <param name="reliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
         /// <param name="message">The message to queue.</param>
-        private void QueueMessage([NotNull] IReliableQueueServiceInternal reliableQueueService, [NotNull] MessageRecord message)
+        private void QueueMessage([NotNull] IReliableQueueServiceInternal reliableQueueService, [NotNull] Message message)
         {
             if(IsDisposed)
             {

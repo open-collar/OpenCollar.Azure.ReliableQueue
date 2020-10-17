@@ -38,10 +38,7 @@ namespace OpenCollar.Azure.ReliableQueue
     public sealed class ReceivedMessageEventArgs : HandledEventArgs
     {
         /// <summary>The message that has been received.</summary>
-        private readonly MessageRecord _message;
-
-        /// <summary>The key identifying the queue from which the message was delivered.</summary>
-        private readonly ReliableQueueKey _reliableQueueKey;
+        private readonly Message _message;
 
         /// <summary>The message storage service from which to load the contents of the message if requested.</summary>
         private readonly IMessageStorageService _storage;
@@ -50,16 +47,16 @@ namespace OpenCollar.Azure.ReliableQueue
         /// <param name="storage">The message storage service from which to load the contents of the message if requested.</param>
         /// <param name="reliableQueueKey">The key identifying the queue from which the message was delivered.</param>
         /// <param name="message">The message that has been received.</param>
-        internal ReceivedMessageEventArgs([NotNull] IMessageStorageService storage, [NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message)
+        internal ReceivedMessageEventArgs([NotNull] IMessageStorageService storage, [NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message)
         {
             _storage = storage;
-            _reliableQueueKey = reliableQueueKey;
+            this.reliableQueueKey = reliableQueueKey;
             _message = message;
         }
 
         /// <summary>Gets the key identifying the queue from which the message was delivered.</summary>
         /// <value>The key identifying the queue from which the message was delivered.</value>
-        public ReliableQueueKey reliableQueueKey => _reliableQueueKey;
+        public ReliableQueueKey reliableQueueKey { get; }
 
         /// <summary>Gets or sets the size of the message, measured in bytes.</summary>
         /// <value>The size of the message, in bytes, or <see langword="null"/> if the message is empty or not yet been supplied.</value>
@@ -78,7 +75,7 @@ namespace OpenCollar.Azure.ReliableQueue
         {
             await using var stream = new MemoryStream();
 
-            await _storage.ReadMessageAsync(_reliableQueueKey, _message, stream);
+            await _storage.ReadMessageAsync(reliableQueueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
 
             return stream.ToArray();
         }
@@ -93,7 +90,7 @@ namespace OpenCollar.Azure.ReliableQueue
         {
             var stream = new MemoryStream();
 
-            await _storage.ReadMessageAsync(_reliableQueueKey, _message, stream);
+            await _storage.ReadMessageAsync(reliableQueueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
 
             stream.Seek(0, SeekOrigin.Begin);
 
@@ -111,11 +108,11 @@ namespace OpenCollar.Azure.ReliableQueue
 
             using var reader = new StreamReader(stream, Encoding.UTF8, true, 1024 * 1024, true);
 
-            await _storage.ReadMessageAsync(_reliableQueueKey, _message, stream);
+            await _storage.ReadMessageAsync(reliableQueueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
 
             stream.Seek(0, SeekOrigin.Begin);
 
-            return await reader.ReadToEndAsync();
+            return await reader.ReadToEndAsync().ConfigureAwait(true);
         }
     }
 }

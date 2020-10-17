@@ -135,7 +135,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     indicate that the message should be re-queued and tried again.
         /// </returns>
         /// <exception cref="InvalidOperationException">Message queue is configured to be send-only.</exception>
-        public bool OnProcessMessage(ReliableQueueKey reliableQueueKey, MessageRecord message)
+        public bool OnProcessMessage(ReliableQueueKey reliableQueueKey, Message message)
         {
             if(!CanReceive(reliableQueueKey))
             {
@@ -231,7 +231,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <returns>A task that processes the message supplied.</returns>
         public async Task OnReceivedAsync(string base64, TimeSpan? timeout = null, CancellationToken? cancellationToken = null)
         {
-            await _receive.OnReceivedAsync(base64, this);
+            await _receive.OnReceivedAsync(base64, this).ConfigureAwait(true);
         }
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
@@ -276,7 +276,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 },
                 (ReliableQueueKey1, body1, timeout1, cancellationToken1, message) =>
                     RecordBodyAsync(ReliableQueueKey1, message, body1, timeout1, cancellationToken1),
-                topic, timeout, cancellationToken);
+                topic, timeout, cancellationToken).ConfigureAwait(true);
         }
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
@@ -321,7 +321,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 },
                 (ReliableQueueKey1, body1, timeout1, cancellationToken1, message) =>
                     RecordBodyAsync(ReliableQueueKey1, message, body1, timeout1, cancellationToken1),
-                topic, timeout, cancellationToken);
+                topic, timeout, cancellationToken).ConfigureAwait(true);
         }
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
@@ -365,7 +365,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 },
                 (ReliableQueueKey1, body1, timeout1, cancellationToken1, message) =>
                     RecordBodyAsync(ReliableQueueKey1, message, body1, timeout1, cancellationToken1),
-                topic, timeout, cancellationToken);
+                topic, timeout, cancellationToken).ConfigureAwait(true);
         }
 
         /// <summary>Subscribes the specified reliable queue key.</summary>
@@ -437,7 +437,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="reliableQueueKey">The key identifying the queue from which the message was delivered.</param>
         /// <param name="message">The message that has been received.</param>
         /// <returns><see langword="true"/> if a consumer has processed the message; otherwise, <see langword="false"/>.</returns>
-        private bool OnReceivedMessage([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message)
+        private bool OnReceivedMessage([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message)
         {
             var callbacks = _subscriptions.Values.Where(s => s.ReliableQueueKey == reliableQueueKey).Select(s => s.EventHandler).ToArray();
 
@@ -476,14 +476,14 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="message"/> was <see langword="null"/>.</exception>
-        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, [CanBeNull] byte[]? body,
+        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [CanBeNull] byte[]? body,
             TimeSpan? timeout, CancellationToken cancellationToken)
         {
             if(!(body is null) && body.Length > 0)
             {
                 await using var stream = new MemoryStream(body);
 
-                await _storage.WriteMessageAsync(reliableQueueKey, message, stream, timeout, cancellationToken);
+                await _storage.WriteMessageAsync(reliableQueueKey, message, stream, timeout, cancellationToken).ConfigureAwait(true);
             }
         }
 
@@ -502,19 +502,19 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="message"/> was <see langword="null"/>.</exception>
-        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, [CanBeNull] string? body,
+        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [CanBeNull] string? body,
             TimeSpan? timeout, CancellationToken cancellationToken)
         {
             if(!string.IsNullOrWhiteSpace(body))
             {
                 await using var stream = new MemoryStream();
                 await using var writer = new StreamWriter(stream, Encoding.UTF8, 1024 * 1024, true);
-                await writer.WriteAsync(body);
-                await writer.FlushAsync();
+                await writer.WriteAsync(body).ConfigureAwait(true);
+                await writer.FlushAsync().ConfigureAwait(true);
 
                 stream.Seek(0, SeekOrigin.Begin);
 
-                await _storage.WriteMessageAsync(reliableQueueKey, message, stream, timeout, cancellationToken);
+                await _storage.WriteMessageAsync(reliableQueueKey, message, stream, timeout, cancellationToken).ConfigureAwait(true);
             }
         }
 
@@ -533,12 +533,12 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="message"/> was <see langword="null"/>.</exception>
-        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, [CanBeNull] Stream? body,
+        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [CanBeNull] Stream? body,
             TimeSpan? timeout, CancellationToken cancellationToken)
         {
             if(!(body is null))
             {
-                await _storage.WriteMessageAsync(reliableQueueKey, message, body, timeout, cancellationToken);
+                await _storage.WriteMessageAsync(reliableQueueKey, message, body, timeout, cancellationToken).ConfigureAwait(true);
             }
         }
 
@@ -564,14 +564,14 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <returns>A task that performs the action specified.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
         private async Task SendMessageAsync<TBody>(ReliableQueueKey reliableQueueKey, TBody body,
-            [NotNull] Action<MessageRecord, TBody> initializeMessageFieldsFromBody,
-            [NotNull] Func<ReliableQueueKey, TBody, TimeSpan?, CancellationToken, MessageRecord, Task> recordBody, Topic? topic = null, TimeSpan? timeout = null,
+            [NotNull] Action<Message, TBody> initializeMessageFieldsFromBody,
+            [NotNull] Func<ReliableQueueKey, TBody, TimeSpan?, CancellationToken, Message, Task> recordBody, Topic? topic = null, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             var configuration = _configuration[reliableQueueKey];
 
             // We create the message as early as possible to capture the timestamps and sequence ID.
-            var message = MessageRecord.CreateNew(reliableQueueKey, configuration, topic);
+            var message = Message.CreateNew(reliableQueueKey, configuration, topic);
 
             var timeoutPeriod = timeout ?? TimeSpan.FromSeconds(configuration.DefaultTimeoutSeconds);
             var token = cancellationToken ?? CancellationToken.None;
@@ -592,7 +592,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             Task.WaitAll(tasks.ToArray());
 
             // ... we can change the record state to "queued" ...
-            message = await _state.QueueMessageAsync(reliableQueueKey, addMessage.Result, timeoutPeriod, cancellationToken);
+            message = await _state.QueueMessageAsync(reliableQueueKey, addMessage.Result, timeoutPeriod, cancellationToken).ConfigureAwait(true);
 
             // ... and send a message to listeners (do this async, we don't need to wait).
 #pragma warning disable 4014

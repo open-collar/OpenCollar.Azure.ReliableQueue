@@ -41,18 +41,18 @@ namespace OpenCollar.Azure.ReliableQueue
         private static readonly Dictionary<Type, Dictionary<string, string>> _skipProperties = new Dictionary<Type, Dictionary<string, string>>
         {
             {
-                typeof(MessageRecord), new Dictionary<string, string>
+                typeof(Message), new Dictionary<string, string>
                 {
-                    { nameof(MessageRecord.ReliableQueueKey), nameof(MessageRecord.ReliableQueueKey) },
-                    { nameof(MessageRecord.Topic), nameof(MessageRecord.Topic) },
-                    { nameof(MessageRecord.Sequence), nameof(MessageRecord.Sequence) }
+                    { nameof(Message.ReliableQueueKey), nameof(Message.ReliableQueueKey) },
+                    { nameof(Message.Topic), nameof(Message.Topic) },
+                    { nameof(Message.Sequence), nameof(Message.Sequence) }
                 }
             },
             {
-                typeof(TopicAffinityRecord), new Dictionary<string, string>
+                typeof(TopicAffinity), new Dictionary<string, string>
                 {
-                    { nameof(TopicAffinityRecord.ReliableQueueKey), nameof(TopicAffinityRecord.ReliableQueueKey) },
-                    { nameof(TopicAffinityRecord.Topic), nameof(TopicAffinityRecord.Topic) }
+                    { nameof(TopicAffinity.ReliableQueueKey), nameof(TopicAffinity.ReliableQueueKey) },
+                    { nameof(TopicAffinity.Topic), nameof(TopicAffinity.Topic) }
                 }
             }
         };
@@ -76,12 +76,12 @@ namespace OpenCollar.Azure.ReliableQueue
 
             var entity = TableEntity.ConvertBack<TTableEntity>(properties, context);
 
-            var messageRecord = entity as MessageRecord;
+            var messageRecord = entity as Message;
             if(!(messageRecord is null))
             {
-                messageRecord.ReliableQueueKey = new ReliableQueueKey(dynamicTableEntity.Properties[nameof(MessageRecord.ReliableQueueKey)].StringValue);
-                messageRecord.Topic = new Topic(dynamicTableEntity.Properties[nameof(MessageRecord.Topic)].StringValue);
-                var sequence = dynamicTableEntity.Properties[nameof(MessageRecord.Sequence)].Int64Value;
+                messageRecord.ReliableQueueKey = new ReliableQueueKey(dynamicTableEntity.Properties[nameof(Message.ReliableQueueKey)].StringValue);
+                messageRecord.Topic = new Topic(dynamicTableEntity.Properties[nameof(Message.Topic)].StringValue);
+                var sequence = dynamicTableEntity.Properties[nameof(Message.Sequence)].Int64Value;
                 if(sequence.HasValue && sequence.Value != 0)
                 {
                     messageRecord.Sequence = sequence.Value;
@@ -93,12 +93,12 @@ namespace OpenCollar.Azure.ReliableQueue
             }
             else
             {
-                var topicAffinityRecord = entity as TopicAffinityRecord;
+                var topicAffinityRecord = entity as TopicAffinity;
                 if(!(topicAffinityRecord is null))
                 {
                     topicAffinityRecord.ReliableQueueKey =
-                        new ReliableQueueKey(dynamicTableEntity.Properties[nameof(TopicAffinityRecord.ReliableQueueKey)].StringValue);
-                    topicAffinityRecord.Topic = new Topic(dynamicTableEntity.Properties[nameof(TopicAffinityRecord.Topic)].StringValue);
+                        new ReliableQueueKey(dynamicTableEntity.Properties[nameof(TopicAffinity.ReliableQueueKey)].StringValue);
+                    topicAffinityRecord.Topic = new Topic(dynamicTableEntity.Properties[nameof(TopicAffinity.Topic)].StringValue);
                 }
             }
 
@@ -121,28 +121,28 @@ namespace OpenCollar.Azure.ReliableQueue
                 Properties = TableEntity.Flatten(entity, context)
             };
 
-            var message = entity as MessageRecord;
+            var message = entity as Message;
             if(!(message is null))
             {
-                dynamicTableEntity.Properties.Add(nameof(MessageRecord.ReliableQueueKey), new EntityProperty(message.ReliableQueueKey.ToString()));
-                dynamicTableEntity.Properties.Add(nameof(MessageRecord.Topic), new EntityProperty(message.Topic.ToString()));
-                if(dynamicTableEntity.Properties.ContainsKey(nameof(MessageRecord.Sequence)))
+                dynamicTableEntity.Properties.Add(nameof(Message.ReliableQueueKey), new EntityProperty(message.ReliableQueueKey.ToString()));
+                dynamicTableEntity.Properties.Add(nameof(Message.Topic), new EntityProperty(message.Topic.ToString()));
+                if(dynamicTableEntity.Properties.ContainsKey(nameof(Message.Sequence)))
                 {
-                    dynamicTableEntity.Properties[nameof(MessageRecord.Sequence)].Int64Value = message.Sequence;
+                    dynamicTableEntity.Properties[nameof(Message.Sequence)].Int64Value = message.Sequence;
                 }
                 else
                 {
-                    dynamicTableEntity.Properties.Add(nameof(MessageRecord.Sequence),
+                    dynamicTableEntity.Properties.Add(nameof(Message.Sequence),
                         new EntityProperty(message.Sequence.ToString("D", CultureInfo.InvariantCulture)));
                 }
             }
             else
             {
-                var topic = entity as TopicAffinityRecord;
+                var topic = entity as TopicAffinity;
                 if(!(topic is null))
                 {
-                    dynamicTableEntity.Properties.Add(nameof(TopicAffinityRecord.ReliableQueueKey), new EntityProperty(topic.ReliableQueueKey.ToString()));
-                    dynamicTableEntity.Properties.Add(nameof(TopicAffinityRecord.Topic), new EntityProperty(topic.Topic.ToString()));
+                    dynamicTableEntity.Properties.Add(nameof(TopicAffinity.ReliableQueueKey), new EntityProperty(topic.ReliableQueueKey.ToString()));
+                    dynamicTableEntity.Properties.Add(nameof(TopicAffinity.Topic), new EntityProperty(topic.Topic.ToString()));
                 }
             }
 

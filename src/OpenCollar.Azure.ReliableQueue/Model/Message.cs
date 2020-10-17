@@ -41,7 +41,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
     /// <summary>A class representing a message recorded in a storage table.</summary>
     /// <seealso cref="Microsoft.Azure.Cosmos.Table.TableEntity"/>
     [DebuggerDisplay("Queue: {ReliableQueueKey,nq}; Topic: {Topic,nq}; Sequence: {Sequence}.")]
-    internal sealed class MessageRecord : TableEntity, IComparable<MessageRecord>
+    internal sealed class Message : TableEntity, IComparable<Message>
     {
         /// <summary>The current local sequence index.</summary>
         private static int _currentLocalSequence;
@@ -56,12 +56,15 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// </summary>
         private long _sequence;
 
-        /// <summary>Initializes a new instance of the <see cref="MessageRecord"/> class.</summary>
-        public MessageRecord()
+        /// <summary>Initializes a new instance of the <see cref="Message"/> class.</summary>
+#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
+
+        public Message()
+#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="MessageRecord"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="Message"/> class.</summary>
         /// <param name="reliableQueueKey">The key identifying the queue to which the message belongs.</param>
         /// <param name="id">A GUID uniquely identifying the message. This is fixed at creation.</param>
         /// <param name="owner">
@@ -81,7 +84,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <exception cref="System.ArgumentException"><paramref name="source"/> was zero-length or contains only white-space characters.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
         [JsonConstructor]
-        public MessageRecord([NotNull] ReliableQueueKey reliableQueueKey, Guid id, [NotNull] string owner, [NotNull] string source,
+        public Message([NotNull] ReliableQueueKey reliableQueueKey, Guid id, [NotNull] string owner, [NotNull] string source,
             [CanBeNull] Topic? topic = null)
         {
             if(id == Guid.Empty)
@@ -244,7 +247,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///         <item><term>Greater than zero</term> <description>This instance follows <paramref name="other"/> in the sort order.</description></item>
         ///     </list>
         /// </returns>
-        public int CompareTo(MessageRecord other)
+        public int CompareTo(Message other)
         {
             if(ReferenceEquals(this, other))
             {
@@ -291,7 +294,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
                 return 0;
             }
 
-            return obj is MessageRecord other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(MessageRecord)}");
+            return obj is Message other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(Message)}");
         }
 
         /// <summary>
@@ -309,14 +312,14 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     A new message, with a new <see cref="Id"/> and the <see cref="Owner"/> and <see cref="Source"/> properties set to the current host identity,
         ///     <see cref="Identity.Current"/>.
         /// </returns>
-        public static MessageRecord CreateNew([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] IReliableQueueConfiguration configuration,
+        public static Message CreateNew([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] IReliableQueueConfiguration configuration,
             [CanBeNull] Topic? topic = null)
         {
             var localSequence = GetLocalSequence();
 
             var identity = Identity.Current;
 
-            var message = new MessageRecord(reliableQueueKey, Guid.NewGuid(), identity, identity, topic)
+            var message = new Message(reliableQueueKey, Guid.NewGuid(), identity, identity, topic)
             {
                 MaxAttempts = configuration.MaxAttempts,
                 LocalSequence = localSequence,
@@ -330,7 +333,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <param name="other">An object to compare with this object.</param>
         /// <returns><see langword="true"/> if the current object is equal to the <paramref name="other"/> parameter; otherwise, <see langword="false"/>.</returns>
-        public bool Equals(MessageRecord other)
+        public bool Equals(Message other)
         {
             if(ReferenceEquals(null, other))
             {
@@ -348,7 +351,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <summary>Determines whether the specified object is equal to the current object.</summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns><see langword="true"/> if the specified object  is equal to the current object; otherwise, <see langword="false"/>.</returns>
-        public override bool Equals(object obj) => ReferenceEquals(this, obj) || obj is MessageRecord other && Equals(other);
+        public override bool Equals(object obj) => ReferenceEquals(this, obj) || obj is Message other && Equals(other);
 
         /// <summary>Converts from the JSON representation of a message record into a fully instantiated object.</summary>
         /// <param name="json">The JSON representation of the message record to instantiate.</param>
@@ -357,7 +360,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     only white space characters.
         /// </returns>
         [CanBeNull]
-        public static MessageRecord FromJson([CanBeNull] string json)
+        public static Message? FromJson([CanBeNull] string json)
         {
             if(string.IsNullOrWhiteSpace(json))
             {
@@ -369,7 +372,11 @@ namespace OpenCollar.Azure.ReliableQueue.Model
             using var stringReader = new StringReader(json);
             using var reader = new JsonTextReader(stringReader);
 
-            return serializer.Deserialize<MessageRecord>(reader);
+            var message = serializer.Deserialize<Message>(reader);
+
+            System.Diagnostics.Debug.Assert(!(message is null));
+
+            return message;
         }
 
         /// <summary>Serves as the default hash function.</summary>
@@ -380,56 +387,56 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <returns>The next local sequence value.</returns>
         public static int GetLocalSequence() => Interlocked.Increment(ref _currentLocalSequence);
 
-        /// <summary>Returns a value that indicates whether the values of two <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> objects are equal.</summary>
+        /// <summary>Returns a value that indicates whether the values of two <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> objects are equal.</summary>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
         /// <returns>
         ///     <see langword="true"/> if the <paramref name="left"/> and <paramref name="right"/> parameters have the same value; otherwise,
         ///     <see langword="false"/>.
         /// </returns>
-        public static bool operator ==(MessageRecord left, MessageRecord right) => Equals(left, right);
+        public static bool operator ==(Message left, Message right) => Equals(left, right);
 
         /// <summary>
-        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value is greater than another
-        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value.
+        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value is greater than another
+        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value.
         /// </summary>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
         /// <returns><see langword="true"/> if <paramref name="left"/> is greater than <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-        public static bool operator >(MessageRecord left, MessageRecord right) => Comparer<MessageRecord>.Default.Compare(left, right) > 0;
+        public static bool operator >(Message left, Message right) => Comparer<Message>.Default.Compare(left, right) > 0;
 
         /// <summary>
-        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value is greater than or equal to another
-        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value.
+        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value is greater than or equal to another
+        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value.
         /// </summary>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
         /// <returns><see langword="true"/> if <paramref name="left"/> is greater than <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-        public static bool operator >=(MessageRecord left, MessageRecord right) => Comparer<MessageRecord>.Default.Compare(left, right) >= 0;
+        public static bool operator >=(Message left, Message right) => Comparer<Message>.Default.Compare(left, right) >= 0;
 
-        /// <summary>Returns a value that indicates whether two <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> objects have different values.</summary>
+        /// <summary>Returns a value that indicates whether two <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> objects have different values.</summary>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
         /// <returns><see langword="true"/> if <paramref name="left"/> and <paramref name="right"/> are not equal; otherwise, <see langword="false"/>.</returns>
-        public static bool operator !=(MessageRecord left, MessageRecord right) => !Equals(left, right);
+        public static bool operator !=(Message left, Message right) => !Equals(left, right);
 
         /// <summary>
-        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value is less than another
-        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value.
+        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value is less than another
+        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value.
         /// </summary>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
         /// <returns><see langword="true"/> if <paramref name="left"/> is less than <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-        public static bool operator <(MessageRecord left, MessageRecord right) => Comparer<MessageRecord>.Default.Compare(left, right) < 0;
+        public static bool operator <(Message left, Message right) => Comparer<Message>.Default.Compare(left, right) < 0;
 
         /// <summary>
-        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value is less than or equal to another
-        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.MessageRecord"/> value.
+        ///     Returns a value that indicates whether a <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value is less than or equal to another
+        ///     <see cref="OpenCollar.Azure.ReliableQueue.Model.Message"/> value.
         /// </summary>
         /// <param name="left">The first value to compare.</param>
         /// <param name="right">The second value to compare.</param>
         /// <returns><see langword="true"/> if <paramref name="left"/> is less than or equal to <paramref name="right"/>; otherwise, <see langword="false"/>.</returns>
-        public static bool operator <=(MessageRecord left, MessageRecord right) => Comparer<MessageRecord>.Default.Compare(left, right) <= 0;
+        public static bool operator <=(Message left, Message right) => Comparer<Message>.Default.Compare(left, right) <= 0;
 
         /// <summary>Converts to the current message record into a JSON representation.</summary>
         /// <returns>The JSON representation of this instance.</returns>

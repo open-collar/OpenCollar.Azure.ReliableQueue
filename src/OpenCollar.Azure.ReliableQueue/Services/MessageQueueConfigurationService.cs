@@ -28,6 +28,7 @@ using Microsoft.WindowsAzure.Storage;
 
 using OpenCollar.Azure.ReliableQueue.Configuration;
 using OpenCollar.Azure.ReliableQueue.Model;
+using OpenCollar.Extensions;
 using OpenCollar.Extensions.Configuration;
 using OpenCollar.Extensions.Validation;
 
@@ -35,7 +36,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 {
     /// <summary>A service used to access the configuration for the queues used to send and receive messages.</summary>
     /// <seealso cref="IReliableQueueConfigurationService"/>
-    internal sealed class ReliableQueueConfigurationService : IReliableQueueConfigurationService
+    internal sealed class ReliableQueueConfigurationService : Disposable, IReliableQueueConfigurationService
     {
         /// <summary>The configuration from which the service was initialized.</summary>
         [NotNull]
@@ -55,6 +56,21 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         private readonly OpenCollar.Extensions.Collections.Concurrent.InMemoryCache<string, Microsoft.Azure.Cosmos.Table.CloudStorageAccount> _tableAccountCache =
             new OpenCollar.Extensions.Collections.Concurrent.InMemoryCache<string, Microsoft.Azure.Cosmos.Table.CloudStorageAccount>(TimeSpan.FromSeconds(120),
                 Microsoft.Azure.Cosmos.Table.CloudStorageAccount.Parse, false, true);
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing"><see langword="true" /> to release both managed and unmanaged resources; <see langword="false" /> to
+        /// release only unmanaged resources.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if(disposing)
+            {
+                _storageAccountCache.Dispose();
+                _tableAccountCache.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
         /// <summary>Initializes a new instance of the <see cref="ReliableQueueConfigurationService"/> class.</summary>
         /// <param name="configuration">The configuration object from which to initialize.</param>

@@ -43,7 +43,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     cancellation.
         /// </param>
         [NotNull]
-        public Task<MessageRecord> SendMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] MessageRecord message, TimeSpan? timeout = null,
+        public Task<Message> SendMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
     }
 }

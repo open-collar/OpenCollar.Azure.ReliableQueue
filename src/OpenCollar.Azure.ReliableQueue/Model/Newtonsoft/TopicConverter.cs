@@ -25,13 +25,11 @@ using Newtonsoft.Json;
 
 using OpenCollar.Extensions.Validation;
 
-#nullable enable
-
 namespace OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
 {
     /// <summary>A converter that ensures that reliable queue topics are represented in the correct format.</summary>
     /// <seealso cref="OpenCollar.Azure.ReliableQueue.Model.Topic"/>
-    public sealed class TopicConverter : JsonConverter<Topic>
+    public sealed class TopicConverter : JsonConverter<Topic?>
     {
         /// <summary>Gets a common instance of the converter that can be reused as necessary.</summary>
         /// <value>A common instance of the converter that can be reused as necessary.</value>
@@ -46,7 +44,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
         /// <param name="serializer">The calling serializer.</param>
         /// <returns>The object value.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="reader"/> is <see langword="null"/>.</exception>
-        public override Topic? ReadJson(JsonReader reader, Type objectType, Topic existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override Topic? ReadJson(JsonReader reader, Type objectType, Topic? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
             reader.Validate(nameof(reader), ObjectIs.NotNull);
 
@@ -65,11 +63,18 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         /// <exception cref="System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
-        public override void WriteJson(JsonWriter writer, Topic value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, Topic? value, JsonSerializer serializer)
         {
             writer.Validate(nameof(writer), ObjectIs.NotNull);
 
-            writer.WriteValue(value.ToString());
+            if(value is null)
+            {
+                writer.WriteNull();
+            }
+            else
+            {
+                writer.WriteValue(value.ToString());
+            }
         }
     }
 }

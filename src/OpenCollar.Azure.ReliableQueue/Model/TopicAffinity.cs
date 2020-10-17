@@ -34,17 +34,17 @@ namespace OpenCollar.Azure.ReliableQueue.Model
     /// <summary>A class representing a topic affinity recorded in a storage table.</summary>
     /// <seealso cref="Microsoft.Azure.Cosmos.Table.TableEntity"/>
     [DebuggerDisplay("Queue: {ReliableQueueKey,nq}; Topic: {Topic,nq}; Owner: {Owner,nq}.")]
-    internal sealed class TopicAffinityRecord : TableEntity
+    internal sealed class TopicAffinity : TableEntity
     {
         /// <summary>The default value used in <see cref="DateTime"/> fields to prevent Azure Tables from throwing out-of-range errors.</summary>
         public static readonly DateTime DefaultDateTime = new DateTime(1970, 1, 1);
 
-        /// <summary>Initializes a new instance of the <see cref="TopicAffinityRecord"/> class.</summary>
-        public TopicAffinityRecord()
+        /// <summary>Initializes a new instance of the <see cref="TopicAffinity"/> class.</summary>
+        public TopicAffinity()
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="TopicAffinityRecord"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="TopicAffinity"/> class.</summary>
         /// <param name="reliableQueueKey">The key identifying the queue to which the message belongs.</param>
         /// <param name="owner">
         ///     The ID of the endpoint that most recently processed messages for this topic. This will change throughout the lifetime of the queue, but will
@@ -60,7 +60,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="topic"/> was <see langword="null"/>.</exception>
         [JsonConstructor]
-        public TopicAffinityRecord([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] string owner, [NotNull] Topic topic)
+        public TopicAffinity([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] string owner, [NotNull] Topic topic)
         {
             owner.Validate(nameof(owner), StringIs.NotNullEmptyOrWhiteSpace);
             reliableQueueKey.Validate(nameof(ReliableQueueKey), ObjectIs.NotNull);
@@ -128,14 +128,14 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     property set to the current host identity, <see cref="Identity.Current"/>.
         /// </returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
-        public static TopicAffinityRecord CreateNew([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Topic topic)
+        public static TopicAffinity CreateNew([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Topic topic)
         {
             reliableQueueKey.Validate(nameof(reliableQueueKey), ObjectIs.NotNull);
             topic.Validate(nameof(topic), ObjectIs.NotNull);
 
             var identity = Identity.Current;
 
-            return new TopicAffinityRecord(reliableQueueKey, identity, topic);
+            return new TopicAffinity(reliableQueueKey, identity, topic);
         }
     }
 }

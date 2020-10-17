@@ -53,9 +53,13 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         public ReliableQueueKey([NotNull] string key)
         {
             key.Validate(nameof(key), StringIs.NotNullEmptyOrWhiteSpace);
+
             _key = key;
+
+#pragma warning disable CS8601 // Possible null reference assignment.
             _identifier = Identifiers.MakeSafe(_key);
             TableIdentifier = Identifiers.MakeTableSafe(_key);
+#pragma warning restore CS8601 // Possible null reference assignment.
         }
 
         /// <summary>Gets the safe identifier created from the key for use in Azure.</summary>

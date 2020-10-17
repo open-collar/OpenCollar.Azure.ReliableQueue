@@ -62,7 +62,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     <see langword="false"/> if it is to be ignored.
         /// </returns>
         [NotNull]
-        public Task<bool> OnReceivedAsync([NotNull] MessageRecord message, [NotNull] IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
+        public Task<bool> OnReceivedAsync([NotNull] Message message, [NotNull] IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
             [CanBeNull] CancellationToken? cancellationToken = null);
     }
 }

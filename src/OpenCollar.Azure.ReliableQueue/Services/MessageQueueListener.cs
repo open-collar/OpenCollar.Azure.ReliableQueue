@@ -93,7 +93,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         [DebuggerStepThrough]
         private async Task InitializeQueueClientAsync()
         {
-            await _queueClient.CreateIfNotExistsAsync();
+            await _queueClient.CreateIfNotExistsAsync().ConfigureAwait(true);
         }
 
         /// <summary>Called when the keep-alive timer is fired and the keep-alive record is to be updated.</summary>
@@ -160,13 +160,13 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         {
             try
             {
-                return await _queueClient.ReceiveMessagesAsync(1);
+                return await _queueClient.ReceiveMessagesAsync(1).ConfigureAwait(true);
             }
             catch(RequestFailedException)
             {
-                await InitializeQueueClientAsync();
+                await InitializeQueueClientAsync().ConfigureAwait(true);
 
-                return await _queueClient.ReceiveMessagesAsync(1);
+                return await _queueClient.ReceiveMessagesAsync(1).ConfigureAwait(true);
             }
         }
     }

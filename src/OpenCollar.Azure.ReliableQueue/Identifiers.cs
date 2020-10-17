@@ -57,7 +57,7 @@ namespace OpenCollar.Azure.ReliableQueue
         /// <param name="name">The identifier in which the characters are to be replaced.</param>
         /// <returns>Returns a string in which all non-alphanumeric characters are replaced with hyphens and all alphabetic characters are made lower-case.</returns>
         [ContractAnnotation("null=>null;notnull=>notnull;")]
-        public static string MakeSafe([CanBeNull] string name)
+        public static string? MakeSafe([CanBeNull] string name)
         {
             if(ReferenceEquals(name, null))
             {
@@ -90,7 +90,7 @@ namespace OpenCollar.Azure.ReliableQueue
         /// <param name="name">The identifier in which the characters are to be replaced.</param>
         /// <returns>Returns a string in which all non-alphanumeric characters are replaced with xs and all alphabetic characters are made lower-case.</returns>
         [ContractAnnotation("null=>null;notnull=>notnull;")]
-        public static string MakeTableSafe([CanBeNull] string name)
+        public static string? MakeTableSafe([CanBeNull] string name)
         {
             if(ReferenceEquals(name, null))
             {
