@@ -1,0 +1,453 @@
+{
+  "homepages": [],
+  "source_base_path": "F:/Users/jevans/source/repos/open-collar/OpenCollar.Azure.ReliableQueue/docs-src/ApiDocs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html",
+          "hash": "JQDlXIHgMUymKpvpr9seRA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration.html",
+          "hash": "4nqdK4xJmVva698Mx6n+jA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.html",
+          "hash": "68QlJHdg0VT4kHEp2EqVHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.IReliableQueue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.IReliableQueue.html",
+          "hash": "X27fSLo/4+6erEyLhmt+bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.IReliableQueueService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.IReliableQueueService.html",
+          "hash": "LWZWtq/LzLmc6Ax0I/TSrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.MessageException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.MessageException.html",
+          "hash": "TWPIUWTRRmyFOapyklCGMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.MessageStateException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.MessageStateException.html",
+          "hash": "HHJhItSZ8VDyLCLqEOi5hw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.MessageState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.MessageState.html",
+          "hash": "+ZUmHsqzL9Xe/AhbGLpktw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html",
+          "hash": "YMAhbPeKD4iDuHSIDfC4NQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.TopicConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.TopicConverter.html",
+          "hash": "SNhwg9uoj+yOhrygNzXACg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.html",
+          "hash": "9CuoI65PLbFNdwRxORMcIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html",
+          "hash": "tuKe/h0B/KMijiLvy1ZDJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken.html",
+          "hash": "g/Q3BcYO3pxxh/oUBAN5QQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html",
+          "hash": "OD1TC2mPlj3N1rUvKQ9D/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.TopicConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.TopicConverter.html",
+          "hash": "k9VCBWHxynd7HmaJVWwHRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.html",
+          "hash": "l07ovi1uatTlfY1unzD1KQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Topic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Topic.html",
+          "hash": "3ribHU/efAD9R/hIx2EAcw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.html",
+          "hash": "g45GoShnS51YXKtYuGv+UQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html",
+          "hash": "yx4151QT1MiYLWF2ovkavg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html",
+          "hash": "Uwn+TQWMJILcf6BnRHD2wg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.ServiceCollectionExtensions.html",
+          "hash": "UAYZGrFFW51E3TfaRSTcJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html",
+          "hash": "yCFxQ9mQahZzmJ6c7oiwZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/OpenCollar.Azure.ReliableQueue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/OpenCollar.Azure.ReliableQueue.html",
+          "hash": "V2nb8to1hCqH0vrXoZJqgg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "jGY3Fr8vKv/XCEH4bVfsNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "wieFW/e9pT5EkjAm2itTvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.ico"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/favicon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/opencollar-icon-48x96x32.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/opencollar-icon-48x96x32.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "J2Z1PeqDYQukjNxVPEAOag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "qLR8oaMq+CsSTf9ceS6f5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "usage/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "usage/index.html",
+          "hash": "Uot0DRQswHMmoDTcxjQUYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "usage/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "usage/toc.html",
+          "hash": "ek2IDqrFkjt4dcCmmDo7IA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 23,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

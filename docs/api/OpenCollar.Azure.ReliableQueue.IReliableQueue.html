@@ -1,0 +1,761 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IReliableQueue
+   | API Documentation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IReliableQueue
+   | API Documentation ">
+    <meta name="generator" content="docfx 2.49.0.0">
+    
+    <link rel="shortcut icon" href=".././images/favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src=".././images/opencollar-icon-48x96x32.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue">
+  
+  
+  <h1 id="OpenCollar_Azure_ReliableQueue_IReliableQueue" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue" class="text-break">Interface IReliableQueue
+  </h1>
+  <div class="markdown level0 summary"><p>The public interface of the object representing a reliable queue.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="OpenCollar.Azure.ReliableQueue.html">OpenCollar.Azure.ReliableQueue</a></h6>
+  <h6><strong>Assembly</strong>: OpenCollar.Azure.ReliableQueue.dll</h6>
+  <h5 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IReliableQueue</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_CanReceive.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.CanReceive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L39">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_CanReceive_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.CanReceive*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_CanReceive" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.CanReceive">CanReceive</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the queue can be used to receive message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CanReceive { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the queue can be used to receive messages; otherwise, <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_CanSend.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.CanSend%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L43">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_CanSend_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.CanSend*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_CanSend" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.CanSend">CanSend</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the queue can be used to send message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool CanSend { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the queue can be used to send messages; otherwise, <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_ReliableQueueKey.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L47">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_ReliableQueueKey_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_ReliableQueueKey" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey">ReliableQueueKey</h4>
+  <div class="markdown level1 summary"><p>Gets the key identifying the reliable queue represented.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ReliableQueueKey ReliableQueueKey { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html">ReliableQueueKey</a></td>
+        <td><p>The identifying the reliable queue represented.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_IsSubscribed.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.IsSubscribed%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L51">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_IsSubscribed_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.IsSubscribed*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_IsSubscribed" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.IsSubscribed">IsSubscribed()</h4>
+  <div class="markdown level1 summary"><p>Determines whether any subscriptions exist for the reliable queue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IsSubscribed()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the specified reliable queue key is subscribed; otherwise, <span class="xref">false</span>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_OnReceivedAsync_System_String_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.OnReceivedAsync(System.String%2CSystem.Nullable%7BSystem.TimeSpan%7D%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L69">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_OnReceivedAsync_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.OnReceivedAsync*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_OnReceivedAsync_System_String_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.OnReceivedAsync(System.String,System.Nullable{System.TimeSpan},System.Nullable{System.Threading.CancellationToken})">OnReceivedAsync(String, Nullable&lt;TimeSpan&gt;, Nullable&lt;CancellationToken&gt;)</h4>
+  <div class="markdown level1 summary"><p>Called when a trigger (e.g. EventGrid or StorageQueue) receives a notification of a message to be processed.  The notification can be intended
+for any reliable queue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task OnReceivedAsync([NotNull] string base64, TimeSpan? timeout = default(TimeSpan? ), [CanBeNull] CancellationToken? cancellationToken = default(CancellationToken? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">base64</span></td>
+        <td><p>The Base-64 encoded JSON representation of the serialized message.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>The maximum period of time to wait whilst attempting to process the message before failing with an error.  Defaults to the value in the
+<a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_DefaultTimeoutSeconds">DefaultTimeoutSeconds</a> property of the queue configuration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Threading.CancellationToken</span>&gt;</td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token that can be used to abandon the attempt to process the message.  Defaults to <span class="xref">null</span>, meaning there can be no
+cancellation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that processes the message supplied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">base64</code> was <span class="xref">null</span>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">base64</code> was zero-length or contains only white-space characters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_System_Byte___OpenCollar_Azure_ReliableQueue_Model_Topic_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync(System.Byte%5B%5D%2COpenCollar.Azure.ReliableQueue.Model.Topic%2CSystem.Nullable%7BSystem.TimeSpan%7D%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L88">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_System_Byte___OpenCollar_Azure_ReliableQueue_Model_Topic_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync(System.Byte[],OpenCollar.Azure.ReliableQueue.Model.Topic,System.Nullable{System.TimeSpan},System.Nullable{System.Threading.CancellationToken})">SendMessageAsync(Byte[], Topic, Nullable&lt;TimeSpan&gt;, Nullable&lt;CancellationToken&gt;)</h4>
+  <div class="markdown level1 summary"><p>Sends the message body provided on the reliable queue, optionally on the topic given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task SendMessageAsync([CanBeNull] byte[] body, [CanBeNull] Topic topic = null, TimeSpan? timeout = default(TimeSpan? ), [CanBeNull] CancellationToken? cancellationToken = default(CancellationToken? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">body</span></td>
+        <td><p>The body of the message to send.  This can be <span class="xref">null</span> or contain any content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.Topic.html">Topic</a></td>
+        <td><span class="parametername">topic</span></td>
+        <td><p>A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
+at creation.  The value in <a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.Topic.html#OpenCollar_Azure_ReliableQueue_Model_Topic_Default">Default</a> will be used if the one specified is <span class="xref">null</span>, zero-length or contains
+only white-space characters</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>The maximum period of time to wait whilst attempting to send the message before failing with an error.   Defaults to the value in the
+<a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_DefaultTimeoutSeconds">DefaultTimeoutSeconds</a> property of the queue configuration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Threading.CancellationToken</span>&gt;</td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <span class="xref">null</span>, meaning there can be no
+cancellation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that performs the action specified.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Message queue is configured to be receive-only.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_System_IO_Stream_OpenCollar_Azure_ReliableQueue_Model_Topic_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync(System.IO.Stream%2COpenCollar.Azure.ReliableQueue.Model.Topic%2CSystem.Nullable%7BSystem.TimeSpan%7D%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L108">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_System_IO_Stream_OpenCollar_Azure_ReliableQueue_Model_Topic_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync(System.IO.Stream,OpenCollar.Azure.ReliableQueue.Model.Topic,System.Nullable{System.TimeSpan},System.Nullable{System.Threading.CancellationToken})">SendMessageAsync(Stream, Topic, Nullable&lt;TimeSpan&gt;, Nullable&lt;CancellationToken&gt;)</h4>
+  <div class="markdown level1 summary"><p>Sends the message body provided on the reliable queue, optionally on the topic given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task SendMessageAsync([CanBeNull] Stream body, [CanBeNull] Topic topic = null, TimeSpan? timeout = default(TimeSpan? ), [CanBeNull] CancellationToken? cancellationToken = default(CancellationToken? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">body</span></td>
+        <td><p>The body of the message to send.  This can be <span class="xref">null</span> or contain any content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.Topic.html">Topic</a></td>
+        <td><span class="parametername">topic</span></td>
+        <td><p>A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
+at creation.  The value in <a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.Topic.html#OpenCollar_Azure_ReliableQueue_Model_Topic_Default">Default</a> will be used if the one specified is <span class="xref">null</span>, zero-length or contains
+only white-space characters</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>The maximum period of time to wait whilst attempting to send the message before failing with an error.   Defaults to the value in the
+<a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_DefaultTimeoutSeconds">DefaultTimeoutSeconds</a> property of the queue configuration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Threading.CancellationToken</span>&gt;</td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <span class="xref">null</span>, meaning there can be no
+cancellation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that performs the action specified.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Message queue is configured to be receive-only.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_System_String_OpenCollar_Azure_ReliableQueue_Model_Topic_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync(System.String%2COpenCollar.Azure.ReliableQueue.Model.Topic%2CSystem.Nullable%7BSystem.TimeSpan%7D%2CSystem.Nullable%7BSystem.Threading.CancellationToken%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L128">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_System_String_OpenCollar_Azure_ReliableQueue_Model_Topic_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync(System.String,OpenCollar.Azure.ReliableQueue.Model.Topic,System.Nullable{System.TimeSpan},System.Nullable{System.Threading.CancellationToken})">SendMessageAsync(String, Topic, Nullable&lt;TimeSpan&gt;, Nullable&lt;CancellationToken&gt;)</h4>
+  <div class="markdown level1 summary"><p>Sends the message body provided on the reliable queue, optionally on the topic given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task SendMessageAsync([CanBeNull] string body, [CanBeNull] Topic topic = null, TimeSpan? timeout = default(TimeSpan? ), [CanBeNull] CancellationToken? cancellationToken = default(CancellationToken? ))</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">body</span></td>
+        <td><p>The body of the message to send.  This can be <span class="xref">null</span> or contain any content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.Topic.html">Topic</a></td>
+        <td><span class="parametername">topic</span></td>
+        <td><p>A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
+at creation.  The value in <a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.Topic.html#OpenCollar_Azure_ReliableQueue_Model_Topic_Default">Default</a> will be used if the one specified is <span class="xref">null</span>, zero-length or contains
+only white-space characters</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.TimeSpan</span>&gt;</td>
+        <td><span class="parametername">timeout</span></td>
+        <td><p>The maximum period of time to wait whilst attempting to send the message before failing with an error.  Defaults to the value in the
+<a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_DefaultTimeoutSeconds">DefaultTimeoutSeconds</a> property of the queue configuration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Threading.CancellationToken</span>&gt;</td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <span class="xref">null</span>, meaning there can be no
+cancellation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task that performs the action specified.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Message queue is configured to be receive-only.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_Subscribe_System_EventHandler_OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs__.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.Subscribe(System.EventHandler%7BOpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L136">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_Subscribe_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.Subscribe*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_Subscribe_System_EventHandler_OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs__" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.Subscribe(System.EventHandler{OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs})">Subscribe(EventHandler&lt;ReceivedMessageEventArgs&gt;)</h4>
+  <div class="markdown level1 summary"><p>Subscribes the specified reliable queue key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">SubscriptionToken Subscribe([NotNull] EventHandler&lt;ReceivedMessageEventArgs&gt; callbackHandler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html">ReceivedMessageEventArgs</a>&gt;</td>
+        <td><span class="parametername">callbackHandler</span></td>
+        <td><p>The event handler to call when a message arrives.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken.html">SubscriptionToken</a></td>
+        <td><p>A token that can be used to unsubscribe, either by calling <a class="xref" href="OpenCollar.Azure.ReliableQueue.IReliableQueue.html#OpenCollar_Azure_ReliableQueue_IReliableQueue_Unsubscribe_OpenCollar_Azure_ReliableQueue_Model_SubscriptionToken_">Unsubscribe(SubscriptionToken)</a> or by disposing.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">callbackHandler</code> was <span class="xref">null</span>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Message queue is configured to be send-only.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue_Unsubscribe_OpenCollar_Azure_ReliableQueue_Model_SubscriptionToken_.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue.Unsubscribe(OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L146">View Source</a>
+  </span>
+  <a id="OpenCollar_Azure_ReliableQueue_IReliableQueue_Unsubscribe_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.Unsubscribe*"></a>
+  <h4 id="OpenCollar_Azure_ReliableQueue_IReliableQueue_Unsubscribe_OpenCollar_Azure_ReliableQueue_Model_SubscriptionToken_" data-uid="OpenCollar.Azure.ReliableQueue.IReliableQueue.Unsubscribe(OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken)">Unsubscribe(SubscriptionToken)</h4>
+  <div class="markdown level1 summary"><p>Unsubscribes from the reliable queue by the token given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Unsubscribe([NotNull] SubscriptionToken token)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken.html">SubscriptionToken</a></td>
+        <td><span class="parametername">token</span></td>
+        <td><p>The token returned by <a class="xref" href="OpenCollar.Azure.ReliableQueue.IReliableQueue.html#OpenCollar_Azure_ReliableQueue_IReliableQueue_Subscribe_System_EventHandler_OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs__">Subscribe(EventHandler&lt;ReceivedMessageEventArgs&gt;)</a> when the subscription was created.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p><span class="xref">true</span> if the subscription was found and unsubscribed; otherwise, <span class="xref">false</span> if there was no subscription to
+remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">token</code> was <span class="xref">null</span>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Message queue is configured to be send-only.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_IReliableQueue.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.IReliableQueue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/master/src/OpenCollar.Azure.ReliableQueue/IMessageQueue.cs/#L34" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <div style='box-sizing: border-box;'><div style='float: left; width: calc(100% - 200px);'>Copyright &copy; 2020 <a href='mailto:jevans@open-collar.org.uk'>Jonathan Evans</a></div><div style='float: left; width: 200px;'><span style='font-style: italic;'>Version: BUILD_VERSION</span></div></div>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
