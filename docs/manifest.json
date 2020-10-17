@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "F:/Users/jevans/source/repos/open-collar/OpenCollar.Azure.ReliableQueue/docs-src/ApiDocs",
+  "source_base_path": "/home/runner/work/OpenCollar.Azure.ReliableQueue/OpenCollar.Azure.ReliableQueue/docs-src/ApiDocs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -18,7 +18,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html",
-          "hash": "JQDlXIHgMUymKpvpr9seRA=="
+          "hash": "nDm5UJwxv2XeKMgQV44sPw=="
         }
       },
       "is_incremental": false,
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration.html",
-          "hash": "4nqdK4xJmVva698Mx6n+jA=="
+          "hash": "FR0SxPa7HtXjfDe/qRO+iw=="
         }
       },
       "is_incremental": false,
@@ -42,7 +42,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Configuration.html",
-          "hash": "68QlJHdg0VT4kHEp2EqVHA=="
+          "hash": "oDvVAFMB7Dd9kaujTCZZEA=="
         }
       },
       "is_incremental": false,
@@ -54,7 +54,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.IReliableQueue.html",
-          "hash": "X27fSLo/4+6erEyLhmt+bw=="
+          "hash": "ktpBhqKlpZf9udlmbi6kpw=="
         }
       },
       "is_incremental": false,
@@ -66,7 +66,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.IReliableQueueService.html",
-          "hash": "LWZWtq/LzLmc6Ax0I/TSrg=="
+          "hash": "t+P9zFFL1nicS7jeR1KSVQ=="
         }
       },
       "is_incremental": false,
@@ -78,7 +78,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.MessageException.html",
-          "hash": "TWPIUWTRRmyFOapyklCGMw=="
+          "hash": "jg0pO8C2UTH1+wKuvmSeNQ=="
         }
       },
       "is_incremental": false,
@@ -90,7 +90,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.MessageStateException.html",
-          "hash": "HHJhItSZ8VDyLCLqEOi5hw=="
+          "hash": "ntj+KAejkOvqIGMyr37zlg=="
         }
       },
       "is_incremental": false,
@@ -102,7 +102,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.MessageState.html",
-          "hash": "+ZUmHsqzL9Xe/AhbGLpktw=="
+          "hash": "O0u4z1HFAMPKfL7j7Whmpw=="
         }
       },
       "is_incremental": false,
@@ -114,7 +114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html",
-          "hash": "YMAhbPeKD4iDuHSIDfC4NQ=="
+          "hash": "UtkD6k4FQq32acfLbbMSCA=="
         }
       },
       "is_incremental": false,
@@ -126,7 +126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.TopicConverter.html",
-          "hash": "SNhwg9uoj+yOhrygNzXACg=="
+          "hash": "TapGDKKXoZkpmjKujjJxGw=="
         }
       },
       "is_incremental": false,
@@ -138,7 +138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.html",
-          "hash": "9CuoI65PLbFNdwRxORMcIw=="
+          "hash": "e832Y2H6MOGOf8oFeQXOXg=="
         }
       },
       "is_incremental": false,
@@ -150,7 +150,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html",
-          "hash": "tuKe/h0B/KMijiLvy1ZDJw=="
+          "hash": "v0njOIkmDZdWI8OwFxw5CA=="
         }
       },
       "is_incremental": false,
@@ -162,7 +162,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken.html",
-          "hash": "g/Q3BcYO3pxxh/oUBAN5QQ=="
+          "hash": "7xIq/j93kd2ICbkJRJYzag=="
         }
       },
       "is_incremental": false,
@@ -174,7 +174,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html",
-          "hash": "OD1TC2mPlj3N1rUvKQ9D/Q=="
+          "hash": "qLlr38mUJXB7oIKh8JPyPg=="
         }
       },
       "is_incremental": false,
@@ -186,7 +186,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.TopicConverter.html",
-          "hash": "k9VCBWHxynd7HmaJVWwHRw=="
+          "hash": "d8XrW3lv4dNnJtfADatGgg=="
         }
       },
       "is_incremental": false,
@@ -198,7 +198,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.html",
-          "hash": "l07ovi1uatTlfY1unzD1KQ=="
+          "hash": "3rRIwn1XlnUdFFsHWZxabQ=="
         }
       },
       "is_incremental": false,
@@ -210,7 +210,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.Topic.html",
-          "hash": "3ribHU/efAD9R/hIx2EAcw=="
+          "hash": "FPvDBFHHwN4vXPS+oVeiYg=="
         }
       },
       "is_incremental": false,
@@ -222,7 +222,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.Model.html",
-          "hash": "g45GoShnS51YXKtYuGv+UQ=="
+          "hash": "ZawV1hHMqYUZjIubVq7svg=="
         }
       },
       "is_incremental": false,
@@ -234,7 +234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html",
-          "hash": "yx4151QT1MiYLWF2ovkavg=="
+          "hash": "TZy/uDU+Q0nFSDi1eAiiuw=="
         }
       },
       "is_incremental": false,
@@ -246,7 +246,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html",
-          "hash": "Uwn+TQWMJILcf6BnRHD2wg=="
+          "hash": "zy64lP9GKx5q6FQkifnf4g=="
         }
       },
       "is_incremental": false,
@@ -258,7 +258,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.ServiceCollectionExtensions.html",
-          "hash": "UAYZGrFFW51E3TfaRSTcJQ=="
+          "hash": "d0yvUj6LvoABM3hr+m+Nyg=="
         }
       },
       "is_incremental": false,
@@ -270,7 +270,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html",
-          "hash": "yCFxQ9mQahZzmJ6c7oiwZw=="
+          "hash": "xUH9Z0upCGW++67JwLe01A=="
         }
       },
       "is_incremental": false,
@@ -282,7 +282,7 @@
       "output": {
         ".html": {
           "relative_path": "api/OpenCollar.Azure.ReliableQueue.html",
-          "hash": "V2nb8to1hCqH0vrXoZJqgg=="
+          "hash": "12KMdQc/P2T43pyhHQklNw=="
         }
       },
       "is_incremental": false,
@@ -294,7 +294,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "jGY3Fr8vKv/XCEH4bVfsNg=="
+          "hash": "eRJjQksjToQDMU/u1amHcg=="
         }
       },
       "is_incremental": false,
@@ -351,7 +351,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "J2Z1PeqDYQukjNxVPEAOag=="
+          "hash": "jI18VOdqjyqSQiv/UAtEVg=="
         }
       },
       "is_incremental": false,
@@ -375,7 +375,7 @@
       "output": {
         ".html": {
           "relative_path": "usage/index.html",
-          "hash": "Uot0DRQswHMmoDTcxjQUYg=="
+          "hash": "U5R2BumgP2FascUchP2F7Q=="
         }
       },
       "is_incremental": false,
@@ -398,11 +398,11 @@
     {
       "status": {
         "can_incremental": false,
-        "details": "Disable incremental build by force rebuild option.",
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
         "skipped_file_count": 0,
-        "full_build_reason_code": "ForceRebuild"
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "TocDocumentProcessor": {
@@ -412,16 +412,16 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 23,
-          "skipped_file_count": 0
-        },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 23,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
