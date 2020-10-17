@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AzureFunctionsVersion>v3</AzureFunctionsVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+        <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
+        <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Storage" Version="4.0.3" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.9" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.9" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
+        <PackageReference Include="OpenCollar.Azure.Storage" Version="0.6.5" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\OpenCollar.Azure.ReliableQueue\OpenCollar.Azure.ReliableQueue.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="host.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="local.settings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </None>
+    </ItemGroup>
+</Project>
