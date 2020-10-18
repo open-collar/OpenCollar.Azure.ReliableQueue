@@ -83,7 +83,7 @@
   
   <h1 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration" class="text-break">Interface IReliableQueueConfiguration
   </h1>
-  <div class="markdown level0 summary"><p>The configuration for a single reliable queue.</p>
+  <div class="markdown level0 summary"><p>Defines the <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html">IReliableQueueConfiguration</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
@@ -113,19 +113,6 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IReliableQueueConfiguration : IConfigurationObject, IDisposable, INotifyPropertyChanged</code></pre>
   </div>
-  <h5 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_examples"><strong>Examples</strong></h5>
-  <p>A typical section of the configuration file might look like this:</p>
-<pre><code>    &quot;ReliableQueues&quot;: {
-        &quot;Queues&quot;: {
-            &quot;TEST+1&quot;: {
-                &quot;StorageConnectionString&quot;: &quot;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;&quot;,
-                &quot;Mode&quot;: &quot;Send&quot;,
-                &quot;IsEnabled&quot;: &quot;true&quot;
-            }
-        }
-    }</code></pre>
-<p>This class represents the elements under the &quot;Queues&quot; node in that hierarchy (e.g. below &quot;TEST+1&quot;).</p>
-
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
@@ -133,10 +120,10 @@
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeBoth.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.ModeBoth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L55">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L35">View Source</a>
   </span>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeBoth" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.ModeBoth">ModeBoth</h4>
-  <div class="markdown level1 summary"><p>The value to assign to the <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_Mode">Mode</a> property if the service should be permitted to both send and receive messages.</p>
+  <div class="markdown level1 summary"><p>Defines the ModeBoth.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -164,10 +151,10 @@ public const string ModeBoth = &quot;Both&quot;</code></pre>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeReceive.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.ModeReceive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L51">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L41">View Source</a>
   </span>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeReceive" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.ModeReceive">ModeReceive</h4>
-  <div class="markdown level1 summary"><p>The value to assign to the <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_Mode">Mode</a> property if the service should be permitted to receive messages.</p>
+  <div class="markdown level1 summary"><p>Defines the ModeReceive.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -195,10 +182,10 @@ public const string ModeReceive = &quot;Receive&quot;</code></pre>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeSend.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.ModeSend%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L47">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L47">View Source</a>
   </span>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeSend" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.ModeSend">ModeSend</h4>
-  <div class="markdown level1 summary"><p>The value to assign to the <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_Mode">Mode</a> property if the service should be permitted to send messages.</p>
+  <div class="markdown level1 summary"><p>Defines the ModeSend.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -228,11 +215,11 @@ public const string ModeSend = &quot;Send&quot;</code></pre>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_CreateListener.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.CreateListener%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L73">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L52">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_CreateListener_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.CreateListener*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_CreateListener" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.CreateListener">CreateListener</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a flag that indicates that a listener should be created, or whether the host will receive messages using functions.</p>
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether CreateListener.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -252,25 +239,20 @@ bool CreateListener { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p>A flag that is set to <span class="xref">true</span> if a listener should be created; otherwise, <span class="xref">false</span> if the host will receive
-messages using functions.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_CreateListener_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>By default this value is set to <span class="xref">false</span> and the consumer must provide events.</p>
-</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_DefaultTimeoutSeconds.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L79">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L59">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_DefaultTimeoutSeconds_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_DefaultTimeoutSeconds" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds">DefaultTimeoutSeconds</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the default timeout when sending a message.  Measured in seconds.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the DefaultTimeoutSeconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -290,8 +272,7 @@ int DefaultTimeoutSeconds { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>The default timeout when sending a message.  Measured in seconds.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -300,11 +281,11 @@ int DefaultTimeoutSeconds { get; set; }</code></pre>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_IsEnabled.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.IsEnabled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L63">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L66">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_IsEnabled_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.IsEnabled*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_IsEnabled" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.IsEnabled">IsEnabled</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a flag that indicates this queue is enabled.</p>
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether IsEnabled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -324,25 +305,20 @@ bool IsEnabled { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
-        <td><p>A flag that is set to <span class="xref">true</span> the queue will be available for use in code; otherwise, <span class="xref">false</span> if will not
-be initialized and may cause errors if any attempt is made to use it.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_IsEnabled_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>By default this value is set to <span class="xref">true</span>.</p>
-</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_MaxAttempts.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.MaxAttempts%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L85">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L73">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_MaxAttempts_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.MaxAttempts*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_MaxAttempts" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.MaxAttempts">MaxAttempts</h4>
-  <div class="markdown level1 summary"><p>Get or set the maximum number of delivery attempts permitted before the message is moved to the poison reliable queue.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the MaxAttempts.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -362,8 +338,7 @@ int MaxAttempts { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>The maximum number of delivery attempts permitted before the message is moved to the poison reliable queue.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -372,11 +347,11 @@ int MaxAttempts { get; set; }</code></pre>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_MessageTimeToLiveSeconds.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.MessageTimeToLiveSeconds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L91">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L80">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_MessageTimeToLiveSeconds_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.MessageTimeToLiveSeconds*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_MessageTimeToLiveSeconds" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.MessageTimeToLiveSeconds">MessageTimeToLiveSeconds</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the maximum period of time a message can remain on a queue before it is deleted without being processed.  Measured in seconds.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the MessageTimeToLiveSeconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -396,8 +371,7 @@ int MessageTimeToLiveSeconds { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>The maximum period of time a message can remain on a queue before it is deleted without being processed.  Measured in seconds.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -406,11 +380,11 @@ int MessageTimeToLiveSeconds { get; set; }</code></pre>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_Mode.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.Mode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L112">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L87">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_Mode_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.Mode*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_Mode" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.Mode">Mode</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a value used to determine whether messages can be sent or received from the connection.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the Mode.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -430,13 +404,7 @@ string Mode { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><p>The value used to determine whether messages can be sent or received from the connection.</p>
-<p>
-<table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody><tr><td><code>Receive</code></td><td>Messages can be received by the service, but not sent.  This is the default value.</td></tr><tr><td><code>Send</code></td><td>Messages can be sent by the service, but not received.</td></tr><tr><td><code>Both</code></td><td>Messages can be both sent and received by the service.</td></tr></tbody></table>
-</p>
-<p>Only these two values are valid.  Sending and receiving services are mutually exclusive.</p>
-<p>The constants <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeSend">ModeSend</a>, <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeReceive">ModeReceive</a> and <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html#OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_ModeBoth">ModeBoth</a> can be used to refer to these values programmatically.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -445,11 +413,11 @@ string Mode { get; set; }</code></pre>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_SlidingWindowDurationSeconds.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.SlidingWindowDurationSeconds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L122">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L94">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_SlidingWindowDurationSeconds_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.SlidingWindowDurationSeconds*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_SlidingWindowDurationSeconds" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.SlidingWindowDurationSeconds">SlidingWindowDurationSeconds</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the sliding window duration when receiving messages.  Measured in seconds.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the SlidingWindowDurationSeconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -469,25 +437,20 @@ int SlidingWindowDurationSeconds { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>The sliding window duration when receiving messages.  Measured in seconds.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_SlidingWindowDurationSeconds_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This determines for how long messages are buffered before the consumer is notified.  This allows out-of-order messages to be re-ordered
-correctly.</p>
-</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_StorageConnectionString.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.StorageConnectionString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L132">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L101">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_StorageConnectionString_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.StorageConnectionString*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_StorageConnectionString" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.StorageConnectionString">StorageConnectionString</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the connection string for the storage service on which the leases and blobs are hosted.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the StorageConnectionString.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -507,25 +470,20 @@ string StorageConnectionString { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><p>The connection string for the storage service on which the leases and blobs are hosted.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_StorageConnectionString_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If this is left undefined or <span class="xref">null</span> it is assumed that it is a receive-only connection and the host will be using the
-<a class="xref" href="OpenCollar.Azure.ReliableQueue.IReliableQueueService.html#OpenCollar_Azure_ReliableQueue_IReliableQueueService_OnReceivedAsync_System_String_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__">OnReceivedAsync(String, Nullable&lt;TimeSpan&gt;, Nullable&lt;CancellationToken&gt;)</a> method to pass messages received using an Event Grid function or similar.</p>
-</div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_TopicAffinityTtlSeconds.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.TopicAffinityTtlSeconds%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L142">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L108">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_TopicAffinityTtlSeconds_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.TopicAffinityTtlSeconds*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_TopicAffinityTtlSeconds" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.TopicAffinityTtlSeconds">TopicAffinityTtlSeconds</h4>
-  <div class="markdown level1 summary"><p>Gets or sets the topic affinity time-to-live when receiving messages.  Measured in seconds.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the TopicAffinityTtlSeconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -545,19 +503,10 @@ int TopicAffinityTtlSeconds { get; set; }</code></pre>
     <tbody>
       <tr>
         <td><span class="xref">System.Int32</span></td>
-        <td><p>The topic affinity time-to-live when receiving messages.  Measured in seconds.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h5 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration_TopicAffinityTtlSeconds_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This determines how long after the last message on a topic is received that the endpoint that previously processed those message should be
-preferred over others.</p>
-</div>
-  <h3 id="seealso">See Also</h3>
-  <div class="seealso">
-      <div><span class="xref">OpenCollar.Extensions.Configuration.IConfigurationObject</span></div>
-  </div>
 </article>
           </div>
           
@@ -569,7 +518,7 @@ preferred over others.</p>
                     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueueConfiguration.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L43" class="contribution-link">View Source</a>
+                    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueueConfiguration.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -588,7 +537,7 @@ preferred over others.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <div style='box-sizing: border-box;'><div style='float: left; width: calc(100% - 200px);'>Copyright &copy; 2020 <a href='mailto:jevans@open-collar.org.uk'>Jonathan Evans</a></div><div style='float: left; width: 200px;'><span style='font-style: italic;'>Version: 0.5.8</span></div></div>
+            <div style='box-sizing: border-box;'><div style='float: left; width: calc(100% - 200px);'>Copyright &copy; 2020 <a href='mailto:jevans@open-collar.org.uk'>Jonathan Evans</a></div><div style='float: left; width: 200px;'><span style='font-style: italic;'>Version: 0.5.9</span></div></div>
             
           </div>
         </div>

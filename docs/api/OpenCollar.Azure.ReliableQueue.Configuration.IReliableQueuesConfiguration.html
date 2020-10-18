@@ -83,7 +83,7 @@
   
   <h1 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueuesConfiguration" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration" class="text-break">Interface IReliableQueuesConfiguration
   </h1>
-  <div class="markdown level0 summary"><p>The root configuration object in which all configuration for reliable queues is defined.</p>
+  <div class="markdown level0 summary"><p>Defines the <a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration.html">IReliableQueuesConfiguration</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritedMembers">
@@ -113,19 +113,6 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IReliableQueuesConfiguration : IConfigurationObject, IDisposable, INotifyPropertyChanged</code></pre>
   </div>
-  <h5 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueuesConfiguration_examples"><strong>Examples</strong></h5>
-  <p>A typical section of the configuration file might look like this:</p>
-<pre><code>    &quot;ReliableQueues&quot;: {
-        &quot;Queues&quot;: {
-            &quot;TEST+1&quot;: {
-                &quot;StorageConnectionString&quot;: &quot;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;&quot;,
-                &quot;Mode&quot;: &quot;Send&quot;,
-                &quot;IsEnabled&quot;: &quot;true&quot;
-            }
-        }
-    }</code></pre>
-<p>This class represents the top level of that hierarchy (starting at &quot;ReliableQueues&quot;).</p>
-
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -133,11 +120,11 @@
     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueuesConfiguration_Queues.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration.Queues%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueuesConfiguration.cs/#L45">View Source</a>
+    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueuesConfiguration.cs/#L32">View Source</a>
   </span>
   <a id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueuesConfiguration_Queues_" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration.Queues*"></a>
   <h4 id="OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueuesConfiguration_Queues" data-uid="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration.Queues">Queues</h4>
-  <div class="markdown level1 summary"><p>Gets or sets a dictionary of the configuration for the individual reliable queues.</p>
+  <div class="markdown level1 summary"><p>Gets the Queues.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -156,15 +143,10 @@ IConfigurationDictionary&lt;IReliableQueueConfiguration&gt; Queues { get; }</cod
     <tbody>
       <tr>
         <td><span class="xref">OpenCollar.Extensions.Configuration.IConfigurationDictionary</span>&lt;<a class="xref" href="OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueueConfiguration.html">IReliableQueueConfiguration</a>&gt;</td>
-        <td><p>The dictionary of the configuration for the individual reliable queues.</p>
-</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  <h3 id="seealso">See Also</h3>
-  <div class="seealso">
-      <div><span class="xref">OpenCollar.Extensions.Configuration.IConfigurationObject</span></div>
-  </div>
 </article>
           </div>
           
@@ -176,7 +158,7 @@ IConfigurationDictionary&lt;IReliableQueueConfiguration&gt; Queues { get; }</cod
                     <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/new/master/docs-ref-overwrite/new?filename=OpenCollar_Azure_ReliableQueue_Configuration_IReliableQueuesConfiguration.md&amp;value=---%0Auid%3A%20OpenCollar.Azure.ReliableQueue.Configuration.IReliableQueuesConfiguration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/bd6ed004acd3d93896eab239cd7084f3c726f9c4/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueuesConfiguration.cs/#L41" class="contribution-link">View Source</a>
+                    <a href="https://github.com/open-collar/OpenCollar.Azure.ReliableQueue/blob/10bd742e4f758798d65d330887f017caad26e44d/src/OpenCollar.Azure.ReliableQueue/Configuration/IReliableQueuesConfiguration.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -195,7 +177,7 @@ IConfigurationDictionary&lt;IReliableQueueConfiguration&gt; Queues { get; }</cod
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <div style='box-sizing: border-box;'><div style='float: left; width: calc(100% - 200px);'>Copyright &copy; 2020 <a href='mailto:jevans@open-collar.org.uk'>Jonathan Evans</a></div><div style='float: left; width: 200px;'><span style='font-style: italic;'>Version: 0.5.8</span></div></div>
+            <div style='box-sizing: border-box;'><div style='float: left; width: calc(100% - 200px);'>Copyright &copy; 2020 <a href='mailto:jevans@open-collar.org.uk'>Jonathan Evans</a></div><div style='float: left; width: 200px;'><span style='font-style: italic;'>Version: 0.5.9</span></div></div>
             
           </div>
         </div>

@@ -234,19 +234,19 @@ references:
   isSpec: "True"
   fullName: OpenCollar.Azure.ReliableQueue.IReliableQueue.OnReceivedAsync
   nameWithType: IReliableQueue.OnReceivedAsync
-- uid: OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey
-  name: ReliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.IReliableQueue.html#OpenCollar_Azure_ReliableQueue_IReliableQueue_ReliableQueueKey
-  commentId: P:OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey
-  fullName: OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey
-  nameWithType: IReliableQueue.ReliableQueueKey
-- uid: OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey*
-  name: ReliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.IReliableQueue.html#OpenCollar_Azure_ReliableQueue_IReliableQueue_ReliableQueueKey_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey
+- uid: OpenCollar.Azure.ReliableQueue.IReliableQueue.QueueKey
+  name: QueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.IReliableQueue.html#OpenCollar_Azure_ReliableQueue_IReliableQueue_QueueKey
+  commentId: P:OpenCollar.Azure.ReliableQueue.IReliableQueue.QueueKey
+  fullName: OpenCollar.Azure.ReliableQueue.IReliableQueue.QueueKey
+  nameWithType: IReliableQueue.QueueKey
+- uid: OpenCollar.Azure.ReliableQueue.IReliableQueue.QueueKey*
+  name: QueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.IReliableQueue.html#OpenCollar_Azure_ReliableQueue_IReliableQueue_QueueKey_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.IReliableQueue.QueueKey
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.IReliableQueue.ReliableQueueKey
-  nameWithType: IReliableQueue.ReliableQueueKey
+  fullName: OpenCollar.Azure.ReliableQueue.IReliableQueue.QueueKey
+  nameWithType: IReliableQueue.QueueKey
 - uid: OpenCollar.Azure.ReliableQueue.IReliableQueue.SendMessageAsync(System.Byte[],OpenCollar.Azure.ReliableQueue.Model.Topic,System.Nullable{System.TimeSpan},System.Nullable{System.Threading.CancellationToken})
   name: SendMessageAsync(Byte[], Topic, Nullable<TimeSpan>, Nullable<CancellationToken>)
   href: api/OpenCollar.Azure.ReliableQueue.IReliableQueue.html#OpenCollar_Azure_ReliableQueue_IReliableQueue_SendMessageAsync_System_Byte___OpenCollar_Azure_ReliableQueue_Model_Topic_System_Nullable_System_TimeSpan__System_Nullable_System_Threading_CancellationToken__
@@ -316,15 +316,15 @@ references:
   commentId: T:OpenCollar.Azure.ReliableQueue.IReliableQueueService
   fullName: OpenCollar.Azure.ReliableQueue.IReliableQueueService
   nameWithType: IReliableQueueService
-- uid: OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: Item[ReliableQueueKey]
-  href: api/OpenCollar.Azure.ReliableQueue.IReliableQueueService.html#OpenCollar_Azure_ReliableQueue_IReliableQueueService_Item_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: P:OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name.vb: Item(ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item[OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey]
-  fullName.vb: OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: IReliableQueueService.Item[ReliableQueueKey]
-  nameWithType.vb: IReliableQueueService.Item(ReliableQueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: Item[QueueKey]
+  href: api/OpenCollar.Azure.ReliableQueue.IReliableQueueService.html#OpenCollar_Azure_ReliableQueue_IReliableQueueService_Item_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: P:OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name.vb: Item(QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item[OpenCollar.Azure.ReliableQueue.Model.QueueKey]
+  fullName.vb: OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: IReliableQueueService.Item[QueueKey]
+  nameWithType.vb: IReliableQueueService.Item(QueueKey)
 - uid: OpenCollar.Azure.ReliableQueue.IReliableQueueService.Item*
   name: Item
   href: api/OpenCollar.Azure.ReliableQueue.IReliableQueueService.html#OpenCollar_Azure_ReliableQueue_IReliableQueueService_Item_
@@ -367,24 +367,24 @@ references:
   commentId: T:OpenCollar.Azure.ReliableQueue.MessageException
   fullName: OpenCollar.Azure.ReliableQueue.MessageException
   nameWithType: MessageException
-- uid: OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid)
-  name: MessageException(ReliableQueueKey, Guid)
-  href: api/OpenCollar.Azure.ReliableQueue.MessageException.html#OpenCollar_Azure_ReliableQueue_MessageException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Guid_
-  commentId: M:OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid)
-  fullName: OpenCollar.Azure.ReliableQueue.MessageException.MessageException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Guid)
-  nameWithType: MessageException.MessageException(ReliableQueueKey, Guid)
-- uid: OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,System.String)
-  name: MessageException(ReliableQueueKey, Guid, String)
-  href: api/OpenCollar.Azure.ReliableQueue.MessageException.html#OpenCollar_Azure_ReliableQueue_MessageException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Guid_System_String_
-  commentId: M:OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,System.String)
-  fullName: OpenCollar.Azure.ReliableQueue.MessageException.MessageException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Guid, System.String)
-  nameWithType: MessageException.MessageException(ReliableQueueKey, Guid, String)
-- uid: OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,System.String,System.Exception)
-  name: MessageException(ReliableQueueKey, Guid, String, Exception)
-  href: api/OpenCollar.Azure.ReliableQueue.MessageException.html#OpenCollar_Azure_ReliableQueue_MessageException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Guid_System_String_System_Exception_
-  commentId: M:OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,System.String,System.Exception)
-  fullName: OpenCollar.Azure.ReliableQueue.MessageException.MessageException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Guid, System.String, System.Exception)
-  nameWithType: MessageException.MessageException(ReliableQueueKey, Guid, String, Exception)
+- uid: OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid)
+  name: MessageException(QueueKey, Guid)
+  href: api/OpenCollar.Azure.ReliableQueue.MessageException.html#OpenCollar_Azure_ReliableQueue_MessageException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Guid_
+  commentId: M:OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid)
+  fullName: OpenCollar.Azure.ReliableQueue.MessageException.MessageException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Guid)
+  nameWithType: MessageException.MessageException(QueueKey, Guid)
+- uid: OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,System.String)
+  name: MessageException(QueueKey, Guid, String)
+  href: api/OpenCollar.Azure.ReliableQueue.MessageException.html#OpenCollar_Azure_ReliableQueue_MessageException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Guid_System_String_
+  commentId: M:OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,System.String)
+  fullName: OpenCollar.Azure.ReliableQueue.MessageException.MessageException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Guid, System.String)
+  nameWithType: MessageException.MessageException(QueueKey, Guid, String)
+- uid: OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,System.String,System.Exception)
+  name: MessageException(QueueKey, Guid, String, Exception)
+  href: api/OpenCollar.Azure.ReliableQueue.MessageException.html#OpenCollar_Azure_ReliableQueue_MessageException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Guid_System_String_System_Exception_
+  commentId: M:OpenCollar.Azure.ReliableQueue.MessageException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,System.String,System.Exception)
+  fullName: OpenCollar.Azure.ReliableQueue.MessageException.MessageException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Guid, System.String, System.Exception)
+  nameWithType: MessageException.MessageException(QueueKey, Guid, String, Exception)
 - uid: OpenCollar.Azure.ReliableQueue.MessageException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   name: MessageException(SerializationInfo, StreamingContext)
   href: api/OpenCollar.Azure.ReliableQueue.MessageException.html#OpenCollar_Azure_ReliableQueue_MessageException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
@@ -443,24 +443,24 @@ references:
   commentId: T:OpenCollar.Azure.ReliableQueue.MessageStateException
   fullName: OpenCollar.Azure.ReliableQueue.MessageStateException
   nameWithType: MessageStateException
-- uid: OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState)
-  name: MessageStateException(ReliableQueueKey, Guid, MessageState, MessageState)
-  href: api/OpenCollar.Azure.ReliableQueue.MessageStateException.html#OpenCollar_Azure_ReliableQueue_MessageStateException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Guid_OpenCollar_Azure_ReliableQueue_Model_MessageState_OpenCollar_Azure_ReliableQueue_Model_MessageState_
-  commentId: M:OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState)
-  fullName: OpenCollar.Azure.ReliableQueue.MessageStateException.MessageStateException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Guid, OpenCollar.Azure.ReliableQueue.Model.MessageState, OpenCollar.Azure.ReliableQueue.Model.MessageState)
-  nameWithType: MessageStateException.MessageStateException(ReliableQueueKey, Guid, MessageState, MessageState)
-- uid: OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String)
-  name: MessageStateException(ReliableQueueKey, Guid, MessageState, MessageState, String)
-  href: api/OpenCollar.Azure.ReliableQueue.MessageStateException.html#OpenCollar_Azure_ReliableQueue_MessageStateException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Guid_OpenCollar_Azure_ReliableQueue_Model_MessageState_OpenCollar_Azure_ReliableQueue_Model_MessageState_System_String_
-  commentId: M:OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String)
-  fullName: OpenCollar.Azure.ReliableQueue.MessageStateException.MessageStateException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Guid, OpenCollar.Azure.ReliableQueue.Model.MessageState, OpenCollar.Azure.ReliableQueue.Model.MessageState, System.String)
-  nameWithType: MessageStateException.MessageStateException(ReliableQueueKey, Guid, MessageState, MessageState, String)
-- uid: OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String,System.Exception)
-  name: MessageStateException(ReliableQueueKey, Guid, MessageState, MessageState, String, Exception)
-  href: api/OpenCollar.Azure.ReliableQueue.MessageStateException.html#OpenCollar_Azure_ReliableQueue_MessageStateException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Guid_OpenCollar_Azure_ReliableQueue_Model_MessageState_OpenCollar_Azure_ReliableQueue_Model_MessageState_System_String_System_Exception_
-  commentId: M:OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String,System.Exception)
-  fullName: OpenCollar.Azure.ReliableQueue.MessageStateException.MessageStateException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Guid, OpenCollar.Azure.ReliableQueue.Model.MessageState, OpenCollar.Azure.ReliableQueue.Model.MessageState, System.String, System.Exception)
-  nameWithType: MessageStateException.MessageStateException(ReliableQueueKey, Guid, MessageState, MessageState, String, Exception)
+- uid: OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState)
+  name: MessageStateException(QueueKey, Guid, MessageState, MessageState)
+  href: api/OpenCollar.Azure.ReliableQueue.MessageStateException.html#OpenCollar_Azure_ReliableQueue_MessageStateException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Guid_OpenCollar_Azure_ReliableQueue_Model_MessageState_OpenCollar_Azure_ReliableQueue_Model_MessageState_
+  commentId: M:OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState)
+  fullName: OpenCollar.Azure.ReliableQueue.MessageStateException.MessageStateException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Guid, OpenCollar.Azure.ReliableQueue.Model.MessageState, OpenCollar.Azure.ReliableQueue.Model.MessageState)
+  nameWithType: MessageStateException.MessageStateException(QueueKey, Guid, MessageState, MessageState)
+- uid: OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String)
+  name: MessageStateException(QueueKey, Guid, MessageState, MessageState, String)
+  href: api/OpenCollar.Azure.ReliableQueue.MessageStateException.html#OpenCollar_Azure_ReliableQueue_MessageStateException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Guid_OpenCollar_Azure_ReliableQueue_Model_MessageState_OpenCollar_Azure_ReliableQueue_Model_MessageState_System_String_
+  commentId: M:OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String)
+  fullName: OpenCollar.Azure.ReliableQueue.MessageStateException.MessageStateException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Guid, OpenCollar.Azure.ReliableQueue.Model.MessageState, OpenCollar.Azure.ReliableQueue.Model.MessageState, System.String)
+  nameWithType: MessageStateException.MessageStateException(QueueKey, Guid, MessageState, MessageState, String)
+- uid: OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String,System.Exception)
+  name: MessageStateException(QueueKey, Guid, MessageState, MessageState, String, Exception)
+  href: api/OpenCollar.Azure.ReliableQueue.MessageStateException.html#OpenCollar_Azure_ReliableQueue_MessageStateException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Guid_OpenCollar_Azure_ReliableQueue_Model_MessageState_OpenCollar_Azure_ReliableQueue_Model_MessageState_System_String_System_Exception_
+  commentId: M:OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Guid,OpenCollar.Azure.ReliableQueue.Model.MessageState,OpenCollar.Azure.ReliableQueue.Model.MessageState,System.String,System.Exception)
+  fullName: OpenCollar.Azure.ReliableQueue.MessageStateException.MessageStateException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Guid, OpenCollar.Azure.ReliableQueue.Model.MessageState, OpenCollar.Azure.ReliableQueue.Model.MessageState, System.String, System.Exception)
+  nameWithType: MessageStateException.MessageStateException(QueueKey, Guid, MessageState, MessageState, String, Exception)
 - uid: OpenCollar.Azure.ReliableQueue.MessageStateException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   name: MessageStateException(SerializationInfo, StreamingContext)
   href: api/OpenCollar.Azure.ReliableQueue.MessageStateException.html#OpenCollar_Azure_ReliableQueue_MessageStateException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
@@ -561,51 +561,51 @@ references:
   commentId: N:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
   fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
   nameWithType: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
-- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter
-  name: ReliableQueueKeyConverter
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html
-  commentId: T:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter
-  nameWithType: ReliableQueueKeyConverter
-- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.Instance
+- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter
+  name: QueueKeyConverter
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.html
+  commentId: T:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter
+  nameWithType: QueueKeyConverter
+- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.Instance
   name: Instance
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_ReliableQueueKeyConverter_Instance
-  commentId: P:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.Instance
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.Instance
-  nameWithType: ReliableQueueKeyConverter.Instance
-- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.Instance*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_QueueKeyConverter_Instance
+  commentId: P:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.Instance
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.Instance
+  nameWithType: QueueKeyConverter.Instance
+- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.Instance*
   name: Instance
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_ReliableQueueKeyConverter_Instance_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.Instance
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_QueueKeyConverter_Instance_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.Instance
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.Instance
-  nameWithType: ReliableQueueKeyConverter.Instance
-- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Boolean,Newtonsoft.Json.JsonSerializer)
-  name: ReadJson(JsonReader, Type, ReliableQueueKey, Boolean, JsonSerializer)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_ReliableQueueKeyConverter_ReadJson_Newtonsoft_Json_JsonReader_System_Type_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Boolean_Newtonsoft_Json_JsonSerializer_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Boolean,Newtonsoft.Json.JsonSerializer)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Boolean, Newtonsoft.Json.JsonSerializer)
-  nameWithType: ReliableQueueKeyConverter.ReadJson(JsonReader, Type, ReliableQueueKey, Boolean, JsonSerializer)
-- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.ReadJson*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.Instance
+  nameWithType: QueueKeyConverter.Instance
+- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  name: ReadJson(JsonReader, Type, QueueKey, Boolean, JsonSerializer)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_QueueKeyConverter_ReadJson_Newtonsoft_Json_JsonReader_System_Type_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Boolean_Newtonsoft_Json_JsonSerializer_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Boolean,Newtonsoft.Json.JsonSerializer)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.ReadJson(Newtonsoft.Json.JsonReader, System.Type, OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Boolean, Newtonsoft.Json.JsonSerializer)
+  nameWithType: QueueKeyConverter.ReadJson(JsonReader, Type, QueueKey, Boolean, JsonSerializer)
+- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.ReadJson*
   name: ReadJson
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_ReliableQueueKeyConverter_ReadJson_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.ReadJson
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_QueueKeyConverter_ReadJson_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.ReadJson
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.ReadJson
-  nameWithType: ReliableQueueKeyConverter.ReadJson
-- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.WriteJson(Newtonsoft.Json.JsonWriter,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,Newtonsoft.Json.JsonSerializer)
-  name: WriteJson(JsonWriter, ReliableQueueKey, JsonSerializer)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_ReliableQueueKeyConverter_WriteJson_Newtonsoft_Json_JsonWriter_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_Newtonsoft_Json_JsonSerializer_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.WriteJson(Newtonsoft.Json.JsonWriter,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,Newtonsoft.Json.JsonSerializer)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.WriteJson(Newtonsoft.Json.JsonWriter, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, Newtonsoft.Json.JsonSerializer)
-  nameWithType: ReliableQueueKeyConverter.WriteJson(JsonWriter, ReliableQueueKey, JsonSerializer)
-- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.WriteJson*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.ReadJson
+  nameWithType: QueueKeyConverter.ReadJson
+- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.WriteJson(Newtonsoft.Json.JsonWriter,OpenCollar.Azure.ReliableQueue.Model.QueueKey,Newtonsoft.Json.JsonSerializer)
+  name: WriteJson(JsonWriter, QueueKey, JsonSerializer)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_QueueKeyConverter_WriteJson_Newtonsoft_Json_JsonWriter_OpenCollar_Azure_ReliableQueue_Model_QueueKey_Newtonsoft_Json_JsonSerializer_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.WriteJson(Newtonsoft.Json.JsonWriter,OpenCollar.Azure.ReliableQueue.Model.QueueKey,Newtonsoft.Json.JsonSerializer)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.WriteJson(Newtonsoft.Json.JsonWriter, OpenCollar.Azure.ReliableQueue.Model.QueueKey, Newtonsoft.Json.JsonSerializer)
+  nameWithType: QueueKeyConverter.WriteJson(JsonWriter, QueueKey, JsonSerializer)
+- uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.WriteJson*
   name: WriteJson
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_ReliableQueueKeyConverter_WriteJson_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.WriteJson
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Newtonsoft_QueueKeyConverter_WriteJson_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.WriteJson
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.ReliableQueueKeyConverter.WriteJson
-  nameWithType: ReliableQueueKeyConverter.WriteJson
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.QueueKeyConverter.WriteJson
+  nameWithType: QueueKeyConverter.WriteJson
 - uid: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.TopicConverter
   name: TopicConverter
   href: api/OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.TopicConverter.html
@@ -651,221 +651,221 @@ references:
   isSpec: "True"
   fullName: OpenCollar.Azure.ReliableQueue.Model.Newtonsoft.TopicConverter.WriteJson
   nameWithType: TopicConverter.WriteJson
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey
-  name: ReliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html
-  commentId: T:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey
-  nameWithType: ReliableQueueKey
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.#ctor(System.String)
-  name: ReliableQueueKey(String)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey__ctor_System_String_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.#ctor(System.String)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ReliableQueueKey(System.String)
-  nameWithType: ReliableQueueKey.ReliableQueueKey(String)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.#ctor*
-  name: ReliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey__ctor_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.#ctor
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey
+  name: QueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html
+  commentId: T:OpenCollar.Azure.ReliableQueue.Model.QueueKey
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey
+  nameWithType: QueueKey
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.#ctor(System.String)
+  name: QueueKey(String)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey__ctor_System_String_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.#ctor(System.String)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.QueueKey(System.String)
+  nameWithType: QueueKey.QueueKey(String)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.#ctor*
+  name: QueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey__ctor_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.#ctor
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ReliableQueueKey
-  nameWithType: ReliableQueueKey.ReliableQueueKey
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: CompareTo(ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_CompareTo_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.CompareTo(ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo(System.Object)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.QueueKey
+  nameWithType: QueueKey.QueueKey
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: CompareTo(QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_CompareTo_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.CompareTo(QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo(System.Object)
   name: CompareTo(Object)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_CompareTo_System_Object_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo(System.Object)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo(System.Object)
-  nameWithType: ReliableQueueKey.CompareTo(Object)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_CompareTo_System_Object_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo(System.Object)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo(System.Object)
+  nameWithType: QueueKey.CompareTo(Object)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo*
   name: CompareTo
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_CompareTo_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_CompareTo_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.CompareTo
-  nameWithType: ReliableQueueKey.CompareTo
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: Equals(ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_Equals_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.Equals(ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals(System.Object)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.CompareTo
+  nameWithType: QueueKey.CompareTo
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: Equals(QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_Equals_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.Equals(QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals(System.Object)
   name: Equals(Object)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_Equals_System_Object_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals(System.Object)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals(System.Object)
-  nameWithType: ReliableQueueKey.Equals(Object)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_Equals_System_Object_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals(System.Object)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals(System.Object)
+  nameWithType: QueueKey.Equals(Object)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals*
   name: Equals
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_Equals_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_Equals_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equals
-  nameWithType: ReliableQueueKey.Equals
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GetHashCode
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equals
+  nameWithType: QueueKey.Equals
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GetHashCode
   name: GetHashCode()
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_GetHashCode
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GetHashCode
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GetHashCode()
-  nameWithType: ReliableQueueKey.GetHashCode()
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GetHashCode*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_GetHashCode
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.GetHashCode
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GetHashCode()
+  nameWithType: QueueKey.GetHashCode()
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GetHashCode*
   name: GetHashCode
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_GetHashCode_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GetHashCode
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_GetHashCode_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.GetHashCode
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GetHashCode
-  nameWithType: ReliableQueueKey.GetHashCode
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Identifier
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GetHashCode
+  nameWithType: QueueKey.GetHashCode
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Identifier
   name: Identifier
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_Identifier
-  commentId: P:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Identifier
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Identifier
-  nameWithType: ReliableQueueKey.Identifier
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Identifier*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_Identifier
+  commentId: P:OpenCollar.Azure.ReliableQueue.Model.QueueKey.Identifier
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Identifier
+  nameWithType: QueueKey.Identifier
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Identifier*
   name: Identifier
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_Identifier_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Identifier
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_Identifier_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.Identifier
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Identifier
-  nameWithType: ReliableQueueKey.Identifier
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Equality(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: Equality(ReliableQueueKey, ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_Equality_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Equality(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equality(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.Equality(ReliableQueueKey, ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Equality*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Identifier
+  nameWithType: QueueKey.Identifier
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Equality(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: Equality(QueueKey, QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_Equality_OpenCollar_Azure_ReliableQueue_Model_QueueKey_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Equality(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equality(OpenCollar.Azure.ReliableQueue.Model.QueueKey, OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.Equality(QueueKey, QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Equality*
   name: Equality
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_Equality_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Equality
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_Equality_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Equality
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Equality
-  nameWithType: ReliableQueueKey.Equality
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThan(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: GreaterThan(ReliableQueueKey, ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_GreaterThan_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThan(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GreaterThan(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.GreaterThan(ReliableQueueKey, ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThan*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Equality
+  nameWithType: QueueKey.Equality
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThan(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: GreaterThan(QueueKey, QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_GreaterThan_OpenCollar_Azure_ReliableQueue_Model_QueueKey_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThan(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GreaterThan(OpenCollar.Azure.ReliableQueue.Model.QueueKey, OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.GreaterThan(QueueKey, QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThan*
   name: GreaterThan
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_GreaterThan_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThan
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_GreaterThan_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThan
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GreaterThan
-  nameWithType: ReliableQueueKey.GreaterThan
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: GreaterThanOrEqual(ReliableQueueKey, ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_GreaterThanOrEqual_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GreaterThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.GreaterThanOrEqual(ReliableQueueKey, ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThanOrEqual*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GreaterThan
+  nameWithType: QueueKey.GreaterThan
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: GreaterThanOrEqual(QueueKey, QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_GreaterThanOrEqual_OpenCollar_Azure_ReliableQueue_Model_QueueKey_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GreaterThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.QueueKey, OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.GreaterThanOrEqual(QueueKey, QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThanOrEqual*
   name: GreaterThanOrEqual
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_GreaterThanOrEqual_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_GreaterThanOrEqual
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_GreaterThanOrEqual_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_GreaterThanOrEqual
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.GreaterThanOrEqual
-  nameWithType: ReliableQueueKey.GreaterThanOrEqual
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Implicit(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)~System.String
-  name: Implicit(ReliableQueueKey to String)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_Implicit_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey__System_String
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Implicit(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)~System.String
-  name.vb: Widening(ReliableQueueKey to String)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Implicit(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey to System.String)
-  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Widening(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey to System.String)
-  nameWithType: ReliableQueueKey.Implicit(ReliableQueueKey to String)
-  nameWithType.vb: ReliableQueueKey.Widening(ReliableQueueKey to String)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Implicit(System.String)~OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey
-  name: Implicit(String to ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_Implicit_System_String__OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Implicit(System.String)~OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey
-  name.vb: Widening(String to ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Implicit(System.String to OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Widening(System.String to OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.Implicit(String to ReliableQueueKey)
-  nameWithType.vb: ReliableQueueKey.Widening(String to ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Implicit*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.GreaterThanOrEqual
+  nameWithType: QueueKey.GreaterThanOrEqual
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Implicit(OpenCollar.Azure.ReliableQueue.Model.QueueKey)~System.String
+  name: Implicit(QueueKey to String)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_Implicit_OpenCollar_Azure_ReliableQueue_Model_QueueKey__System_String
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Implicit(OpenCollar.Azure.ReliableQueue.Model.QueueKey)~System.String
+  name.vb: Widening(QueueKey to String)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Implicit(OpenCollar.Azure.ReliableQueue.Model.QueueKey to System.String)
+  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Widening(OpenCollar.Azure.ReliableQueue.Model.QueueKey to System.String)
+  nameWithType: QueueKey.Implicit(QueueKey to String)
+  nameWithType.vb: QueueKey.Widening(QueueKey to String)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Implicit(System.String)~OpenCollar.Azure.ReliableQueue.Model.QueueKey
+  name: Implicit(String to QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_Implicit_System_String__OpenCollar_Azure_ReliableQueue_Model_QueueKey
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Implicit(System.String)~OpenCollar.Azure.ReliableQueue.Model.QueueKey
+  name.vb: Widening(String to QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Implicit(System.String to OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Widening(System.String to OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.Implicit(String to QueueKey)
+  nameWithType.vb: QueueKey.Widening(String to QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Implicit*
   name: Implicit
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_Implicit_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Implicit
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_Implicit_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Implicit
   isSpec: "True"
   name.vb: Widening
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Implicit
-  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Widening
-  nameWithType: ReliableQueueKey.Implicit
-  nameWithType.vb: ReliableQueueKey.Widening
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Inequality(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: Inequality(ReliableQueueKey, ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_Inequality_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Inequality(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Inequality(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.Inequality(ReliableQueueKey, ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Inequality*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Implicit
+  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Widening
+  nameWithType: QueueKey.Implicit
+  nameWithType.vb: QueueKey.Widening
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Inequality(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: Inequality(QueueKey, QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_Inequality_OpenCollar_Azure_ReliableQueue_Model_QueueKey_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Inequality(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Inequality(OpenCollar.Azure.ReliableQueue.Model.QueueKey, OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.Inequality(QueueKey, QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Inequality*
   name: Inequality
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_Inequality_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_Inequality
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_Inequality_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_Inequality
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.Inequality
-  nameWithType: ReliableQueueKey.Inequality
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThan(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: LessThan(ReliableQueueKey, ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_LessThan_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThan(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.LessThan(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.LessThan(ReliableQueueKey, ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThan*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.Inequality
+  nameWithType: QueueKey.Inequality
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThan(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: LessThan(QueueKey, QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_LessThan_OpenCollar_Azure_ReliableQueue_Model_QueueKey_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThan(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.LessThan(OpenCollar.Azure.ReliableQueue.Model.QueueKey, OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.LessThan(QueueKey, QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThan*
   name: LessThan
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_LessThan_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThan
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_LessThan_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThan
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.LessThan
-  nameWithType: ReliableQueueKey.LessThan
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: LessThanOrEqual(ReliableQueueKey, ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_LessThanOrEqual_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.LessThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueKey.LessThanOrEqual(ReliableQueueKey, ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThanOrEqual*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.LessThan
+  nameWithType: QueueKey.LessThan
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: LessThanOrEqual(QueueKey, QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_LessThanOrEqual_OpenCollar_Azure_ReliableQueue_Model_QueueKey_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.QueueKey,OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.LessThanOrEqual(OpenCollar.Azure.ReliableQueue.Model.QueueKey, OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: QueueKey.LessThanOrEqual(QueueKey, QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThanOrEqual*
   name: LessThanOrEqual
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_op_LessThanOrEqual_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.op_LessThanOrEqual
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_op_LessThanOrEqual_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.op_LessThanOrEqual
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.LessThanOrEqual
-  nameWithType: ReliableQueueKey.LessThanOrEqual
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.TableIdentifier
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.LessThanOrEqual
+  nameWithType: QueueKey.LessThanOrEqual
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.TableIdentifier
   name: TableIdentifier
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_TableIdentifier
-  commentId: P:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.TableIdentifier
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.TableIdentifier
-  nameWithType: ReliableQueueKey.TableIdentifier
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.TableIdentifier*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_TableIdentifier
+  commentId: P:OpenCollar.Azure.ReliableQueue.Model.QueueKey.TableIdentifier
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.TableIdentifier
+  nameWithType: QueueKey.TableIdentifier
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.TableIdentifier*
   name: TableIdentifier
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_TableIdentifier_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.TableIdentifier
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_TableIdentifier_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.TableIdentifier
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.TableIdentifier
-  nameWithType: ReliableQueueKey.TableIdentifier
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ToString
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.TableIdentifier
+  nameWithType: QueueKey.TableIdentifier
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToString
   name: ToString()
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_ToString
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ToString
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ToString()
-  nameWithType: ReliableQueueKey.ToString()
-- uid: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ToString*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_ToString
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToString
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToString()
+  nameWithType: QueueKey.ToString()
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToString*
   name: ToString
-  href: api/OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.html#OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_ToString_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ToString
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_ToString_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToString
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey.ToString
-  nameWithType: ReliableQueueKey.ToString
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToString
+  nameWithType: QueueKey.ToString
 - uid: OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken
   name: SubscriptionToken
   href: api/OpenCollar.Azure.ReliableQueue.Model.SubscriptionToken.html
@@ -904,54 +904,54 @@ references:
   commentId: N:OpenCollar.Azure.ReliableQueue.Model.Text.Json
   fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json
   nameWithType: OpenCollar.Azure.ReliableQueue.Model.Text.Json
-- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter
-  name: ReliableQueueKeyConverter
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html
-  commentId: T:OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter
-  nameWithType: ReliableQueueKeyConverter
-- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Instance
+- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter
+  name: QueueKeyConverter
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.html
+  commentId: T:OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter
+  nameWithType: QueueKeyConverter
+- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Instance
   name: Instance
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_ReliableQueueKeyConverter_Instance
-  commentId: P:OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Instance
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Instance
-  nameWithType: ReliableQueueKeyConverter.Instance
-- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Instance*
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_QueueKeyConverter_Instance
+  commentId: P:OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Instance
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Instance
+  nameWithType: QueueKeyConverter.Instance
+- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Instance*
   name: Instance
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_ReliableQueueKeyConverter_Instance_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Instance
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_QueueKeyConverter_Instance_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Instance
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Instance
-  nameWithType: ReliableQueueKeyConverter.Instance
-- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Instance
+  nameWithType: QueueKeyConverter.Instance
+- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
   name: Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_ReliableQueueKeyConverter_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_QueueKeyConverter_Read_System_Text_Json_Utf8JsonReader__System_Type_System_Text_Json_JsonSerializerOptions_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)
   name.vb: Read(ByRef Utf8JsonReader, Type, JsonSerializerOptions)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
-  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Read(ByRef System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
-  nameWithType: ReliableQueueKeyConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
-  nameWithType.vb: ReliableQueueKeyConverter.Read(ByRef Utf8JsonReader, Type, JsonSerializerOptions)
-- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Read*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Read(ref System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  fullName.vb: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Read(ByRef System.Text.Json.Utf8JsonReader, System.Type, System.Text.Json.JsonSerializerOptions)
+  nameWithType: QueueKeyConverter.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)
+  nameWithType.vb: QueueKeyConverter.Read(ByRef Utf8JsonReader, Type, JsonSerializerOptions)
+- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Read*
   name: Read
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_ReliableQueueKeyConverter_Read_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Read
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_QueueKeyConverter_Read_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Read
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Read
-  nameWithType: ReliableQueueKeyConverter.Read
-- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Write(System.Text.Json.Utf8JsonWriter,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Text.Json.JsonSerializerOptions)
-  name: Write(Utf8JsonWriter, ReliableQueueKey, JsonSerializerOptions)
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_ReliableQueueKeyConverter_Write_System_Text_Json_Utf8JsonWriter_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_Text_Json_JsonSerializerOptions_
-  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Write(System.Text.Json.Utf8JsonWriter,OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.Text.Json.JsonSerializerOptions)
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Write(System.Text.Json.Utf8JsonWriter, OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.Text.Json.JsonSerializerOptions)
-  nameWithType: ReliableQueueKeyConverter.Write(Utf8JsonWriter, ReliableQueueKey, JsonSerializerOptions)
-- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Write*
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Read
+  nameWithType: QueueKeyConverter.Read
+- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Write(System.Text.Json.Utf8JsonWriter,OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Text.Json.JsonSerializerOptions)
+  name: Write(Utf8JsonWriter, QueueKey, JsonSerializerOptions)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_QueueKeyConverter_Write_System_Text_Json_Utf8JsonWriter_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_Text_Json_JsonSerializerOptions_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Write(System.Text.Json.Utf8JsonWriter,OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.Text.Json.JsonSerializerOptions)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Write(System.Text.Json.Utf8JsonWriter, OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.Text.Json.JsonSerializerOptions)
+  nameWithType: QueueKeyConverter.Write(Utf8JsonWriter, QueueKey, JsonSerializerOptions)
+- uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Write*
   name: Write
-  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_ReliableQueueKeyConverter_Write_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Write
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.html#OpenCollar_Azure_ReliableQueue_Model_Text_Json_QueueKeyConverter_Write_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Write
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.ReliableQueueKeyConverter.Write
-  nameWithType: ReliableQueueKeyConverter.Write
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Text.Json.QueueKeyConverter.Write
+  nameWithType: QueueKeyConverter.Write
 - uid: OpenCollar.Azure.ReliableQueue.Model.Text.Json.TopicConverter
   name: TopicConverter
   href: api/OpenCollar.Azure.ReliableQueue.Model.Text.Json.TopicConverter.html
@@ -1275,19 +1275,19 @@ references:
   isSpec: "True"
   fullName: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.GetBodyAsStringAsync
   nameWithType: ReceivedMessageEventArgs.GetBodyAsStringAsync
-- uid: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.reliableQueueKey
-  name: reliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html#OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs_reliableQueueKey
-  commentId: P:OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.reliableQueueKey
-  fullName: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.reliableQueueKey
-  nameWithType: ReceivedMessageEventArgs.reliableQueueKey
-- uid: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.reliableQueueKey*
-  name: reliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html#OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs_reliableQueueKey_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.reliableQueueKey
+- uid: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.queueKey
+  name: queueKey
+  href: api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html#OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs_queueKey
+  commentId: P:OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.queueKey
+  fullName: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.queueKey
+  nameWithType: ReceivedMessageEventArgs.queueKey
+- uid: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.queueKey*
+  name: queueKey
+  href: api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html#OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs_queueKey_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.queueKey
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.reliableQueueKey
-  nameWithType: ReceivedMessageEventArgs.reliableQueueKey
+  fullName: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.queueKey
+  nameWithType: ReceivedMessageEventArgs.queueKey
 - uid: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.Size
   name: Size
   href: api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html#OpenCollar_Azure_ReliableQueue_ReceivedMessageEventArgs_Size
@@ -1320,24 +1320,24 @@ references:
   commentId: T:OpenCollar.Azure.ReliableQueue.ReliableQueueException
   fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException
   nameWithType: ReliableQueueException
-- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: ReliableQueueException(ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueException.ReliableQueueException(ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String)
-  name: ReliableQueueException(ReliableQueueKey, String)
-  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_String_
-  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String)
-  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.String)
-  nameWithType: ReliableQueueException.ReliableQueueException(ReliableQueueKey, String)
-- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String,System.Exception)
-  name: ReliableQueueException(ReliableQueueKey, String, Exception)
-  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_String_System_Exception_
-  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String,System.Exception)
-  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.String, System.Exception)
-  nameWithType: ReliableQueueException.ReliableQueueException(ReliableQueueKey, String, Exception)
+- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: ReliableQueueException(QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: ReliableQueueException.ReliableQueueException(QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String)
+  name: ReliableQueueException(QueueKey, String)
+  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_String_
+  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String)
+  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.String)
+  nameWithType: ReliableQueueException.ReliableQueueException(QueueKey, String)
+- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String,System.Exception)
+  name: ReliableQueueException(QueueKey, String, Exception)
+  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_String_System_Exception_
+  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String,System.Exception)
+  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.String, System.Exception)
+  nameWithType: ReliableQueueException.ReliableQueueException(QueueKey, String, Exception)
 - uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   name: ReliableQueueException(SerializationInfo, StreamingContext)
   href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
@@ -1364,32 +1364,32 @@ references:
   isSpec: "True"
   fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetObjectData
   nameWithType: ReliableQueueException.GetObjectData
-- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetReliableQueueKey(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: GetReliableQueueKey(ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_GetReliableQueueKey_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetReliableQueueKey(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetReliableQueueKey(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: ReliableQueueException.GetReliableQueueKey(ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetReliableQueueKey*
-  name: GetReliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_GetReliableQueueKey_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetReliableQueueKey
+- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetQueueKey(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: GetQueueKey(QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_GetQueueKey_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetQueueKey(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetQueueKey(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: ReliableQueueException.GetQueueKey(QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetQueueKey*
+  name: GetQueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_GetQueueKey_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetQueueKey
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetReliableQueueKey
-  nameWithType: ReliableQueueException.GetReliableQueueKey
-- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueKey
-  name: ReliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_ReliableQueueKey
-  commentId: P:OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueKey
-  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueKey
-  nameWithType: ReliableQueueException.ReliableQueueKey
-- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueKey*
-  name: ReliableQueueKey
-  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_ReliableQueueKey_
-  commentId: Overload:OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueKey
+  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.GetQueueKey
+  nameWithType: ReliableQueueException.GetQueueKey
+- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.QueueKey
+  name: QueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_QueueKey
+  commentId: P:OpenCollar.Azure.ReliableQueue.ReliableQueueException.QueueKey
+  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.QueueKey
+  nameWithType: ReliableQueueException.QueueKey
+- uid: OpenCollar.Azure.ReliableQueue.ReliableQueueException.QueueKey*
+  name: QueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.ReliableQueueException.html#OpenCollar_Azure_ReliableQueue_ReliableQueueException_QueueKey_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.ReliableQueueException.QueueKey
   isSpec: "True"
-  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.ReliableQueueKey
-  nameWithType: ReliableQueueException.ReliableQueueKey
+  fullName: OpenCollar.Azure.ReliableQueue.ReliableQueueException.QueueKey
+  nameWithType: ReliableQueueException.QueueKey
 - uid: OpenCollar.Azure.ReliableQueue.ServiceCollectionExtensions
   name: ServiceCollectionExtensions
   href: api/OpenCollar.Azure.ReliableQueue.ServiceCollectionExtensions.html
@@ -1415,24 +1415,24 @@ references:
   commentId: T:OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException
   fullName: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException
   nameWithType: UnknownReliableQueueException
-- uid: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  name: UnknownReliableQueueException(ReliableQueueKey)
-  href: api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html#OpenCollar_Azure_ReliableQueue_UnknownReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_
-  commentId: M:OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  fullName: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.UnknownReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey)
-  nameWithType: UnknownReliableQueueException.UnknownReliableQueueException(ReliableQueueKey)
-- uid: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String)
-  name: UnknownReliableQueueException(ReliableQueueKey, String)
-  href: api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html#OpenCollar_Azure_ReliableQueue_UnknownReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_String_
-  commentId: M:OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String)
-  fullName: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.UnknownReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.String)
-  nameWithType: UnknownReliableQueueException.UnknownReliableQueueException(ReliableQueueKey, String)
-- uid: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String,System.Exception)
-  name: UnknownReliableQueueException(ReliableQueueKey, String, Exception)
-  href: api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html#OpenCollar_Azure_ReliableQueue_UnknownReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_ReliableQueueKey_System_String_System_Exception_
-  commentId: M:OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey,System.String,System.Exception)
-  fullName: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.UnknownReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey, System.String, System.Exception)
-  nameWithType: UnknownReliableQueueException.UnknownReliableQueueException(ReliableQueueKey, String, Exception)
+- uid: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  name: UnknownReliableQueueException(QueueKey)
+  href: api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html#OpenCollar_Azure_ReliableQueue_UnknownReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_
+  commentId: M:OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  fullName: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.UnknownReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.QueueKey)
+  nameWithType: UnknownReliableQueueException.UnknownReliableQueueException(QueueKey)
+- uid: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String)
+  name: UnknownReliableQueueException(QueueKey, String)
+  href: api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html#OpenCollar_Azure_ReliableQueue_UnknownReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_String_
+  commentId: M:OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String)
+  fullName: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.UnknownReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.String)
+  nameWithType: UnknownReliableQueueException.UnknownReliableQueueException(QueueKey, String)
+- uid: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String,System.Exception)
+  name: UnknownReliableQueueException(QueueKey, String, Exception)
+  href: api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html#OpenCollar_Azure_ReliableQueue_UnknownReliableQueueException__ctor_OpenCollar_Azure_ReliableQueue_Model_QueueKey_System_String_System_Exception_
+  commentId: M:OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(OpenCollar.Azure.ReliableQueue.Model.QueueKey,System.String,System.Exception)
+  fullName: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.UnknownReliableQueueException(OpenCollar.Azure.ReliableQueue.Model.QueueKey, System.String, System.Exception)
+  nameWithType: UnknownReliableQueueException.UnknownReliableQueueException(QueueKey, String, Exception)
 - uid: OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
   name: UnknownReliableQueueException(SerializationInfo, StreamingContext)
   href: api/OpenCollar.Azure.ReliableQueue.UnknownReliableQueueException.html#OpenCollar_Azure_ReliableQueue_UnknownReliableQueueException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
