@@ -7,6 +7,15 @@ namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
     public sealed class QueueKeyTests
     {
         [Fact]
+        public void TestCastOperands()
+        {
+            var a = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
+
+            Assert.Equal(a, "AAA");
+            Assert.Equal("AAA", a);
+        }
+
+        [Fact]
         public void TestCompareOperands()
         {
             var a = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
@@ -57,6 +66,7 @@ namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
             Assert.Equal(0, a.CompareTo((object)a1));
             Assert.Equal(-1, a.CompareTo((object)b));
             Assert.Equal(1, b.CompareTo((object)a));
+            Assert.Throws<ArgumentException>(() => a.CompareTo(222));
         }
 
         [Fact]
