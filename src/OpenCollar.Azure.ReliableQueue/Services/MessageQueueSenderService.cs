@@ -17,36 +17,39 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Azure;
-
-using JetBrains.Annotations;
-
-using Microsoft.WindowsAzure.Storage.Queue.Protocol;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-using OpenCollar.Extensions.Validation;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
-    /// <summary>A service used to send messages.</summary>
-    /// <seealso cref="IReliableQueueSenderService"/>
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using global::Azure;
+
+    using JetBrains.Annotations;
+
+    using Microsoft.WindowsAzure.Storage.Queue.Protocol;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+    using OpenCollar.Extensions.Validation;
+
+    /// <summary>
+    /// Defines the <see cref="ReliableQueueSenderService" />.
+    /// </summary>
     internal sealed class ReliableQueueSenderService : IReliableQueueSenderService
     {
-        /// <summary>The service used to create and manage clients for the various Azure Storage resources used reliable queues.</summary>
+        /// <summary>
+        /// Defines the _storageResourceService.
+        /// </summary>
         [NotNull]
         private readonly IStorageResourceService _storageResourceService;
 
-        /// <summary>Initializes a new instance of the <see cref="ReliableQueueSenderService"/> class.</summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReliableQueueSenderService"/> class.
+        /// </summary>
         /// <param name="storageResourceService">The service used to create and manage clients for the various Azure Storage resources used reliable queues.</param>
         /// <param name="ReliableQueueConfigurationService">The service used to access the configuration for the queues used to send and receive messages.</param>
-        /// <exception cref="System.ArgumentNullException"><paramref name="storageResourceService"/> was <see langword="null"/>.</exception>
-        /// <exception cref="System.ArgumentNullException"><paramref name="ReliableQueueConfigurationService"/> was <see langword="null"/>.</exception>
         public ReliableQueueSenderService([NotNull] IStorageResourceService storageResourceService,
             [NotNull] IReliableQueueConfigurationService ReliableQueueConfigurationService)
         {
@@ -57,7 +60,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             var tasks = new List<Task>();
 
-            foreach(var queue in ReliableQueueConfigurationService.ReliableQueues)
+            foreach (var queue in ReliableQueueConfigurationService.ReliableQueues)
             {
                 var queueClient = _storageResourceService.GetQueueClient(queue.Key);
 
@@ -67,24 +70,20 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             Task.WaitAll(tasks.ToArray());
         }
 
-        /// <summary>Sends the message asynchronously and returns the new state of the message that was created, with updated properties.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to add the new message.</param>
+        /// <summary>
+        /// The SendMessageAsync.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue for which to add the new message.</param>
         /// <param name="message">The current state of the message to record.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
         /// <returns>The new state of the message that was created, with updated properties.</returns>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to send the message before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
-        public async Task<Message> SendMessageAsync(ReliableQueueKey reliableQueueKey, Message message, TimeSpan? timeout = null,
+        public async Task<Message> SendMessageAsync(QueueKey queueKey, Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
             var token = cancellationToken ?? CancellationToken.None;
 
-            var queueClient = _storageResourceService.GetQueueClient(reliableQueueKey);
+            var queueClient = _storageResourceService.GetQueueClient(queueKey);
 
             var json = message.ToJson();
             var base64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(json));
@@ -92,14 +91,14 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             {
                 await queueClient.SendMessageAsync(base64, token).ConfigureAwait(true);
             }
-            catch(RequestFailedException ex)
+            catch (RequestFailedException ex)
             {
-                if(ex.ErrorCode == QueueErrorCodeStrings.QueueNotFound)
+                if (ex.ErrorCode == QueueErrorCodeStrings.QueueNotFound)
                 {
                     var metadata = new Dictionary<string, string>
                     {
-                        { "ReliableQueueKey", reliableQueueKey.ToString() },
-                        { "ReliableQueueIdentifier", reliableQueueKey.Identifier }
+                        { "QueueKey", queueKey.ToString() },
+                        { "ReliableQueueIdentifier", queueKey.Identifier }
                     };
                     await queueClient.CreateIfNotExistsAsync(metadata, token).ConfigureAwait(true);
                     await queueClient.SendMessageAsync(base64, token).ConfigureAwait(true);

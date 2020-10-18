@@ -17,110 +17,98 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Globalization;
-using System.Runtime.Serialization;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 #pragma warning disable CA1032 // Implement standard exception constructors
-
 namespace OpenCollar.Azure.ReliableQueue
 {
-#pragma warning disable CA1032 // Add standard constructors.
+    using System;
+    using System.Globalization;
+    using System.Runtime.Serialization;
 
-    /// <summary>A class used to represent an exception that occurs involving a message in a queue.</summary>
-    /// <seealso cref="OpenCollar.Azure.ReliableQueue.ReliableQueueException"/>
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="MessageException" />.
+    /// </summary>
     [Serializable]
     public class MessageException : ReliableQueueException
     {
-        /// <summary>Initializes a new instance of the <see cref="MessageException"></see> class with a specified error message.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue involved.</param>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageException"/> class.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
         /// <param name="messageId">The ID of the message involved.</param>
-        /// <param name="message">The message that describes the error.</param>
-        public MessageException([NotNull] ReliableQueueKey reliableQueueKey, Guid messageId, string message) : base(reliableQueueKey, message)
+        public MessageException([NotNull] QueueKey queueKey, Guid messageId) : base(queueKey,
+            $"Error processing message. Message ID: {GetMessageId(messageId)}; Reliable Queue Key: {GetQueueKey(queueKey)}.")
         {
             MessageId = messageId;
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MessageException"></see> class with a specified error message and a reference to the inner exception
-        ///     that is the cause of this exception.
+        /// Initializes a new instance of the <see cref="MessageException"/> class.
         /// </summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue involved.</param>
+        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
+        /// <param name="messageId">The ID of the message involved.</param>
+        /// <param name="message">The message that describes the error.</param>
+        public MessageException([NotNull] QueueKey queueKey, Guid messageId, string message) : base(queueKey, message)
+        {
+            MessageId = messageId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageException"/> class.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
         /// <param name="messageId">The ID of the message involved.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception, or <see langword="null"/> if no inner exception is specified.</param>
-        public MessageException([NotNull] ReliableQueueKey reliableQueueKey, Guid messageId, string message, Exception innerException) : base(reliableQueueKey,
+        public MessageException([NotNull] QueueKey queueKey, Guid messageId, string message, Exception innerException) : base(queueKey,
             message, innerException)
         {
             MessageId = messageId;
         }
 
-        /// <summary>Initializes a new instance of the <see cref="MessageException"></see> class.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue involved.</param>
-        /// <param name="messageId">The ID of the message involved.</param>
-        public MessageException([NotNull] ReliableQueueKey reliableQueueKey, Guid messageId) : base(reliableQueueKey,
-            $"Error processing message. Message ID: {GetMessageId(messageId)}; Reliable Queue Key: {GetReliableQueueKey(reliableQueueKey)}.")
-        {
-            MessageId = messageId;
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="MessageException"></see> class with serialized data.</summary>
-        /// <param name="info">
-        ///     The <see cref="System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception
-        ///     being thrown.
-        /// </param>
-        /// <param name="context">
-        ///     The <see cref="System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or
-        ///     destination.
-        /// </param>
-        /// <exception cref="System.ArgumentNullException">The <paramref name="info">info</paramref> parameter is <see langword="null"/>.</exception>
-        /// <exception cref="System.Runtime.Serialization.SerializationException">
-        ///     The class name is null or <see cref="System.Exception.HResult"></see> is zero
-        ///     (0).
-        /// </exception>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageException"/> class.
+        /// </summary>
+        /// <param name="info">The info<see cref="SerializationInfo"/>.</param>
+        /// <param name="context">The context<see cref="StreamingContext"/>.</param>
         protected MessageException([NotNull] SerializationInfo info, StreamingContext context) : base(info, context)
         {
             var value = info.GetString(nameof(MessageId));
-            if(Guid.TryParseExact(value, "D", out var messageId))
+            if (Guid.TryParseExact(value, "D", out var messageId))
             {
                 MessageId = messageId;
             }
         }
 
-        /// <summary>Gets the ID of the message involved.</summary>
-        /// <value>The ID of the message involved.</value>
+        /// <summary>
+        /// Gets the MessageId.
+        /// </summary>
         public Guid MessageId { get; }
 
         /// <summary>
-        ///     When overridden in a derived class, sets the <see cref="System.Runtime.Serialization.SerializationInfo"></see> with information about the
+        /// When overridden in a derived class, sets the <see cref="System.Runtime.Serialization.SerializationInfo"></see> with information about the
         ///     exception.
         /// </summary>
-        /// <param name="info">
-        ///     The <see cref="System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception
-        ///     being thrown.
-        /// </param>
-        /// <param name="context">
-        ///     The <see cref="System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or
-        ///     destination.
-        /// </param>
-        /// <exception cref="System.ArgumentNullException">The <paramref name="info">info</paramref> parameter is <see langword="null"/>.</exception>
+        /// <param name="info">The info<see cref="SerializationInfo"/>.</param>
+        /// <param name="context">The context<see cref="StreamingContext"/>.</param>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(nameof(MessageId), MessageId.ToString("D", CultureInfo.InvariantCulture));
             base.GetObjectData(info, context);
         }
 
-        /// <summary>Gets the message ID, quoted if appropriate, or placeholders for special values.</summary>
+        /// <summary>
+        /// The GetMessageId.
+        /// </summary>
         /// <param name="messageId">The reliable queue key, can be empty.</param>
         /// <returns>The message ID, quoted if appropriate, or placeholders for special values.</returns>
         [NotNull]
         protected internal static string GetMessageId(Guid messageId)
         {
-            if(messageId == Guid.Empty)
+            if (messageId == Guid.Empty)
             {
                 return @"{EMPTY}";
             }

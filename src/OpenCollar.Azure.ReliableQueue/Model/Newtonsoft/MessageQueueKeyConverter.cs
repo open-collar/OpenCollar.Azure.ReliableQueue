@@ -21,20 +21,20 @@ using System;
 
 using JetBrains.Annotations;
 
-using Newtonsoft.Json;
+using global::Newtonsoft.Json;
 
 using OpenCollar.Extensions.Validation;
 
 namespace OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
 {
     /// <summary>A converter that ensures that reliable queue keys are represented in the correct format.</summary>
-    /// <seealso cref="OpenCollar.Azure.ReliableQueue.Model.ReliableQueueKey"/>
-    public sealed class ReliableQueueKeyConverter : JsonConverter<ReliableQueueKey?>
+    /// <seealso cref="OpenCollar.Azure.ReliableQueue.Model.QueueKey"/>
+    public sealed class QueueKeyConverter : JsonConverter<QueueKey?>
     {
         /// <summary>Gets a common instance of the converter that can be reused as necessary.</summary>
         /// <value>A common instance of the converter that can be reused as necessary.</value>
         [NotNull]
-        public static ReliableQueueKeyConverter Instance { get; } = new ReliableQueueKeyConverter();
+        public static QueueKeyConverter Instance { get; } = new QueueKeyConverter();
 
         /// <summary>Reads the JSON representation of the object.</summary>
         /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
@@ -44,7 +44,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
         /// <param name="serializer">The calling serializer.</param>
         /// <returns>The object value.</returns>
         /// <exception cref="System.ArgumentNullException"><paramref name="reader"/> is <see langword="null"/>.</exception>
-        public override ReliableQueueKey? ReadJson(JsonReader reader, Type objectType, ReliableQueueKey? existingValue, bool hasExistingValue,
+        public override QueueKey? ReadJson(JsonReader reader, Type objectType, QueueKey? existingValue, bool hasExistingValue,
             JsonSerializer serializer)
         {
             reader.Validate(nameof(reader), ObjectIs.NotNull);
@@ -55,7 +55,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
             }
 
             return reader.TokenType == JsonToken.String
-                ? new ReliableQueueKey(reader.Value as string)
+                ? new QueueKey(reader.Value as string)
                 : throw new JsonSerializationException("Unexpected token type.  Expected token type 'String'.");
         }
 
@@ -64,7 +64,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Newtonsoft
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         /// <exception cref="System.ArgumentNullException"><paramref name="writer"/> is <see langword="null"/>.</exception>
-        public override void WriteJson(JsonWriter writer, ReliableQueueKey? value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, QueueKey? value, JsonSerializer serializer)
         {
             writer.Validate(nameof(writer), ObjectIs.NotNull);
 

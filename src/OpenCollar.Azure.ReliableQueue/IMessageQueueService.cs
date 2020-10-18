@@ -17,27 +17,27 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
     /// <summary>The public interface of the service used to coordinate the sending and receiving of messages using Azure Storage Queues.</summary>
     public interface IReliableQueueService
     {
         /// <summary>Gets the <see cref="IReliableQueue"/> object for the reliable queue with the specified reliable queue key.</summary>
         /// <value>The <see cref="IReliableQueue"/> object requested.</value>
-        /// <param name="reliableQueueKey">The key for the reliable queue for which to return the object.</param>
+        /// <param name="queueKey">The key for the reliable queue for which to return the object.</param>
         /// <returns>A thin wrapper around the functionality of the reliable queue specified.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         [NotNull]
 #pragma warning disable CA1043 // Use Integral Or String Argument For Indexers
-        public IReliableQueue this[[NotNull] ReliableQueueKey reliableQueueKey] { get; }
+        public IReliableQueue this[[NotNull] QueueKey queueKey] { get; }
 
 #pragma warning restore CA1043 // Use Integral Or String Argument For Indexers
 

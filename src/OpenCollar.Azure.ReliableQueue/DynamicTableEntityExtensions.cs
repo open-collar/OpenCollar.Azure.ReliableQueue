@@ -17,33 +17,35 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
-using JetBrains.Annotations;
-
-using Microsoft.Azure.Cosmos.Table;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+
+    using JetBrains.Annotations;
+
+    using Microsoft.Azure.Cosmos.Table;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
     /// <summary>
-    ///     Extension methods to simplify the conversion of <see cref="TableEntity"/> objects with complex properties to values that can be serialized, and
+    /// Extension methods to simplify the conversion of <see cref="TableEntity"/> objects with complex properties to values that can be serialized, and
     ///     vice-versa.
     /// </summary>
     internal static class DynamicTableEntityExtensions
     {
-        /// <summary>A lookup of the properties that cannot be serialized, keyed on the table entity type.</summary>
+        /// <summary>
+        /// Defines the _skipProperties.
+        /// </summary>
         [NotNull]
         private static readonly Dictionary<Type, Dictionary<string, string>> _skipProperties = new Dictionary<Type, Dictionary<string, string>>
         {
             {
                 typeof(Message), new Dictionary<string, string>
                 {
-                    { nameof(Message.ReliableQueueKey), nameof(Message.ReliableQueueKey) },
+                    { nameof(Message.QueueKey), nameof(Message.QueueKey) },
                     { nameof(Message.Topic), nameof(Message.Topic) },
                     { nameof(Message.Sequence), nameof(Message.Sequence) }
                 }
@@ -51,13 +53,15 @@ namespace OpenCollar.Azure.ReliableQueue
             {
                 typeof(TopicAffinity), new Dictionary<string, string>
                 {
-                    { nameof(TopicAffinity.ReliableQueueKey), nameof(TopicAffinity.ReliableQueueKey) },
+                    { nameof(TopicAffinity.QueueKey), nameof(TopicAffinity.QueueKey) },
                     { nameof(TopicAffinity.Topic), nameof(TopicAffinity.Topic) }
                 }
             }
         };
 
-        /// <summary>Gets the table entity represented by the dynamic table entity given.</summary>
+        /// <summary>
+        /// The Deserialize.
+        /// </summary>
         /// <typeparam name="TTableEntity">The type of the table entity.</typeparam>
         /// <param name="dynamicTableEntity">The dynamic table entity to derserlaize.</param>
         /// <param name="context">The context in which the deserialization will occur.</param>
@@ -66,7 +70,7 @@ namespace OpenCollar.Azure.ReliableQueue
         public static TTableEntity Deserialize<TTableEntity>([NotNull] this DynamicTableEntity dynamicTableEntity, [NotNull] OperationContext context)
             where TTableEntity : ITableEntity
         {
-            if(!_skipProperties.TryGetValue(typeof(TTableEntity), out var skipProperties))
+            if (!_skipProperties.TryGetValue(typeof(TTableEntity), out var skipProperties))
             {
                 skipProperties = new Dictionary<string, string>();
             }
@@ -77,12 +81,12 @@ namespace OpenCollar.Azure.ReliableQueue
             var entity = TableEntity.ConvertBack<TTableEntity>(properties, context);
 
             var messageRecord = entity as Message;
-            if(!(messageRecord is null))
+            if (!(messageRecord is null))
             {
-                messageRecord.ReliableQueueKey = new ReliableQueueKey(dynamicTableEntity.Properties[nameof(Message.ReliableQueueKey)].StringValue);
+                messageRecord.QueueKey = new QueueKey(dynamicTableEntity.Properties[nameof(Message.QueueKey)].StringValue);
                 messageRecord.Topic = new Topic(dynamicTableEntity.Properties[nameof(Message.Topic)].StringValue);
                 var sequence = dynamicTableEntity.Properties[nameof(Message.Sequence)].Int64Value;
-                if(sequence.HasValue && sequence.Value != 0)
+                if (sequence.HasValue && sequence.Value != 0)
                 {
                     messageRecord.Sequence = sequence.Value;
                 }
@@ -94,10 +98,10 @@ namespace OpenCollar.Azure.ReliableQueue
             else
             {
                 var topicAffinityRecord = entity as TopicAffinity;
-                if(!(topicAffinityRecord is null))
+                if (!(topicAffinityRecord is null))
                 {
-                    topicAffinityRecord.ReliableQueueKey =
-                        new ReliableQueueKey(dynamicTableEntity.Properties[nameof(TopicAffinity.ReliableQueueKey)].StringValue);
+                    topicAffinityRecord.QueueKey =
+                        new QueueKey(dynamicTableEntity.Properties[nameof(TopicAffinity.QueueKey)].StringValue);
                     topicAffinityRecord.Topic = new Topic(dynamicTableEntity.Properties[nameof(TopicAffinity.Topic)].StringValue);
                 }
             }
@@ -109,7 +113,9 @@ namespace OpenCollar.Azure.ReliableQueue
             return entity;
         }
 
-        /// <summary>Gets a dynamic table entity that represents the table entity given, including the complex properties.</summary>
+        /// <summary>
+        /// The Serialize.
+        /// </summary>
         /// <param name="entity">The entity to convert.</param>
         /// <param name="context">The context in which to convert.</param>
         /// <returns>The resulting dynamic table entity.</returns>
@@ -122,11 +128,11 @@ namespace OpenCollar.Azure.ReliableQueue
             };
 
             var message = entity as Message;
-            if(!(message is null))
+            if (!(message is null))
             {
-                dynamicTableEntity.Properties.Add(nameof(Message.ReliableQueueKey), new EntityProperty(message.ReliableQueueKey.ToString()));
+                dynamicTableEntity.Properties.Add(nameof(Message.QueueKey), new EntityProperty(message.QueueKey.ToString()));
                 dynamicTableEntity.Properties.Add(nameof(Message.Topic), new EntityProperty(message.Topic.ToString()));
-                if(dynamicTableEntity.Properties.ContainsKey(nameof(Message.Sequence)))
+                if (dynamicTableEntity.Properties.ContainsKey(nameof(Message.Sequence)))
                 {
                     dynamicTableEntity.Properties[nameof(Message.Sequence)].Int64Value = message.Sequence;
                 }
@@ -139,9 +145,9 @@ namespace OpenCollar.Azure.ReliableQueue
             else
             {
                 var topic = entity as TopicAffinity;
-                if(!(topic is null))
+                if (!(topic is null))
                 {
-                    dynamicTableEntity.Properties.Add(nameof(TopicAffinity.ReliableQueueKey), new EntityProperty(topic.ReliableQueueKey.ToString()));
+                    dynamicTableEntity.Properties.Add(nameof(TopicAffinity.QueueKey), new EntityProperty(topic.QueueKey.ToString()));
                     dynamicTableEntity.Properties.Add(nameof(TopicAffinity.Topic), new EntityProperty(topic.Topic.ToString()));
                 }
             }

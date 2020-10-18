@@ -59,7 +59,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <summary>Gets the BLOB storage client used to access Azure Storage BLOB Storage for the reliable queue specified.</summary>
         /// <param name="reliableQueueKey">The key identifying the reliable queue for which to get the BLOB storage client.</param>
         /// <returns>The BLOB storage client for the reliable queue specified by the key given.</returns>
-        public CloudBlobClient GetBlobClient(ReliableQueueKey reliableQueueKey)
+        public CloudBlobClient GetBlobClient(QueueKey reliableQueueKey)
         {
             // Extract the details of the storage account from the connection string.
             var storageAccount = _reliableQueueConfigurationService.GetStorageAccount(reliableQueueKey);
@@ -71,7 +71,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <summary>Gets the queue client for the reliable queue specified by the key given.</summary>
         /// <param name="reliableQueueKey">The key identifying the reliable queue for which get the client.</param>
         /// <returns>The queue client for the reliable queue specified by the key given.</returns>
-        public QueueClient GetQueueClient(ReliableQueueKey reliableQueueKey)
+        public QueueClient GetQueueClient(QueueKey reliableQueueKey)
         {
             var configuration = _reliableQueueConfigurationService[reliableQueueKey];
 
@@ -84,7 +84,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <summary>Gets the table used for storing details about the current state of a message.</summary>
         /// <param name="reliableQueueKey">The key identifying the reliable queue for which to get the state table.</param>
         /// <returns>The state table for the reliable queue specified by the key given.</returns>
-        public CloudTable GetStateTable(ReliableQueueKey reliableQueueKey)
+        public CloudTable GetStateTable(QueueKey reliableQueueKey)
         {
             var tableClient = GetTableClient(reliableQueueKey);
 
@@ -94,7 +94,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <summary>Gets the table used for storing details about topic affinity.</summary>
         /// <param name="reliableQueueKey">The key identifying the reliable queue for which to get the topic affinity table.</param>
         /// <returns>The topic able for the reliable queue specified by the key given.</returns>
-        public CloudTable GetTopicTable(ReliableQueueKey reliableQueueKey)
+        public CloudTable GetTopicTable(QueueKey reliableQueueKey)
         {
             var tableClient = GetTableClient(reliableQueueKey);
 
@@ -104,7 +104,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <summary>Gets the table client used to access Azure Storage Tables for the reliable queue specified.</summary>
         /// <param name="reliableQueueKey">The key identifying the reliable queue for which to get the table client.</param>
         /// <returns>The table client for the reliable queue specified by the key given.</returns>
-        public CloudTableClient GetTableClient(ReliableQueueKey reliableQueueKey)
+        public CloudTableClient GetTableClient(QueueKey reliableQueueKey)
         {
             var cloudStorageAccount = _reliableQueueConfigurationService.GetTableStorageAccount(reliableQueueKey);
             return cloudStorageAccount.CreateCloudTableClient();
@@ -115,7 +115,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="tableClient">The table client from which to take the cloud table.</param>
         /// <returns></returns>
         [NotNull]
-        private static CloudTable GetStateTable([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] CloudTableClient tableClient)
+        private static CloudTable GetStateTable([NotNull] QueueKey reliableQueueKey, [NotNull] CloudTableClient tableClient)
         {
             var tableName = Identifiers.GetStateTableName(reliableQueueKey);
             return tableClient.GetTableReference(tableName);
@@ -126,7 +126,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="tableClient">The table client from which to take the cloud table.</param>
         /// <returns></returns>
         [NotNull]
-        private static CloudTable GetTopicTable([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] CloudTableClient tableClient)
+        private static CloudTable GetTopicTable([NotNull] QueueKey reliableQueueKey, [NotNull] CloudTableClient tableClient)
         {
             var tableName = Identifiers.GetTopicTableName(reliableQueueKey);
             return tableClient.GetTableReference(tableName);

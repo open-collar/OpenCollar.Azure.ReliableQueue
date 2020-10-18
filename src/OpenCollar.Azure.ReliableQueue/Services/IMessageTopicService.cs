@@ -17,50 +17,41 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
-    /// <summary>The public interface of the service used to manage topic affinity and the ordering of the messages belonging to the same topic.</summary>
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="IMessageTopicService" />.
+    /// </summary>
     internal interface IMessageTopicService
     {
-        /// <summary>Gets the live topics from the reliable queue.</summary>
-        /// <param name="reliableQueueKey">The key identifying the queue from which to read the topics.</param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to retrieve topics before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to retrieve topics.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
+        /// <summary>
+        /// The GetLiveTopics.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the queue from which to read the topics.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
         /// <returns>A sequence containing the topics found to be active.</returns>
         [NotNull]
-        public IEnumerable<Topic> GetLiveTopics([NotNull] ReliableQueueKey reliableQueueKey, TimeSpan? timeout = null,
+        public IEnumerable<Topic> GetLiveTopics([NotNull] QueueKey queueKey, TimeSpan? timeout = null,
             [CanBeNull] CancellationToken? cancellationToken = null);
 
-        /// <summary>Called when a trigger (e.g. EventGrid or StorageQueue) receives a notification of a message to be processed.</summary>
+        /// <summary>
+        /// The OnReceivedAsync.
+        /// </summary>
         /// <param name="message">The message received.</param>
         /// <param name="ReliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to process the message before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to process the message.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
-        /// <returns>
-        ///     A task that processes the message supplied and returns <see langword="true"/> if the message will be processed; otherwise,
-        ///     <see langword="false"/> if it is to be ignored.
-        /// </returns>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <returns>The <see cref="Task{bool}"/>.</returns>
         [NotNull]
         public Task<bool> OnReceivedAsync([NotNull] Message message, [NotNull] IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
             [CanBeNull] CancellationToken? cancellationToken = null);

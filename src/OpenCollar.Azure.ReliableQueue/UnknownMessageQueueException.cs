@@ -17,62 +17,56 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Runtime.Serialization;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 #pragma warning disable CA1032 // Add standard constructors.
-
 namespace OpenCollar.Azure.ReliableQueue
 {
-    /// <summary>A class used to represent an exception that occurs when a reliable queue or its configuration cannot be found.</summary>
-    /// <seealso cref="OpenCollar.Azure.ReliableQueue.ReliableQueueException"/>
+    using System;
+    using System.Runtime.Serialization;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="UnknownReliableQueueException" />.
+    /// </summary>
     [Serializable]
     public class UnknownReliableQueueException : ReliableQueueException
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownReliableQueueException"></see> class with a specified error message.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue involved.</param>
-        /// <param name="message">The message that describes the error.</param>
-        public UnknownReliableQueueException([NotNull] ReliableQueueKey reliableQueueKey, string message) : base(reliableQueueKey, message)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnknownReliableQueueException"/> class.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
+        public UnknownReliableQueueException([NotNull] QueueKey queueKey) : base(queueKey,
+            $@"There is no configuration for this reliable queue: {GetQueueKey(queueKey)}.")
         {
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownReliableQueueException"></see> class with a specified error message and a reference to the
-        ///     inner exception that is the cause of this exception.
+        /// Initializes a new instance of the <see cref="UnknownReliableQueueException"/> class.
         /// </summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue involved.</param>
+        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
+        /// <param name="message">The message that describes the error.</param>
+        public UnknownReliableQueueException([NotNull] QueueKey queueKey, string message) : base(queueKey, message)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnknownReliableQueueException"/> class.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception, or <see langword="null"/> if no inner exception is specified.</param>
-        public UnknownReliableQueueException([NotNull] ReliableQueueKey reliableQueueKey, string message, Exception innerException) : base(reliableQueueKey,
+        public UnknownReliableQueueException([NotNull] QueueKey queueKey, string message, Exception innerException) : base(queueKey,
             message, innerException)
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="UnknownReliableQueueException"></see> class.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue involved.</param>
-        public UnknownReliableQueueException([NotNull] ReliableQueueKey reliableQueueKey) : base(reliableQueueKey,
-            $@"There is no configuration for this reliable queue: {GetReliableQueueKey(reliableQueueKey)}.")
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="UnknownReliableQueueException"></see> class with serialized data.</summary>
-        /// <param name="info">
-        ///     The <see cref="System.Runtime.Serialization.SerializationInfo"></see> that holds the serialized object data about the exception
-        ///     being thrown.
-        /// </param>
-        /// <param name="context">
-        ///     The <see cref="System.Runtime.Serialization.StreamingContext"></see> that contains contextual information about the source or
-        ///     destination.
-        /// </param>
-        /// <exception cref="System.ArgumentNullException">The <paramref name="info">info</paramref> parameter is <see langword="null"/>.</exception>
-        /// <exception cref="System.Runtime.Serialization.SerializationException">
-        ///     The class name is null or <see cref="System.Exception.HResult"></see> is zero
-        ///     (0).
-        /// </exception>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnknownReliableQueueException"/> class.
+        /// </summary>
+        /// <param name="info">The info<see cref="SerializationInfo"/>.</param>
+        /// <param name="context">The context<see cref="StreamingContext"/>.</param>
         protected UnknownReliableQueueException([NotNull] SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

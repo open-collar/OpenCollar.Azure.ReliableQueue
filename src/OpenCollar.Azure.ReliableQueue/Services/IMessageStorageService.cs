@@ -17,59 +17,58 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
-    /// <summary>The public interface of the service used to store and retrieve the body of messages.</summary>
+    using System;
+    using System.IO;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="IMessageStorageService" />.
+    /// </summary>
     internal interface IMessageStorageService
     {
-        /// <summary>Deletes the body of a message to BLOB storage, asynchronously.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to delete the body of a message.</param>
+        /// <summary>
+        /// The DeleteMessageAsync.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue for which to delete the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be deleted.</param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to delete the message body to the BLOB storage before failing with an error.  Defaults to
-        ///     the value in the <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to delete the message body to the BLOB storage.</param>
         /// <returns>A task that deletes the message body to the BLOB storage.</returns>
         [NotNull]
-        public Task DeleteMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
+        public Task DeleteMessageAsync([NotNull] QueueKey queueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
 
-        /// <summary>Reads the body of a message from BLOB storage, asynchronously.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to read the body of a message.</param>
+        /// <summary>
+        /// The ReadMessageAsync.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue for which to read the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be read.</param>
         /// <param name="blob">The stream into which the BLOB will be read.</param>
         /// <param name="timeout">The maximum period of time to wait whilst attempting to read the message body to the BLOB storage before failing with an error.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to read the message body to the BLOB storage.</param>
         /// <returns>A task that returns a stream containing the message body from the BLOB storage, or <see langword="null"/> if there is no body.</returns>
         [NotNull]
-        public Task<Stream?> ReadMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [NotNull] Stream blob,
+        public Task<Stream?> ReadMessageAsync([NotNull] QueueKey queueKey, [NotNull] Message message, [NotNull] Stream blob,
             TimeSpan? timeout = null, CancellationToken? cancellationToken = null);
 
-        /// <summary>Writes the body of a message to BLOB storage, asynchronously.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to write the body of a message.</param>
+        /// <summary>
+        /// The WriteMessageAsync.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue for which to write the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be written.</param>
-        /// <param name="blob">
-        ///     A stream containing the BLOB to write into the BLOB storage.  Can be <see langword="null"/> or zero-length if the message has not
-        ///     body.
-        /// </param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to write the message body to the BLOB storage before failing with an
-        ///     error.
-        /// </param>
+        /// <param name="blob">The blob<see cref="Stream?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
         [NotNull]
-        public Task<Message> WriteMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, Stream? blob,
+        public Task<Message> WriteMessageAsync([NotNull] QueueKey queueKey, [NotNull] Message message, Stream? blob,
             TimeSpan? timeout = null, CancellationToken? cancellationToken = null);
     }
 }

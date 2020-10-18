@@ -32,27 +32,27 @@ namespace OpenCollar.Azure.ReliableQueue.Services
     internal interface IStorageResourceService
     {
         /// <summary>Gets the BLOB storage client used to access Azure Storage BLOB Storage for the reliable queue specified.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to get the BLOB storage client.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to get the BLOB storage client.</param>
         /// <returns>The BLOB storage client for the reliable queue specified by the key given.</returns>
         [NotNull]
-        public CloudBlobClient GetBlobClient([NotNull] ReliableQueueKey reliableQueueKey);
+        public CloudBlobClient GetBlobClient([NotNull] QueueKey queueKey);
 
         /// <summary>Gets the queue client for the reliable queue specified by the key given.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which get the client.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which get the client.</param>
         /// <returns>The queue client for the reliable queue specified by the key given.</returns>
         [NotNull]
-        public QueueClient GetQueueClient([NotNull] ReliableQueueKey reliableQueueKey);
+        public QueueClient GetQueueClient([NotNull] QueueKey queueKey);
 
         /// <summary>Gets the table used for storing details about the current state of a message.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to get the state table.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to get the state table.</param>
         /// <returns>The state table for the reliable queue specified by the key given.</returns>
         [NotNull]
-        public CloudTable GetStateTable([NotNull] ReliableQueueKey reliableQueueKey);
+        public CloudTable GetStateTable([NotNull] QueueKey queueKey);
 
         /// <summary>Gets the table used for storing details about topic affinity.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to get the topic affinity table.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to get the topic affinity table.</param>
         /// <returns>The topic able for the reliable queue specified by the key given.</returns>
         [NotNull]
-        public CloudTable GetTopicTable([NotNull] ReliableQueueKey reliableQueueKey);
+        public CloudTable GetTopicTable([NotNull] QueueKey queueKey);
     }
 }

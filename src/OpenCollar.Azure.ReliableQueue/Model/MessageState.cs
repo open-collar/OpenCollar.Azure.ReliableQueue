@@ -27,16 +27,12 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     thrown.
         /// </summary>
         Unknown = 0,
-
         ///<summary>The message has been passed from the sender to the service, but not yet processed.</summary>
         New,
-
         ///<summary>The message has been queued and is ready for receipt.</summary>
         Queued,
-
         ///<summary>The message has been dequeued and is being processed by the recipient.</summary>
         Processing,
-
         ///<summary>The message has failed processing too many times and is being moved to the dead letter queue.</summary>
         Failed
     }

@@ -17,33 +17,31 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
-    /// <summary>The public interface of the service used to send messages.</summary>
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="IReliableQueueSenderService" />.
+    /// </summary>
     internal interface IReliableQueueSenderService
     {
-        /// <summary>Sends the message asynchronously and returns the new state of the message that was created, with updated properties.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to add the new message.</param>
+        /// <summary>
+        /// The SendMessageAsync.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue for which to add the new message.</param>
         /// <param name="message">The current state of the message to record.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
         /// <returns>The new state of the message that was created, with updated properties.</returns>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to send the message before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
         [NotNull]
-        public Task<Message> SendMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
+        public Task<Message> SendMessageAsync([NotNull] QueueKey queueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
     }
 }

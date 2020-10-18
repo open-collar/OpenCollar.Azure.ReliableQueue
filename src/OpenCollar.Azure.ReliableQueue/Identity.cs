@@ -17,27 +17,34 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Diagnostics;
-using System.Globalization;
-
-using JetBrains.Annotations;
-
 namespace OpenCollar.Azure.ReliableQueue
 {
-    /// <summary>A class that provides properties and methods for use when generating and manipulating identities.</summary>
+    using System;
+    using System.Diagnostics;
+    using System.Globalization;
+
+    using JetBrains.Annotations;
+
+    /// <summary>
+    /// Defines the <see cref="Identity" />.
+    /// </summary>
     internal static class Identity
     {
-        /// <summary>The a lazily evaluated reference to the identity of this process.</summary>
+        /// <summary>
+        /// Defines the _identity.
+        /// </summary>
         [NotNull]
         private static readonly Lazy<string> _identity = new Lazy<string>(() => GetCurrentIdentifier());
 
-        /// <summary>Gets the identity of the current process.</summary>
-        /// <value>The identity of the current process.</value>
+        /// <summary>
+        /// Gets the Current.
+        /// </summary>
         [NotNull]
         public static string Current => _identity.Value;
 
-        /// <summary>Gets the identity of the current process.</summary>
+        /// <summary>
+        /// The GetCurrentIdentifier.
+        /// </summary>
         /// <returns>A string containing the unique identity for the current process.</returns>
         [NotNull]
         private static string GetCurrentIdentifier()

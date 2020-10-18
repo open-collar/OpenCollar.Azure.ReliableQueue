@@ -17,25 +17,29 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using JetBrains.Annotations;
-
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-
-using OpenCollar.Azure.ReliableQueue.Configuration;
-using OpenCollar.Azure.ReliableQueue.Services;
-using OpenCollar.Extensions.Configuration;
-using OpenCollar.Extensions.Validation;
-
 namespace OpenCollar.Azure.ReliableQueue
 {
-    /// <summary>Extensions to the <see cref="IServiceCollection"/> type allowing reliable queue services to be registered.</summary>
+    using JetBrains.Annotations;
+
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.DependencyInjection.Extensions;
+
+    using OpenCollar.Azure.ReliableQueue.Configuration;
+    using OpenCollar.Azure.ReliableQueue.Services;
+    using OpenCollar.Extensions.Configuration;
+    using OpenCollar.Extensions.Validation;
+
+    /// <summary>
+    /// Defines the <see cref="ServiceCollectionExtensions" />.
+    /// </summary>
     [UsedImplicitly]
     public static class ServiceCollectionExtensions
     {
-        /// <summary>Adds the reliable queue services to the <see cref="IServiceCollection"/> given.</summary>
+        /// <summary>
+        /// The AddReliableQueues.
+        /// </summary>
         /// <param name="serviceCollection">The service collection to which to add the configuration reader. This must not be <see langword="null"/>.</param>
-        /// <exception cref="System.ArgumentNullException"><paramref name="serviceCollection"/> was <see langword="null"/>.</exception>
+        /// <returns>The <see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddReliableQueues(this IServiceCollection serviceCollection)
         {
             serviceCollection.Validate(nameof(serviceCollection), ObjectIs.NotNull);

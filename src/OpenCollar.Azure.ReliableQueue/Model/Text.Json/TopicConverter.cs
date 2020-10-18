@@ -17,38 +17,42 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Extensions.Validation;
-
 namespace OpenCollar.Azure.ReliableQueue.Model.Text.Json
 {
-    /// <summary>A converter that ensures that reliable queue topics are represented in the correct format.</summary>
-    /// <seealso cref="OpenCollar.Azure.ReliableQueue.Model.Topic"/>
+    using System;
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Extensions.Validation;
+
+    /// <summary>
+    /// Defines the <see cref="TopicConverter" />.
+    /// </summary>
     public sealed class TopicConverter : JsonConverter<Topic?>
     {
-        /// <summary>Gets a common instance of the converter that can be reused as necessary.</summary>
-        /// <value>A common instance of the converter that can be reused as necessary.</value>
+        /// <summary>
+        /// Gets the Instance.
+        /// </summary>
         [NotNull]
         public static TopicConverter Instance { get; } = new TopicConverter();
 
-        /// <summary>Reads and converts the JSON to type <see cref="OpenCollar.Azure.ReliableQueue.Model.Topic"/>.</summary>
+        /// <summary>
+        /// The Read.
+        /// </summary>
         /// <param name="reader">The reader.</param>
         /// <param name="typeToConvert">The type to convert.</param>
         /// <param name="options">An object that specifies serialization options to use.</param>
         /// <returns>The converted value.</returns>
         public override Topic? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if(reader.TokenType == JsonTokenType.Null)
+            if (reader.TokenType == JsonTokenType.Null)
             {
                 return Topic.Default;
             }
 
-            if(reader.TokenType == JsonTokenType.String)
+            if (reader.TokenType == JsonTokenType.String)
             {
                 return new Topic(reader.GetString());
             }
@@ -56,7 +60,9 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Text.Json
             throw new JsonException("Unexpected token type.  Expected token type 'String'.", null, null, reader.TokenStartIndex);
         }
 
-        /// <summary>Writes a specified value as JSON.</summary>
+        /// <summary>
+        /// The Write.
+        /// </summary>
         /// <param name="writer">The writer to write to.</param>
         /// <param name="value">The value to convert to JSON.</param>
         /// <param name="options">An object that specifies serialization options to use.</param>
@@ -64,7 +70,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Text.Json
         {
             writer.Validate(nameof(writer), ObjectIs.NotNull);
 
-            if(value is null)
+            if (value is null)
             {
                 writer.WriteNullValue();
             }

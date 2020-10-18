@@ -17,33 +17,33 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using Microsoft.Extensions.Logging;
-
-using OpenCollar.Azure.ReliableQueue.Configuration;
-using OpenCollar.Azure.ReliableQueue.Model;
-using OpenCollar.Extensions;
-using OpenCollar.Extensions.Validation;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using Microsoft.Extensions.Logging;
+
+    using OpenCollar.Azure.ReliableQueue.Configuration;
+    using OpenCollar.Azure.ReliableQueue.Model;
+    using OpenCollar.Extensions;
+    using OpenCollar.Extensions.Validation;
+
     /// <summary>A service used to coordinate the sending and receiving of messages using Azure Storage Queues.</summary>
     /// <seealso cref="OpenCollar.Azure.ReliableQueue.IReliableQueueService"/>
     internal sealed class ReliableQueueService : Disposable, IReliableQueueServiceInternal
     {
         /// <summary>A lookup of the proxies created, keyed on the reliable queue key.</summary>
         [NotNull]
-        private static readonly ConcurrentDictionary<ReliableQueueKey, ReliableQueue> _proxies = new ConcurrentDictionary<ReliableQueueKey, ReliableQueue>();
+        private static readonly ConcurrentDictionary<QueueKey, ReliableQueue> _proxies = new ConcurrentDictionary<QueueKey, ReliableQueue>();
 
         /// <summary>The service used to access the configuration for the queues used to send and receive messages.</summary>
         [NotNull]
@@ -51,7 +51,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
         /// <summary>A dictionary of the listeners owned by this service.</summary>
         [NotNull]
-        private readonly Dictionary<ReliableQueueKey, ReliableQueueListener> _listeners = new Dictionary<ReliableQueueKey, ReliableQueueListener>();
+        private readonly Dictionary<QueueKey, ReliableQueueListener> _listeners = new Dictionary<QueueKey, ReliableQueueListener>();
 
         /// <summary>The logger used to record information about usage and activities.</summary>
         [NotNull]
@@ -108,14 +108,14 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             _send = send;
             _receive = receive;
 
-            foreach(var ReliableQueue in configuration.ReliableQueues)
+            foreach (var ReliableQueue in configuration.ReliableQueues)
             {
-                if(!ReliableQueue.Value.CreateListener)
+                if (!ReliableQueue.Value.CreateListener)
                 {
                     continue;
                 }
 
-                if(!IReliableQueueConfiguration.ModeReceive.Equals(ReliableQueue.Value.Mode, StringComparison.OrdinalIgnoreCase)
+                if (!IReliableQueueConfiguration.ModeReceive.Equals(ReliableQueue.Value.Mode, StringComparison.OrdinalIgnoreCase)
                 && !IReliableQueueConfiguration.ModeBoth.Equals(ReliableQueue.Value.Mode, StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
@@ -128,51 +128,51 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         }
 
         /// <summary>Called when a message is ready to be processed by the consumer.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue from which the message originates.</param>
+        /// <param name="queueKey">The key identifying the reliable queue from which the message originates.</param>
         /// <param name="message">The message of which to notify the consumer.</param>
         /// <returns>
         ///     <see langword="true"/> if the message was successfully processed and should be removed from the queue; otherwise, <see langword="false"/> to
         ///     indicate that the message should be re-queued and tried again.
         /// </returns>
         /// <exception cref="InvalidOperationException">Message queue is configured to be send-only.</exception>
-        public bool OnProcessMessage(ReliableQueueKey reliableQueueKey, Message message)
+        public bool OnProcessMessage(QueueKey queueKey, Message message)
         {
-            if(!CanReceive(reliableQueueKey))
+            if (!CanReceive(queueKey))
             {
                 throw new InvalidOperationException("Message queue is configured to be send-only.");
             }
 
-            return OnReceivedMessage(reliableQueueKey, message);
+            return OnReceivedMessage(queueKey, message);
         }
 
         /// <summary>Gets the <see cref="IReliableQueue"/> with the specified reliable queue key.</summary>
         /// <value>The <see cref="IReliableQueue"/> object for the queue specified.</value>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which an <see cref="IReliableQueue"/> object is required.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which an <see cref="IReliableQueue"/> object is required.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
-        public IReliableQueue this[ReliableQueueKey reliableQueueKey]
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
+        public IReliableQueue this[QueueKey queueKey]
         {
             get
             {
-                reliableQueueKey.Validate(nameof(reliableQueueKey), ObjectIs.NotNull);
+                queueKey.Validate(nameof(queueKey), ObjectIs.NotNull);
 
-                return _proxies.GetOrAdd(reliableQueueKey, k => new ReliableQueue(this, reliableQueueKey));
+                return _proxies.GetOrAdd(queueKey, k => new ReliableQueue(this, queueKey));
             }
         }
 
         /// <summary>Determines whether the queue specified can be used to receive message</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue to check.</param>
+        /// <param name="queueKey">The key identifying the reliable queue to check.</param>
         /// <returns>
-        ///     <see langword="true"/> if the queue specified by <paramref name="reliableQueueKey"/> can be used to receive messages; otherwise,
+        ///     <see langword="true"/> if the queue specified by <paramref name="queueKey"/> can be used to receive messages; otherwise,
         ///     <see langword="false"/>.
         /// </returns>
-        public bool CanReceive(ReliableQueueKey reliableQueueKey)
+        public bool CanReceive(QueueKey queueKey)
         {
-            var configuration = _configuration[reliableQueueKey];
+            var configuration = _configuration[queueKey];
 
             var mode = configuration.Mode;
 
-            if(string.IsNullOrWhiteSpace(mode))
+            if (string.IsNullOrWhiteSpace(mode))
             {
                 return false;
             }
@@ -181,18 +181,18 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         }
 
         /// <summary>Determines whether the queue specified can be used to send message</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue to check.</param>
+        /// <param name="queueKey">The key identifying the reliable queue to check.</param>
         /// <returns>
-        ///     <see langword="true"/> if the queue specified by <paramref name="reliableQueueKey"/> can be used to send messages; otherwise,
+        ///     <see langword="true"/> if the queue specified by <paramref name="queueKey"/> can be used to send messages; otherwise,
         ///     <see langword="false"/>.
         /// </returns>
-        public bool CanSend(ReliableQueueKey reliableQueueKey)
+        public bool CanSend(QueueKey queueKey)
         {
-            var configuration = _configuration[reliableQueueKey];
+            var configuration = _configuration[queueKey];
 
             var mode = configuration.Mode;
 
-            if(string.IsNullOrWhiteSpace(mode))
+            if (string.IsNullOrWhiteSpace(mode))
             {
                 return false;
             }
@@ -201,19 +201,19 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         }
 
         /// <summary>Determines whether any subscriptions exist for the reliable queue specified.</summary>
-        /// <param name="reliableQueueKey">The ket identifying the reliable queue for which to check for keys.</param>
+        /// <param name="queueKey">The ket identifying the reliable queue for which to check for keys.</param>
         /// <returns><see langword="true"/> if the specified reliable queue key is subscribed; otherwise, <see langword="false"/>.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
-        public bool IsSubscribed(ReliableQueueKey reliableQueueKey)
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
+        public bool IsSubscribed(QueueKey queueKey)
         {
-            reliableQueueKey.Validate(nameof(reliableQueueKey), ObjectIs.NotNull);
+            queueKey.Validate(nameof(queueKey), ObjectIs.NotNull);
 
-            if(!CanReceive(reliableQueueKey))
+            if (!CanReceive(queueKey))
             {
                 return false;
             }
 
-            return _subscriptions.Values.Any(s => s.ReliableQueueKey == reliableQueueKey);
+            return _subscriptions.Values.Any(s => s.QueueKey == queueKey);
         }
 
         /// <summary>Called when a trigger (e.g. EventGrid or StorageQueue) receives a notification of a message to be processed.</summary>
@@ -229,13 +229,10 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <exception cref="System.ArgumentNullException"><paramref name="base64"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentException"><paramref name="base64"/> was zero-length or contains only white-space characters.</exception>
         /// <returns>A task that processes the message supplied.</returns>
-        public async Task OnReceivedAsync(string base64, TimeSpan? timeout = null, CancellationToken? cancellationToken = null)
-        {
-            await _receive.OnReceivedAsync(base64, this).ConfigureAwait(true);
-        }
+        public async Task OnReceivedAsync(string base64, TimeSpan? timeout = null, CancellationToken? cancellationToken = null) => await _receive.OnReceivedAsync(base64, this).ConfigureAwait(true);
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to create the message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
         /// <param name="topic">
         ///     A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
@@ -251,19 +248,19 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     cancellation.
         /// </param>
         /// <returns>A task that performs the action specified.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="InvalidOperationException">Message queue is configured to be receive-only.</exception>
-        public async Task SendMessageAsync(ReliableQueueKey reliableQueueKey, string? body, Topic? topic = null, TimeSpan? timeout = null,
+        public async Task SendMessageAsync(QueueKey queueKey, string? body, Topic? topic = null, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
-            if(!CanSend(reliableQueueKey))
+            if (!CanSend(queueKey))
             {
                 throw new InvalidOperationException("Message queue is configured to be receive-only.");
             }
 
-            await SendMessageAsync(reliableQueueKey, body, (m, b) =>
+            await SendMessageAsync(queueKey, body, (m, b) =>
                 {
-                    if(b is null || b.Length <= 0)
+                    if (b is null || b.Length <= 0)
                     {
                         m.Size = null;
                         m.BodyIsNull = true;
@@ -274,13 +271,13 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         m.BodyIsNull = false;
                     }
                 },
-                (ReliableQueueKey1, body1, timeout1, cancellationToken1, message) =>
-                    RecordBodyAsync(ReliableQueueKey1, message, body1, timeout1, cancellationToken1),
+                (QueueKey1, body1, timeout1, cancellationToken1, message) =>
+                    RecordBodyAsync(QueueKey1, message, body1, timeout1, cancellationToken1),
                 topic, timeout, cancellationToken).ConfigureAwait(true);
         }
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to create the message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
         /// <param name="topic">
         ///     A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
@@ -296,19 +293,19 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     cancellation.
         /// </param>
         /// <returns>A task that performs the action specified.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="InvalidOperationException">Message queue is configured to be receive-only.</exception>
-        public async Task SendMessageAsync(ReliableQueueKey reliableQueueKey, byte[]? body, Topic? topic = null, TimeSpan? timeout = null,
+        public async Task SendMessageAsync(QueueKey queueKey, byte[]? body, Topic? topic = null, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
-            if(!CanSend(reliableQueueKey))
+            if (!CanSend(queueKey))
             {
                 throw new InvalidOperationException("Message queue is configured to be receive-only.");
             }
 
-            await SendMessageAsync(reliableQueueKey, body, (m, b) =>
+            await SendMessageAsync(queueKey, body, (m, b) =>
                 {
-                    if(b is null || b.Length <= 0)
+                    if (b is null || b.Length <= 0)
                     {
                         m.Size = null;
                         m.BodyIsNull = true;
@@ -319,13 +316,13 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         m.BodyIsNull = false;
                     }
                 },
-                (ReliableQueueKey1, body1, timeout1, cancellationToken1, message) =>
-                    RecordBodyAsync(ReliableQueueKey1, message, body1, timeout1, cancellationToken1),
+                (QueueKey1, body1, timeout1, cancellationToken1, message) =>
+                    RecordBodyAsync(QueueKey1, message, body1, timeout1, cancellationToken1),
                 topic, timeout, cancellationToken).ConfigureAwait(true);
         }
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to create the message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
         /// <param name="topic">
         ///     A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
@@ -342,17 +339,17 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </param>
         /// <returns>A task that performs the action specified.</returns>
         /// <exception cref="InvalidOperationException">Message queue is configured to be receive-only.</exception>
-        public async Task SendMessageAsync(ReliableQueueKey reliableQueueKey, Stream? body, Topic? topic = null, TimeSpan? timeout = null,
+        public async Task SendMessageAsync(QueueKey queueKey, Stream? body, Topic? topic = null, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
-            if(!CanSend(reliableQueueKey))
+            if (!CanSend(queueKey))
             {
                 throw new InvalidOperationException("Message queue is configured to be receive-only.");
             }
 
-            await SendMessageAsync(reliableQueueKey, body, (m, b) =>
+            await SendMessageAsync(queueKey, body, (m, b) =>
                 {
-                    if(b is null || b.Length <= 0)
+                    if (b is null || b.Length <= 0)
                     {
                         m.Size = null;
                         m.BodyIsNull = true;
@@ -363,35 +360,35 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         m.BodyIsNull = false;
                     }
                 },
-                (ReliableQueueKey1, body1, timeout1, cancellationToken1, message) =>
-                    RecordBodyAsync(ReliableQueueKey1, message, body1, timeout1, cancellationToken1),
+                (QueueKey1, body1, timeout1, cancellationToken1, message) =>
+                    RecordBodyAsync(QueueKey1, message, body1, timeout1, cancellationToken1),
                 topic, timeout, cancellationToken).ConfigureAwait(true);
         }
 
         /// <summary>Subscribes the specified reliable queue key.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue to which to subscribe.</param>
+        /// <param name="queueKey">The key identifying the reliable queue to which to subscribe.</param>
         /// <param name="callbackHandler">The event handler to call when a message arrives.</param>
         /// <returns>A token that can be used to unsubscribe, either by calling <see cref="IReliableQueueService.Unsubscribe"/> or by disposing.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="callbackHandler"/> was <see langword="null"/>.</exception>
         /// <exception cref="InvalidOperationException">Message queue is configured to be send-only.</exception>
-        public SubscriptionToken Subscribe(ReliableQueueKey reliableQueueKey, EventHandler<ReceivedMessageEventArgs> callbackHandler)
+        public SubscriptionToken Subscribe(QueueKey queueKey, EventHandler<ReceivedMessageEventArgs> callbackHandler)
         {
-            if(!CanReceive(reliableQueueKey))
+            if (!CanReceive(queueKey))
             {
                 throw new InvalidOperationException("Message queue is configured to be send-only.");
             }
 
-            var token = new SubscriptionToken(reliableQueueKey, callbackHandler, this);
+            var token = new SubscriptionToken(queueKey, callbackHandler, this);
 
-            var isFirst = _subscriptions.Values.All(s => s.ReliableQueueKey != reliableQueueKey);
+            var isFirst = _subscriptions.Values.All(s => s.QueueKey != queueKey);
 
             _subscriptions.TryAdd(token.Id, token);
 
-            if(isFirst)
+            if (isFirst)
             {
-                _logger.LogInformation($"Checking for existing messages on reliable queue \"{reliableQueueKey}\".");
-                _receive.CheckForWaitingMessages(this, reliableQueueKey);
+                _logger.LogInformation($"Checking for existing messages on reliable queue \"{queueKey}\".");
+                _receive.CheckForWaitingMessages(this, queueKey);
             }
 
             return token;
@@ -407,7 +404,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <exception cref="System.ArgumentNullException"><paramref name="token"/> was <see langword="null"/>.</exception>
         public bool Unsubscribe(SubscriptionToken token)
         {
-            if(!CanReceive(token.ReliableQueueKey))
+            if (!CanReceive(token.QueueKey))
             {
                 throw new InvalidOperationException("Message queue is configured to be send-only.");
             }
@@ -422,9 +419,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </param>
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
+            if (disposing)
             {
-                foreach(var listener in _listeners.Values)
+                foreach (var listener in _listeners.Values)
                 {
                     listener.Dispose();
                 }
@@ -434,25 +431,25 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         }
 
         /// <summary>Called when [received message].</summary>
-        /// <param name="reliableQueueKey">The key identifying the queue from which the message was delivered.</param>
+        /// <param name="queueKey">The key identifying the queue from which the message was delivered.</param>
         /// <param name="message">The message that has been received.</param>
         /// <returns><see langword="true"/> if a consumer has processed the message; otherwise, <see langword="false"/>.</returns>
-        private bool OnReceivedMessage([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message)
+        private bool OnReceivedMessage([NotNull] QueueKey queueKey, [NotNull] Message message)
         {
-            var callbacks = _subscriptions.Values.Where(s => s.ReliableQueueKey == reliableQueueKey).Select(s => s.EventHandler).ToArray();
+            var callbacks = _subscriptions.Values.Where(s => s.QueueKey == queueKey).Select(s => s.EventHandler).ToArray();
 
-            if(callbacks.Length <= 0)
+            if (callbacks.Length <= 0)
             {
                 return false;
             }
 
-            var args = new ReceivedMessageEventArgs(_storage, reliableQueueKey, message);
+            var args = new ReceivedMessageEventArgs(_storage, queueKey, message);
 
-            foreach(var callback in callbacks)
+            foreach (var callback in callbacks)
             {
                 callback.DynamicInvoke(this, args);
 
-                if(args.Handled)
+                if (args.Handled)
                 {
                     return true;
                 }
@@ -462,7 +459,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         }
 
         /// <summary>Writes the body of a message to BLOB storage, asynchronously.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to write the body of a message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to write the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be written.</param>
         /// <param name="body">
         ///     A string containing the BLOB to write into the BLOB storage.  Can be <see langword="null"/> or zero-length if the message has not
@@ -474,21 +471,21 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="message"/> was <see langword="null"/>.</exception>
-        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [CanBeNull] byte[]? body,
+        private async Task RecordBodyAsync([NotNull] QueueKey queueKey, [NotNull] Message message, [CanBeNull] byte[]? body,
             TimeSpan? timeout, CancellationToken cancellationToken)
         {
-            if(!(body is null) && body.Length > 0)
+            if (!(body is null) && body.Length > 0)
             {
                 await using var stream = new MemoryStream(body);
 
-                await _storage.WriteMessageAsync(reliableQueueKey, message, stream, timeout, cancellationToken).ConfigureAwait(true);
+                await _storage.WriteMessageAsync(queueKey, message, stream, timeout, cancellationToken).ConfigureAwait(true);
             }
         }
 
         /// <summary>Writes the body of a message to BLOB storage, asynchronously.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to write the body of a message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to write the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be written.</param>
         /// <param name="body">
         ///     A string containing the BLOB to write into the BLOB storage.  Can be <see langword="null"/> or zero-length if the message has not
@@ -500,12 +497,12 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="message"/> was <see langword="null"/>.</exception>
-        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [CanBeNull] string? body,
+        private async Task RecordBodyAsync([NotNull] QueueKey queueKey, [NotNull] Message message, [CanBeNull] string? body,
             TimeSpan? timeout, CancellationToken cancellationToken)
         {
-            if(!string.IsNullOrWhiteSpace(body))
+            if (!string.IsNullOrWhiteSpace(body))
             {
                 await using var stream = new MemoryStream();
                 await using var writer = new StreamWriter(stream, Encoding.UTF8, 1024 * 1024, true);
@@ -514,12 +511,12 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
                 stream.Seek(0, SeekOrigin.Begin);
 
-                await _storage.WriteMessageAsync(reliableQueueKey, message, stream, timeout, cancellationToken).ConfigureAwait(true);
+                await _storage.WriteMessageAsync(queueKey, message, stream, timeout, cancellationToken).ConfigureAwait(true);
             }
         }
 
         /// <summary>Writes the body of a message to BLOB storage, asynchronously.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to write the body of a message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to write the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be written.</param>
         /// <param name="body">
         ///     A stream containing the BLOB to write into the BLOB storage.  Can be <see langword="null"/> or zero-length if the message has not
@@ -531,20 +528,20 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="message"/> was <see langword="null"/>.</exception>
-        private async Task RecordBodyAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, [CanBeNull] Stream? body,
+        private async Task RecordBodyAsync([NotNull] QueueKey queueKey, [NotNull] Message message, [CanBeNull] Stream? body,
             TimeSpan? timeout, CancellationToken cancellationToken)
         {
-            if(!(body is null))
+            if (!(body is null))
             {
-                await _storage.WriteMessageAsync(reliableQueueKey, message, body, timeout, cancellationToken).ConfigureAwait(true);
+                await _storage.WriteMessageAsync(queueKey, message, body, timeout, cancellationToken).ConfigureAwait(true);
             }
         }
 
         /// <summary>Sends the message body provided on the reliable queue specified, optionally on the topic given.</summary>
         /// <typeparam name="TBody">The type of the body.</typeparam>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to create the message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
         /// <param name="initializeMessageFieldsFromBody">Initialize the message fields from the supplied body.</param>
         /// <param name="recordBody">Returns a task that the records body.</param>
@@ -562,16 +559,16 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     cancellation.
         /// </param>
         /// <returns>A task that performs the action specified.</returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
-        private async Task SendMessageAsync<TBody>(ReliableQueueKey reliableQueueKey, TBody body,
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
+        private async Task SendMessageAsync<TBody>(QueueKey queueKey, TBody body,
             [NotNull] Action<Message, TBody> initializeMessageFieldsFromBody,
-            [NotNull] Func<ReliableQueueKey, TBody, TimeSpan?, CancellationToken, Message, Task> recordBody, Topic? topic = null, TimeSpan? timeout = null,
+            [NotNull] Func<QueueKey, TBody, TimeSpan?, CancellationToken, Message, Task> recordBody, Topic? topic = null, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
-            var configuration = _configuration[reliableQueueKey];
+            var configuration = _configuration[queueKey];
 
             // We create the message as early as possible to capture the timestamps and sequence ID.
-            var message = Message.CreateNew(reliableQueueKey, configuration, topic);
+            var message = Message.CreateNew(queueKey, configuration, topic);
 
             var timeoutPeriod = timeout ?? TimeSpan.FromSeconds(configuration.DefaultTimeoutSeconds);
             var token = cancellationToken ?? CancellationToken.None;
@@ -579,24 +576,24 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             initializeMessageFieldsFromBody(message, body);
 
             // We'll need the complete message object returned when the record has been created later.
-            var addMessage = _state.AddNewMessageAsync(reliableQueueKey, message, timeoutPeriod, cancellationToken);
+            var addMessage = _state.AddNewMessageAsync(queueKey, message, timeoutPeriod, cancellationToken);
 
             // The "new" message, and the blob can be created in parallel, there is no risk of anything attempting to use either yet.
             var tasks = new List<Task>
             {
                 addMessage,
-                recordBody(reliableQueueKey, body, timeoutPeriod, token, message)
+                recordBody(queueKey, body, timeoutPeriod, token, message)
             };
 
             // Once the new message and blob have been stored ...
             Task.WaitAll(tasks.ToArray());
 
             // ... we can change the record state to "queued" ...
-            message = await _state.QueueMessageAsync(reliableQueueKey, addMessage.Result, timeoutPeriod, cancellationToken).ConfigureAwait(true);
+            message = await _state.QueueMessageAsync(queueKey, addMessage.Result, timeoutPeriod, cancellationToken).ConfigureAwait(true);
 
             // ... and send a message to listeners (do this async, we don't need to wait).
 #pragma warning disable 4014
-            _send.SendMessageAsync(reliableQueueKey, message, timeoutPeriod, cancellationToken);
+            _send.SendMessageAsync(queueKey, message, timeoutPeriod, cancellationToken);
 #pragma warning restore 4014
         }
     }

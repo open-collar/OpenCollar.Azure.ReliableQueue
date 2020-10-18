@@ -17,40 +17,45 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using Microsoft.Azure.Cosmos.Table;
-using Microsoft.Azure.Cosmos.Table.Protocol;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-using OpenCollar.Extensions.Validation;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
-    /// <summary>A service used to manage topic affinity and the ordering of the messages belonging to the same topic.</summary>
-    /// <seealso cref="IMessageTopicService"/>
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using Microsoft.Azure.Cosmos.Table;
+    using Microsoft.Azure.Cosmos.Table.Protocol;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+    using OpenCollar.Extensions.Validation;
+
+    /// <summary>
+    /// Defines the <see cref="MessageTopicService" />.
+    /// </summary>
     internal sealed class MessageTopicService : IMessageTopicService
     {
-        /// <summary>The service used to access the configuration for the queues used to send and receive messages.</summary>
+        /// <summary>
+        /// Defines the _reliableQueueConfigurationService.
+        /// </summary>
         [NotNull]
         private readonly IReliableQueueConfigurationService _reliableQueueConfigurationService;
 
-        /// <summary>The service used to create and manage clients for the various Azure Storage resources used reliable queues.</summary>
+        /// <summary>
+        /// Defines the _storageResourceService.
+        /// </summary>
         [NotNull]
         private readonly IStorageResourceService _storageResourceService;
 
-        /// <summary>Initializes a new instance of the <see cref="MessageTopicService"/> class.</summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageTopicService"/> class.
+        /// </summary>
         /// <param name="ReliableQueueConfigurationService">The service used to access the configuration for the queues used to send and receive messages.</param>
         /// <param name="storageResourceService">The service used to create and manage clients for the various Azure Storage resources used reliable queues.</param>
-        /// <exception cref="System.ArgumentNullException"><paramref name="ReliableQueueConfigurationService"/> was <see langword="null"/>.</exception>
-        /// <exception cref="System.ArgumentNullException"><paramref name="storageResourceService"/> was <see langword="null"/>.</exception>
         public MessageTopicService([NotNull] IReliableQueueConfigurationService ReliableQueueConfigurationService,
             [NotNull] IStorageResourceService storageResourceService)
         {
@@ -62,7 +67,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             var tasks = new List<Task>();
 
-            foreach(var queue in ReliableQueueConfigurationService.ReliableQueues)
+            foreach (var queue in ReliableQueueConfigurationService.ReliableQueues)
             {
                 var table = _storageResourceService.GetTopicTable(queue.Key);
 
@@ -72,21 +77,16 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             Task.WaitAll(tasks.ToArray());
         }
 
-        /// <summary>Gets the live topics from the reliable queue.</summary>
-        /// <param name="reliableQueueKey">The key identifying the queue from which to read the topics.</param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to retrieve topics before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to retrieve topics.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
+        /// <summary>
+        /// The GetLiveTopics.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the queue from which to read the topics.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
         /// <returns>A sequence containing the topics found to be active.</returns>
-        /// <exception cref="ReliableQueueException">"Unable to fetch topics from table on queue.</exception>
-        public IEnumerable<Topic> GetLiveTopics(ReliableQueueKey reliableQueueKey, TimeSpan? timeout = null, CancellationToken? cancellationToken = null)
+        public IEnumerable<Topic> GetLiveTopics(QueueKey queueKey, TimeSpan? timeout = null, CancellationToken? cancellationToken = null)
         {
-            var configuration = _reliableQueueConfigurationService[reliableQueueKey];
+            var configuration = _reliableQueueConfigurationService[queueKey];
 
             var timeoutPeriod = timeout ?? TimeSpan.FromSeconds(configuration.DefaultTimeoutSeconds);
             var context = new OperationContext
@@ -99,7 +99,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 ServerTimeout = timeoutPeriod
             };
 
-            var table = _storageResourceService.GetStateTable(reliableQueueKey);
+            var table = _storageResourceService.GetStateTable(queueKey);
 
             var topicMessageQuery = new TableQuery().Select(new[] { nameof(Message.Topic) }).OrderBy(nameof(Message.Timestamp));
 
@@ -108,19 +108,19 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             {
                 topicMessageResult = table.ExecuteQuery(topicMessageQuery, options, context).ToArray();
             }
-            catch(StorageException ex1)
+            catch (StorageException ex1)
             {
-                if(ex1.RequestInformation.ExtendedErrorInformation.ErrorCode == TableErrorCodeStrings.TableNotFound)
+                if (ex1.RequestInformation.ExtendedErrorInformation.ErrorCode == TableErrorCodeStrings.TableNotFound)
                 {
                     table.CreateIfNotExists(options, context);
                     try
                     {
                         topicMessageResult = table.ExecuteQuery(topicMessageQuery, options, context);
                     }
-                    catch(Exception ex2)
+                    catch (Exception ex2)
                     {
-                        throw new ReliableQueueException(reliableQueueKey,
-                            $@"Unable to fetch topics from table ""{table.Name}"" on queue {ReliableQueueException.GetReliableQueueKey(reliableQueueKey)}.  Reason: ""{ex2.Message}"".  See inner exception for details.",
+                        throw new ReliableQueueException(queueKey,
+                            $@"Unable to fetch topics from table ""{table.Name}"" on queue {ReliableQueueException.GetQueueKey(queueKey)}.  Reason: ""{ex2.Message}"".  See inner exception for details.",
                             ex2);
                     }
                 }
@@ -130,7 +130,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 }
             }
 
-            if(topicMessageResult is null)
+            if (topicMessageResult is null)
             {
                 return Enumerable.Empty<Topic>();
             }
@@ -138,21 +138,14 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             return topicMessageResult.Select(t => t[nameof(Message.Topic)].StringValue).Distinct().Select(t => new Topic(t));
         }
 
-        /// <summary>Called when a trigger (e.g. EventGrid or StorageQueue) receives a notification of a message to be processed.</summary>
+        /// <summary>
+        /// The OnReceivedAsync.
+        /// </summary>
         /// <param name="message">The message received.</param>
         /// <param name="ReliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to process the message before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to process the message.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
-        /// <returns>
-        ///     A task that processes the message supplied and returns <see langword="true"/> if the message will be processed; otherwise,
-        ///     <see langword="false"/> if it is to be ignored.
-        /// </returns>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <returns>The <see cref="Task{bool}"/>.</returns>
         public async Task<bool> OnReceivedAsync(Message message, IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
         {
@@ -168,18 +161,18 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             var now = DateTime.UtcNow;
 
-            if(!ReliableQueueService[message.ReliableQueueKey].CanReceive)
+            if (!ReliableQueueService[message.QueueKey].CanReceive)
             {
                 throw new InvalidOperationException("Message queue is configured to be send-only.");
             }
 
-            if(message.Topic.IsEmpty)
+            if (message.Topic.IsEmpty)
             {
                 // The default topic can be handled anywhere with no affinity.
                 return true;
             }
 
-            var configuration = _reliableQueueConfigurationService[message.ReliableQueueKey];
+            var configuration = _reliableQueueConfigurationService[message.QueueKey];
 
             var timeoutPeriod = timeout ?? TimeSpan.FromSeconds(configuration.DefaultTimeoutSeconds);
             var token = cancellationToken ?? CancellationToken.None;
@@ -194,9 +187,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 TableQueryMaxItemCount = 1
             };
 
-            var table = _storageResourceService.GetTopicTable(message.ReliableQueueKey);
+            var table = _storageResourceService.GetTopicTable(message.QueueKey);
 
-            var selectQuery = TableOperation.Retrieve(message.ReliableQueueKey.Identifier, message.Topic.Identifier);
+            var selectQuery = TableOperation.Retrieve(message.QueueKey.Identifier, message.Topic.Identifier);
 
             TopicAffinity? currentAffinityRecord = null;
 
@@ -206,11 +199,11 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 // Attempt to select the current record.
                 var selectResult = await table.ExecuteAsync(selectQuery, options, context, token).ConfigureAwait(true);
 
-                switch(selectResult.HttpStatusCode)
+                switch (selectResult.HttpStatusCode)
                 {
                     case 404:
                         // Attempt to insert a new record.
-                        var insertQuery = TableOperation.Insert(new TopicAffinity(message.ReliableQueueKey, Identity.Current, message.Topic)
+                        var insertQuery = TableOperation.Insert(new TopicAffinity(message.QueueKey, Identity.Current, message.Topic)
                         {
                             LastUpdated = now
                         }.Serialize(context));
@@ -218,9 +211,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         {
                             await table.ExecuteAsync(insertQuery, options, context, token).ConfigureAwait(true);
                         }
-                        catch(StorageException ex)
+                        catch (StorageException ex)
                         {
-                            switch(ex.RequestInformation.HttpStatusCode)
+                            switch (ex.RequestInformation.HttpStatusCode)
                             {
                                 case 404:
                                     // The table doesn't exists!
@@ -246,11 +239,11 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                         break;
 
                     default:
-                        throw new ReliableQueueException(message.ReliableQueueKey,
-                            $"Unable to read topic record for queue: {ReliableQueueException.GetReliableQueueKey(message.ReliableQueueKey)}; Topic: {message.Topic.Identifier}.");
+                        throw new ReliableQueueException(message.QueueKey,
+                            $"Unable to read topic record for queue: {ReliableQueueException.GetQueueKey(message.QueueKey)}; Topic: {message.Topic.Identifier}.");
                 }
             }
-            while(retrySelect);
+            while (retrySelect);
 
             // So, we have got to this point.  That means:
             //  We have a non-empty topic.
@@ -263,7 +256,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             //              2.2.2.4) If we do not have affinity leave the message for the endpoint with affinity.
 
             TableOperation updateQuery;
-            if(currentAffinityRecord.LastUpdated.AddSeconds(configuration.TopicAffinityTtlSeconds) < now)
+            if (currentAffinityRecord.LastUpdated.AddSeconds(configuration.TopicAffinityTtlSeconds) < now)
             {
                 // Replace the existing record and go ahead (unless someone else go there first!)
                 currentAffinityRecord.LastUpdated = now;
@@ -275,9 +268,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                     await table.ExecuteAsync(updateQuery, options, context, token).ConfigureAwait(true);
                     return true;
                 }
-                catch(StorageException ex)
+                catch (StorageException ex)
                 {
-                    switch(ex.RequestInformation.HttpStatusCode)
+                    switch (ex.RequestInformation.HttpStatusCode)
                     {
                         case 412:
                             // Someone else go there first.
@@ -290,7 +283,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
             }
 
             // Do we hold the affinity?
-            if(currentAffinityRecord.Owner != Identity.Current)
+            if (currentAffinityRecord.Owner != Identity.Current)
             {
                 // Defer to the existing holder of the affinity.
                 return false;
@@ -304,9 +297,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
                 await table.ExecuteAsync(updateQuery, options, context, token).ConfigureAwait(true);
                 return true;
             }
-            catch(StorageException ex)
+            catch (StorageException ex)
             {
-                switch(ex.RequestInformation.HttpStatusCode)
+                switch (ex.RequestInformation.HttpStatusCode)
                 {
                     case 412:
                         // Someone else go there first (maybe we were right on the cusp of expiring).

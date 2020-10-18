@@ -17,87 +17,113 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue
 {
-    /// <summary>Utilities supporting identifiers.</summary>
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="Identifiers" />.
+    /// </summary>
     internal static class Identifiers
     {
-        /// <summary>The name of the table in which sequence data is held.</summary>
+        /// <summary>
+        /// Defines the SafeDelimiter.
+        /// </summary>
+        public const char SafeDelimiter = '-';
+
+        /// <summary>
+        /// Defines the SequenceTableName.
+        /// </summary>
         [NotNull]
         public const string SequenceTableName = @"ReliableQueueSequence";
 
-        /// <summary>Gets the name of the message container.</summary>
-        /// <param name="reliableQueueKey">The reliable queue key for which to get the message container name.</param>
+        /// <summary>
+        /// Defines the TableSafeDelimiter.
+        /// </summary>
+        public const char TableSafeDelimiter = 'x';
+
+        /// <summary>
+        /// The GetMessageContainerName.
+        /// </summary>
+        /// <param name="queueKey">The reliable queue key for which to get the message container name.</param>
         /// <returns>The name of the message container.</returns>
         [NotNull]
-        public static string GetMessageContainerName([NotNull] ReliableQueueKey reliableQueueKey) => @"reliable-queue-body-" + reliableQueueKey.Identifier;
+        public static string GetMessageContainerName([NotNull] QueueKey queueKey) => @"reliable-queue-body-" + queueKey.Identifier;
 
-        /// <summary>Gets the name of the reliable queue.</summary>
-        /// <param name="reliableQueueKey">The reliable queue key.</param>
-        /// <returns></returns>
-        public static string GetReliableQueueName([NotNull] ReliableQueueKey reliableQueueKey) => @"reliable-queue-" + reliableQueueKey.Identifier;
+        /// <summary>
+        /// The GetReliableQueueName.
+        /// </summary>
+        /// <param name="queueKey">The reliable queue key.</param>
+        /// <returns>.</returns>
+        public static string GetReliableQueueName([NotNull] QueueKey queueKey) => @"reliable-queue-" + queueKey.Identifier;
 
-        /// <summary>Gets the name of the state table.</summary>
-        /// <param name="reliableQueueKey">The reliable queue key for which to get the state table name.</param>
+        /// <summary>
+        /// The GetStateTableName.
+        /// </summary>
+        /// <param name="queueKey">The reliable queue key for which to get the state table name.</param>
         /// <returns>The name of the state table.</returns>
         [NotNull]
-        public static string GetStateTableName([NotNull] ReliableQueueKey reliableQueueKey) => @"ReliableQueueState" + reliableQueueKey.TableIdentifier;
+        public static string GetStateTableName([NotNull] QueueKey queueKey) => @"ReliableQueueState" + queueKey.TableIdentifier;
 
-        /// <summary>Gets the name of the topic table.</summary>
-        /// <param name="reliableQueueKey">The reliable queue key for which to get the topic table name.</param>
+        /// <summary>
+        /// The GetTopicTableName.
+        /// </summary>
+        /// <param name="queueKey">The reliable queue key for which to get the topic table name.</param>
         /// <returns>The name of the topic table.</returns>
         [NotNull]
-        public static string GetTopicTableName([NotNull] ReliableQueueKey reliableQueueKey) => @"ReliableQueueTopic" + reliableQueueKey.TableIdentifier;
+        public static string GetTopicTableName([NotNull] QueueKey queueKey) => @"ReliableQueueTopic" + queueKey.TableIdentifier;
 
-        /// <summary>Replaces all unsafe characters with hyphens.</summary>
+        /// <summary>
+        /// The MakeSafe.
+        /// </summary>
         /// <param name="name">The identifier in which the characters are to be replaced.</param>
         /// <returns>Returns a string in which all non-alphanumeric characters are replaced with hyphens and all alphabetic characters are made lower-case.</returns>
         [ContractAnnotation("null=>null;notnull=>notnull;")]
         public static string? MakeSafe([CanBeNull] string name)
         {
-            if(ReferenceEquals(name, null))
+            if (ReferenceEquals(name, null))
             {
                 return null;
             }
 
-            if(name.Length <= 0)
+            if (name.Length <= 0)
             {
                 return string.Empty;
             }
 
             var newString = new char[name.Length];
             var n = 0;
-            foreach(var c in name)
+            foreach (var c in name)
             {
-                if(char.IsLetterOrDigit(c))
+                if (char.IsLetterOrDigit(c))
                 {
                     newString[n++] = char.ToLowerInvariant(c);
                 }
                 else
                 {
-                    newString[n++] = '-';
+                    newString[n++] = SafeDelimiter;
                 }
             }
 
             return new string(newString);
         }
 
-        /// <summary>Replaces all unsafe characters with xs and capitalizes the first character in each name.</summary>
+        /// <summary>
+        /// The MakeTableSafe.
+        /// </summary>
         /// <param name="name">The identifier in which the characters are to be replaced.</param>
         /// <returns>Returns a string in which all non-alphanumeric characters are replaced with xs and all alphabetic characters are made lower-case.</returns>
         [ContractAnnotation("null=>null;notnull=>notnull;")]
         public static string? MakeTableSafe([CanBeNull] string name)
         {
-            if(ReferenceEquals(name, null))
+            if (ReferenceEquals(name, null))
             {
                 return null;
             }
 
-            if(name.Length <= 0)
+            if (name.Length <= 0)
             {
                 return string.Empty;
             }
@@ -105,11 +131,11 @@ namespace OpenCollar.Azure.ReliableQueue
             var toUpper = true;
             var newString = new char[name.Length];
             var n = 0;
-            foreach(var c in name)
+            foreach (var c in name)
             {
-                if(char.IsLetterOrDigit(c))
+                if (char.IsLetterOrDigit(c))
                 {
-                    if(toUpper)
+                    if (toUpper)
                     {
                         toUpper = false;
                         newString[n++] = char.ToUpperInvariant(c);
@@ -122,7 +148,7 @@ namespace OpenCollar.Azure.ReliableQueue
                 else
                 {
                     toUpper = true;
-                    newString[n++] = 'x';
+                    newString[n++] = TableSafeDelimiter;
                 }
             }
 

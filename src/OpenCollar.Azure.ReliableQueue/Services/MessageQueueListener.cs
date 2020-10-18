@@ -50,21 +50,21 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         private readonly QueueClient _queueClient;
 
         /// <summary>Initializes a new instance of the <see cref="ReliableQueueReceiverService"/> class.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to create the message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="ReliableQueueConfigurationService">The service used to access the configuration for the queues used to send and receive messages.</param>
         /// <param name="ReliableQueueService">The reliable queue service to which to send received messages.</param>
-        public ReliableQueueListener(ReliableQueueKey reliableQueueKey, [NotNull] IReliableQueueConfigurationService ReliableQueueConfigurationService,
+        public ReliableQueueListener(QueueKey queueKey, [NotNull] IReliableQueueConfigurationService ReliableQueueConfigurationService,
             IReliableQueueService ReliableQueueService)
         {
-            reliableQueueKey.Validate(nameof(reliableQueueKey), ObjectIs.NotNull);
+            queueKey.Validate(nameof(queueKey), ObjectIs.NotNull);
             ReliableQueueConfigurationService.Validate(nameof(ReliableQueueConfigurationService), ObjectIs.NotNull);
             ReliableQueueService.Validate(nameof(ReliableQueueService), ObjectIs.NotNull);
 
             _reliableQueueService = ReliableQueueService;
 
-            var configuration = ReliableQueueConfigurationService[reliableQueueKey];
+            var configuration = ReliableQueueConfigurationService[queueKey];
 
-            _queueClient = new QueueClient(configuration.StorageConnectionString, Identifiers.GetReliableQueueName(reliableQueueKey));
+            _queueClient = new QueueClient(configuration.StorageConnectionString, Identifiers.GetReliableQueueName(queueKey));
             InitializeQueueClientAsync().Wait();
 
             // Finally, start the consumption timer to poll for messages.

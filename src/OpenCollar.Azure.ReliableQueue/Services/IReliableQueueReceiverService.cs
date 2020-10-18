@@ -17,38 +17,36 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
-    /// <summary>The public interface of the service used to receive messages.</summary>
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="IReliableQueueReceiverService" />.
+    /// </summary>
     internal interface IReliableQueueReceiverService
     {
         /// <summary>
-        ///     Checks to see if there are any unprocessed messages waiting on the queue specified, and if there are, starts processing them,
+        /// Checks to see if there are any unprocessed messages waiting on the queue specified, and if there are, starts processing them,
         ///     asynchronously.
         /// </summary>
         /// <param name="reliableQueueService">The reliable queue service that will be responsible for notifying consumers of messages to be processed.</param>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue to process.</param>
-        public void CheckForWaitingMessages([NotNull] IReliableQueueServiceInternal reliableQueueService, [NotNull] ReliableQueueKey reliableQueueKey);
+        /// <param name="queueKey">The key identifying the reliable queue to process.</param>
+        public void CheckForWaitingMessages([NotNull] IReliableQueueServiceInternal reliableQueueService, [NotNull] QueueKey queueKey);
 
-        /// <summary>Called when a trigger (e.g. EventGrid or StorageQueue) receives a notification of a message to be processed.</summary>
+        /// <summary>
+        /// The OnReceivedAsync.
+        /// </summary>
         /// <param name="base64">The Base-64 encoded JSON representation of the serialized message.</param>
         /// <param name="reliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to process the message before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to process the message.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
         /// <returns>A task that processes the message supplied.</returns>
         public Task OnReceivedAsync([CanBeNull] string base64, [NotNull] IReliableQueueServiceInternal reliableQueueService, TimeSpan? timeout = null,
             [CanBeNull] CancellationToken? cancellationToken = null);

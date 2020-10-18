@@ -17,45 +17,45 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System.Collections.Generic;
-
-using JetBrains.Annotations;
-
-using Microsoft.WindowsAzure.Storage;
-
-using OpenCollar.Azure.ReliableQueue.Configuration;
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
+    using System.Collections.Generic;
+
+    using JetBrains.Annotations;
+
+    using Microsoft.WindowsAzure.Storage;
+
+    using OpenCollar.Azure.ReliableQueue.Configuration;
+    using OpenCollar.Azure.ReliableQueue.Model;
+
     /// <summary>The public interface of the service used to access the configuration for the queues used to send and receive messages.</summary>
     internal interface IReliableQueueConfigurationService
     {
         /// <summary>Gets the <see cref="IReliableQueueConfiguration"/> object with the specified reliable queue key.</summary>
         /// <value>The <see cref="IReliableQueueConfiguration"/>.</value>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which the configuration is required.</param>
-        /// <returns>The configuration for the queue identified by the <paramref name="reliableQueueKey"/> specified.</returns>
+        /// <param name="queueKey">The key identifying the reliable queue for which the configuration is required.</param>
+        /// <returns>The configuration for the queue identified by the <paramref name="queueKey"/> specified.</returns>
         /// <exception cref="UnknownReliableQueueException">There is no configuration for the reliable queue specified.</exception>
         [NotNull]
-        public IReliableQueueConfiguration this[[NotNull] ReliableQueueKey reliableQueueKey] { get; }
+        public IReliableQueueConfiguration this[[NotNull] QueueKey queueKey] { get; }
 
         /// <summary>Gets a read-only dictionary defining all of the configured reliable queues, keyed (case-insensitive) on their reliable queue key.</summary>
         /// <value>A read-only dictionary defining all of the configured reliable queues, keyed (case-insensitive) on their reliable queue key.</value>
         [NotNull]
-        IReadOnlyDictionary<ReliableQueueKey, IReliableQueueConfiguration> ReliableQueues { get; }
+        IReadOnlyDictionary<QueueKey, IReliableQueueConfiguration> ReliableQueues { get; }
 
         /// <summary>Gets the storage account for the reliable queue specified.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which the configuration is required.</param>
-        /// <returns>The storage account for the queue identified by the <paramref name="reliableQueueKey"/> specified.</returns>
+        /// <param name="queueKey">The key identifying the reliable queue for which the configuration is required.</param>
+        /// <returns>The storage account for the queue identified by the <paramref name="queueKey"/> specified.</returns>
         /// <exception cref="UnknownReliableQueueException">There is no configuration for the reliable queue specified.</exception>
         [NotNull]
-        public CloudStorageAccount GetStorageAccount([NotNull] ReliableQueueKey reliableQueueKey);
+        public CloudStorageAccount GetStorageAccount([NotNull] QueueKey queueKey);
 
         /// <summary>Gets the table storage account for the reliable queue specified.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which the configuration is required.</param>
-        /// <returns>The storage account for the queue identified by the <paramref name="reliableQueueKey"/> specified.</returns>
+        /// <param name="queueKey">The key identifying the reliable queue for which the configuration is required.</param>
+        /// <returns>The storage account for the queue identified by the <paramref name="queueKey"/> specified.</returns>
         /// <exception cref="UnknownReliableQueueException">There is no configuration for the reliable queue specified.</exception>
         [NotNull]
-        public Microsoft.Azure.Cosmos.Table.CloudStorageAccount GetTableStorageAccount([NotNull] ReliableQueueKey reliableQueueKey);
+        public Microsoft.Azure.Cosmos.Table.CloudStorageAccount GetTableStorageAccount([NotNull] QueueKey queueKey);
     }
 }

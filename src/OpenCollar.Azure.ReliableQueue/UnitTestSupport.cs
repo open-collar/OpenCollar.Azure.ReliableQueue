@@ -19,5 +19,6 @@
 
 using System.Runtime.CompilerServices;
 
+
 [assembly: InternalsVisibleTo(@"OpenCollar.Azure.ReliableQueue.TESTS")]
 [assembly: InternalsVisibleTo(@"ReliableQueueTestRig")]

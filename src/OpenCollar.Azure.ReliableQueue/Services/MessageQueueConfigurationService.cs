@@ -17,23 +17,23 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-
-using JetBrains.Annotations;
-
-using Microsoft.WindowsAzure.Storage;
-
-using OpenCollar.Azure.ReliableQueue.Configuration;
-using OpenCollar.Azure.ReliableQueue.Model;
-using OpenCollar.Extensions;
-using OpenCollar.Extensions.Configuration;
-using OpenCollar.Extensions.Validation;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+
+    using JetBrains.Annotations;
+
+    using Microsoft.WindowsAzure.Storage;
+
+    using OpenCollar.Azure.ReliableQueue.Configuration;
+    using OpenCollar.Azure.ReliableQueue.Model;
+    using OpenCollar.Extensions;
+    using OpenCollar.Extensions.Configuration;
+    using OpenCollar.Extensions.Validation;
+
     /// <summary>A service used to access the configuration for the queues used to send and receive messages.</summary>
     /// <seealso cref="IReliableQueueConfigurationService"/>
     internal sealed class ReliableQueueConfigurationService : Disposable, IReliableQueueConfigurationService
@@ -44,7 +44,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
         /// <summary>A read-only dictionary defining all of the configured reliable queues, keyed (case-insensitive) on their reliable queue key.</summary>
         [NotNull]
-        private readonly IReadOnlyDictionary<ReliableQueueKey, IReliableQueueConfiguration> _reliableQueues;
+        private readonly IReadOnlyDictionary<QueueKey, IReliableQueueConfiguration> _reliableQueues;
 
         /// <summary>A cache of parsed storage accounts, keyed on the connection string.</summary>
         [NotNull]
@@ -64,7 +64,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// release only unmanaged resources.</param>
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
+            if (disposing)
             {
                 _storageAccountCache.Dispose();
                 _tableAccountCache.Dispose();
@@ -82,20 +82,20 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
             _configuration = configuration;
 
-            var d = configuration.Queues.Where(q => q.Value.IsEnabled).ToDictionary(p => new ReliableQueueKey(p.Key), p => p.Value);
+            var d = configuration.Queues.Where(q => q.Value.IsEnabled).ToDictionary(p => new QueueKey(p.Key), p => p.Value);
 
-            _reliableQueues = new ReadOnlyDictionary<ReliableQueueKey, IReliableQueueConfiguration>(d);
+            _reliableQueues = new ReadOnlyDictionary<QueueKey, IReliableQueueConfiguration>(d);
 
-            foreach(var queue in _reliableQueues)
+            foreach (var queue in _reliableQueues)
             {
                 var mode = queue.Value.Mode;
-                if(string.IsNullOrWhiteSpace(mode))
+                if (string.IsNullOrWhiteSpace(mode))
                 {
                     throw new ConfigurationException(
                         $"No value has been provided for the '{nameof(IReliableQueueConfiguration.Mode)}' property of the {queue.Key} reliable queue configuration.");
                 }
 
-                if(!IReliableQueueConfiguration.ModeReceive.Equals(mode, StringComparison.OrdinalIgnoreCase) &&
+                if (!IReliableQueueConfiguration.ModeReceive.Equals(mode, StringComparison.OrdinalIgnoreCase) &&
                    !IReliableQueueConfiguration.ModeSend.Equals(mode, StringComparison.OrdinalIgnoreCase) &&
                    !IReliableQueueConfiguration.ModeBoth.Equals(mode, StringComparison.OrdinalIgnoreCase))
                 {
@@ -107,48 +107,48 @@ namespace OpenCollar.Azure.ReliableQueue.Services
 
         /// <summary>Gets the <see cref="IReliableQueueConfiguration"/> object with the specified reliable queue key.</summary>
         /// <value>The <see cref="IReliableQueueConfiguration"/>.</value>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which the configuration is required.</param>
-        /// <returns>The configuration for the queue identified by the <paramref name="reliableQueueKey"/> specified.</returns>
+        /// <param name="queueKey">The key identifying the reliable queue for which the configuration is required.</param>
+        /// <returns>The configuration for the queue identified by the <paramref name="queueKey"/> specified.</returns>
         /// <exception cref="UnknownReliableQueueException">There is no configuration for the reliable queue specified.</exception>
-        public IReliableQueueConfiguration this[ReliableQueueKey reliableQueueKey]
+        public IReliableQueueConfiguration this[QueueKey queueKey]
         {
             get
             {
-                reliableQueueKey.Validate(nameof(reliableQueueKey), ObjectIs.NotNull);
+                queueKey.Validate(nameof(queueKey), ObjectIs.NotNull);
 
-                if(_reliableQueues.TryGetValue(reliableQueueKey, out var ReliableQueueConfiguration))
+                if (_reliableQueues.TryGetValue(queueKey, out var ReliableQueueConfiguration))
                 {
                     return ReliableQueueConfiguration;
                 }
 
-                throw new UnknownReliableQueueException(reliableQueueKey);
+                throw new UnknownReliableQueueException(queueKey);
             }
         }
 
         /// <summary>Gets the storage account for the reliable queue specified.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which the configuration is required.</param>
-        /// <returns>The storage account for the queue identified by the <paramref name="reliableQueueKey"/> specified.</returns>
+        /// <param name="queueKey">The key identifying the reliable queue for which the configuration is required.</param>
+        /// <returns>The storage account for the queue identified by the <paramref name="queueKey"/> specified.</returns>
         /// <exception cref="UnknownReliableQueueException">There is no configuration for the reliable queue specified.</exception>
-        public CloudStorageAccount GetStorageAccount(ReliableQueueKey reliableQueueKey)
+        public CloudStorageAccount GetStorageAccount(QueueKey queueKey)
         {
-            var configuration = this[reliableQueueKey];
+            var configuration = this[queueKey];
 
             return _storageAccountCache[configuration.StorageConnectionString];
         }
 
         /// <summary>Gets the table storage account for the reliable queue specified.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which the configuration is required.</param>
-        /// <returns>The storage account for the queue identified by the <paramref name="reliableQueueKey"/> specified.</returns>
+        /// <param name="queueKey">The key identifying the reliable queue for which the configuration is required.</param>
+        /// <returns>The storage account for the queue identified by the <paramref name="queueKey"/> specified.</returns>
         /// <exception cref="UnknownReliableQueueException">There is no configuration for the reliable queue specified.</exception>
-        public Microsoft.Azure.Cosmos.Table.CloudStorageAccount GetTableStorageAccount(ReliableQueueKey reliableQueueKey)
+        public Microsoft.Azure.Cosmos.Table.CloudStorageAccount GetTableStorageAccount(QueueKey queueKey)
         {
-            var configuration = this[reliableQueueKey];
+            var configuration = this[queueKey];
 
             return _tableAccountCache[configuration.StorageConnectionString];
         }
 
         /// <summary>Gets a read-only dictionary defining all of the configured reliable queues, keyed (case-insensitive) on their reliable queue key.</summary>
         /// <value>A read-only dictionary defining all of the configured reliable queues, keyed (case-insensitive) on their reliable queue key.</value>
-        public IReadOnlyDictionary<ReliableQueueKey, IReliableQueueConfiguration> ReliableQueues => _reliableQueues;
+        public IReadOnlyDictionary<QueueKey, IReliableQueueConfiguration> ReliableQueues => _reliableQueues;
     }
 }

@@ -17,84 +17,68 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-
 namespace OpenCollar.Azure.ReliableQueue.Services
 {
-    /// <summary>The public interface of a service that is used to manage the state of messages in the queue.</summary>
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+
+    /// <summary>
+    /// Defines the <see cref="IMessageStateService" />.
+    /// </summary>
     internal interface IMessageStateService
     {
-        /// <summary>Adds the new message asynchronously and returns the new state of the message that was created, with updated properties.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to add the new message.</param>
+        /// <summary>
+        /// The AddNewMessageAsync.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue for which to add the new message.</param>
         /// <param name="message">The current state of the message to record.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
         /// <returns>The new state of the message that was created, with updated properties.</returns>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to send the message before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
         [NotNull]
-        public Task<Message> AddNewMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
+        public Task<Message> AddNewMessageAsync([NotNull] QueueKey queueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
 
-        /// <summary>Gets all messages that are in a <see cref="MessageState.Queued"/> state for the topic specified, in order of their sequence number.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue from which to return messages.</param>
+        /// <summary>
+        /// The GetQueuedMessagesInTopic.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue from which to return messages.</param>
         /// <param name="topic">The topic from which to take messages.</param>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to read messages before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to read messages.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
-        /// <returns>
-        ///     An sequence of all the messages that are in a <see cref="MessageState.Queued"/> state for the topic specified, in order of their sequence
-        ///     number.
-        /// </returns>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <returns>The <see cref="IEnumerable{Message}"/>.</returns>
         [NotNull]
         [ItemNotNull]
-        public IEnumerable<Message> GetQueuedMessagesInTopic([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Topic topic, TimeSpan? timeout = null,
+        public IEnumerable<Message> GetQueuedMessagesInTopic([NotNull] QueueKey queueKey, [NotNull] Topic topic, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
 
-        /// <summary>Processes the message given, raising events on the queue service specified in <paramref name="reliableQueueService"/>,</summary>
+        /// <summary>
+        /// The ProcessMessage.
+        /// </summary>
         /// <param name="reliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue to which the messages belong.</param>
+        /// <param name="queueKey">The key identifying the reliable queue to which the messages belong.</param>
         /// <param name="message">The message to process.</param>
-        /// <returns>
-        ///     <see langword="true"/> if the message was successfully processed; otherwise, <see langword="false"/> to return the queue and try again
-        ///     later.
-        /// </returns>
-        public bool ProcessMessage([NotNull] IReliableQueueServiceInternal reliableQueueService, [NotNull] ReliableQueueKey reliableQueueKey,
+        /// <returns>The <see cref="bool"/>.</returns>
+        public bool ProcessMessage([NotNull] IReliableQueueServiceInternal reliableQueueService, [NotNull] QueueKey queueKey,
             [NotNull] Message message);
 
         /// <summary>
-        ///     Changes the state of the message specified to queued asynchronously and returns the new state of the message that was updated, with updated
+        /// Changes the state of the message specified to queued asynchronously and returns the new state of the message that was updated, with updated
         ///     properties.
         /// </summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to add the new message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to add the new message.</param>
         /// <param name="message">The current state of the message to queue.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
         /// <returns>The new state of the message that was created, with updated properties.</returns>
-        /// <param name="timeout">
-        ///     The maximum period of time to wait whilst attempting to send the message before failing with an error.  Defaults to the value in the
-        ///     <see cref="Configuration.IReliableQueueConfiguration.DefaultTimeoutSeconds"/> property of the queue configuration.
-        /// </param>
-        /// <param name="cancellationToken">
-        ///     A cancellation token that can be used to abandon the attempt to send the message.  Defaults to <see langword="null"/>, meaning there can be no
-        ///     cancellation.
-        /// </param>
         [NotNull]
-        public Task<Message> QueueMessageAsync([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message, TimeSpan? timeout = null,
+        public Task<Message> QueueMessageAsync([NotNull] QueueKey queueKey, [NotNull] Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null);
     }
 }

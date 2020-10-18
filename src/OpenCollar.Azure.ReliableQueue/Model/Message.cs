@@ -29,7 +29,7 @@ using JetBrains.Annotations;
 
 using Microsoft.Azure.Cosmos.Table;
 
-using Newtonsoft.Json;
+using global::Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 using OpenCollar.Azure.ReliableQueue.Configuration;
@@ -40,7 +40,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
 {
     /// <summary>A class representing a message recorded in a storage table.</summary>
     /// <seealso cref="Microsoft.Azure.Cosmos.Table.TableEntity"/>
-    [DebuggerDisplay("Queue: {ReliableQueueKey,nq}; Topic: {Topic,nq}; Sequence: {Sequence}.")]
+    [DebuggerDisplay("Queue: {QueueKey,nq}; Topic: {Topic,nq}; Sequence: {Sequence}.")]
     internal sealed class Message : TableEntity, IComparable<Message>
     {
         /// <summary>The current local sequence index.</summary>
@@ -65,7 +65,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         }
 
         /// <summary>Initializes a new instance of the <see cref="Message"/> class.</summary>
-        /// <param name="reliableQueueKey">The key identifying the queue to which the message belongs.</param>
+        /// <param name="queueKey">The key identifying the queue to which the message belongs.</param>
         /// <param name="id">A GUID uniquely identifying the message. This is fixed at creation.</param>
         /// <param name="owner">
         ///     The ID of the endpoint currently processing the message (sender or receiver). This will change throughout the lifetime of the message, but will
@@ -82,9 +82,9 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <exception cref="System.ArgumentException"><paramref name="owner"/> was zero-length or contains only white-space characters.</exception>
         /// <exception cref="System.ArgumentNullException"><paramref name="source"/> was <see langword="null"/>.</exception>
         /// <exception cref="System.ArgumentException"><paramref name="source"/> was zero-length or contains only white-space characters.</exception>
-        /// <exception cref="System.ArgumentNullException"><paramref name="reliableQueueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
         [JsonConstructor]
-        public Message([NotNull] ReliableQueueKey reliableQueueKey, Guid id, [NotNull] string owner, [NotNull] string source,
+        public Message([NotNull] QueueKey queueKey, Guid id, [NotNull] string owner, [NotNull] string source,
             [CanBeNull] Topic? topic = null)
         {
             if(id == Guid.Empty)
@@ -94,9 +94,9 @@ namespace OpenCollar.Azure.ReliableQueue.Model
 
             owner.Validate(nameof(owner), StringIs.NotNullEmptyOrWhiteSpace);
             source.Validate(nameof(source), StringIs.NotNullEmptyOrWhiteSpace);
-            reliableQueueKey.Validate(nameof(ReliableQueueKey), ObjectIs.NotNull);
+            queueKey.Validate(nameof(QueueKey), ObjectIs.NotNull);
 
-            ReliableQueueKey = reliableQueueKey;
+            QueueKey = queueKey;
             Id = id;
             Owner = owner;
             Source = source;
@@ -150,9 +150,9 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <summary>Gets or sets the key identifying the reliable queue on which the message is to be sent.  This is fixed at creation.</summary>
         /// <value>The key identifying the reliable queue on which the message is to be sent.  This is fixed at creation.</value>
         [NotNull]
-        [global::Newtonsoft.Json.JsonConverter(typeof(ReliableQueueKeyConverter))]
-        [System.Text.Json.Serialization.JsonConverter(typeof(Text.Json.ReliableQueueKeyConverter))]
-        public ReliableQueueKey ReliableQueueKey { get; set; }
+        [global::Newtonsoft.Json.JsonConverter(typeof(QueueKeyConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Text.Json.QueueKeyConverter))]
+        public QueueKey QueueKey { get; set; }
 
         /// <summary>Get or set the current state of the message. This will change throughout the lifetime of the message.</summary>
         /// <value>The current state of the message. This will change throughout the lifetime of the message.</value>
@@ -301,7 +301,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     Creates a new message, with a new <see cref="Id"/> and the <see cref="Owner"/> and <see cref="Source"/> properties set to the current host
         ///     identity, <see cref="Identity.Current"/>.
         /// </summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue for which to create the message.</param>
+        /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="configuration">The configuration for the queue on which the message will be sent.</param>
         /// <param name="topic">
         ///     A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
@@ -312,14 +312,14 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     A new message, with a new <see cref="Id"/> and the <see cref="Owner"/> and <see cref="Source"/> properties set to the current host identity,
         ///     <see cref="Identity.Current"/>.
         /// </returns>
-        public static Message CreateNew([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] IReliableQueueConfiguration configuration,
+        public static Message CreateNew([NotNull] QueueKey queueKey, [NotNull] IReliableQueueConfiguration configuration,
             [CanBeNull] Topic? topic = null)
         {
             var localSequence = GetLocalSequence();
 
             var identity = Identity.Current;
 
-            var message = new Message(reliableQueueKey, Guid.NewGuid(), identity, identity, topic)
+            var message = new Message(queueKey, Guid.NewGuid(), identity, identity, topic)
             {
                 MaxAttempts = configuration.MaxAttempts,
                 LocalSequence = localSequence,

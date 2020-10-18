@@ -17,56 +17,68 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Model;
-using OpenCollar.Azure.ReliableQueue.Services;
-
 namespace OpenCollar.Azure.ReliableQueue
 {
-    /// <summary>The arguments provided for events involving a received message.</summary>
-    /// <seealso cref="System.ComponentModel.HandledEventArgs"/>
-    [DebuggerDisplay("ReceivedMessageEventArgs: {" + nameof(ReliableQueueKey) + ",nq}")]
+    using System;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Model;
+    using OpenCollar.Azure.ReliableQueue.Services;
+
+    /// <summary>
+    /// Defines the <see cref="ReceivedMessageEventArgs" />.
+    /// </summary>
+    [DebuggerDisplay("ReceivedMessageEventArgs: {" + nameof(QueueKey) + ",nq}")]
     public sealed class ReceivedMessageEventArgs : HandledEventArgs
     {
-        /// <summary>The message that has been received.</summary>
+        /// <summary>
+        /// Defines the _message.
+        /// </summary>
         private readonly Message _message;
 
-        /// <summary>The message storage service from which to load the contents of the message if requested.</summary>
+        /// <summary>
+        /// Defines the _storage.
+        /// </summary>
         private readonly IMessageStorageService _storage;
 
-        /// <summary>Initializes a new instance of the <see cref="ReceivedMessageEventArgs"/> class.</summary>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReceivedMessageEventArgs"/> class.
+        /// </summary>
         /// <param name="storage">The message storage service from which to load the contents of the message if requested.</param>
-        /// <param name="reliableQueueKey">The key identifying the queue from which the message was delivered.</param>
+        /// <param name="queueKey">The key identifying the queue from which the message was delivered.</param>
         /// <param name="message">The message that has been received.</param>
-        internal ReceivedMessageEventArgs([NotNull] IMessageStorageService storage, [NotNull] ReliableQueueKey reliableQueueKey, [NotNull] Message message)
+        internal ReceivedMessageEventArgs([NotNull] IMessageStorageService storage, [NotNull] QueueKey queueKey, [NotNull] Message message)
         {
             _storage = storage;
-            this.reliableQueueKey = reliableQueueKey;
+            this.queueKey = queueKey;
             _message = message;
         }
 
-        /// <summary>Gets the key identifying the queue from which the message was delivered.</summary>
-        /// <value>The key identifying the queue from which the message was delivered.</value>
-        public ReliableQueueKey reliableQueueKey { get; }
+        /// <summary>
+        /// Gets the queueKey.
+        /// </summary>
+        public QueueKey queueKey { get; }
 
-        /// <summary>Gets or sets the size of the message, measured in bytes.</summary>
-        /// <value>The size of the message, in bytes, or <see langword="null"/> if the message is empty or not yet been supplied.</value>
+        /// <summary>
+        /// Gets the Size.
+        /// </summary>
         public long? Size => _message.Size;
 
-        /// <summary>Get the key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order.</summary>
-        /// <value>The key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order.</value>
+        /// <summary>
+        /// Gets the Topic.
+        /// </summary>
         public Topic Topic => _message.Topic;
 
-        /// <summary>Gets the body as an array of bytes, asynchronously.</summary>
+        /// <summary>
+        /// The GetBodyAsBufferAsync.
+        /// </summary>
         /// <param name="timeout">The maximum period of time to wait whilst attempting to read the message body to the BLOB storage before failing with an error.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to read the message body to the BLOB storage.</param>
         /// <returns>A task that returns the message body as an array of bytes (or <see langword="null"/> if the message had no body).</returns>
@@ -75,29 +87,32 @@ namespace OpenCollar.Azure.ReliableQueue
         {
             await using var stream = new MemoryStream();
 
-            await _storage.ReadMessageAsync(reliableQueueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
+            await _storage.ReadMessageAsync(queueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
 
             return stream.ToArray();
         }
 
-        /// <summary>Gets the body as a stream, asynchronously.</summary>
+        /// <summary>
+        /// The GetBodyAsStreamAsync.
+        /// </summary>
         /// <param name="timeout">The maximum period of time to wait whilst attempting to read the message body to the BLOB storage before failing with an error.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to read the message body to the BLOB storage.</param>
         /// <returns>A task that returns the message body as a stream (or <see langword="null"/> if the message had no body).</returns>
-        /// <remarks>The caller is responsible for disposing of the stream.</remarks>
         [CanBeNull]
         public async Task<Stream> GetBodyAsStreamAsync(TimeSpan? timeout = null, CancellationToken? cancellationToken = null)
         {
             var stream = new MemoryStream();
 
-            await _storage.ReadMessageAsync(reliableQueueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
+            await _storage.ReadMessageAsync(queueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
 
             stream.Seek(0, SeekOrigin.Begin);
 
             return stream;
         }
 
-        /// <summary>Gets the body as a string, asynchronously.</summary>
+        /// <summary>
+        /// The GetBodyAsStringAsync.
+        /// </summary>
         /// <param name="timeout">The maximum period of time to wait whilst attempting to read the message body to the BLOB storage before failing with an error.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to read the message body to the BLOB storage.</param>
         /// <returns>A task that returns the message body as a string (or <see langword="null"/> if the message had no body).</returns>
@@ -108,7 +123,7 @@ namespace OpenCollar.Azure.ReliableQueue
 
             using var reader = new StreamReader(stream, Encoding.UTF8, true, 1024 * 1024, true);
 
-            await _storage.ReadMessageAsync(reliableQueueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
+            await _storage.ReadMessageAsync(queueKey, _message, stream, timeout, cancellationToken).ConfigureAwait(true);
 
             stream.Seek(0, SeekOrigin.Begin);
 

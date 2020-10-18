@@ -17,72 +17,84 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-using System.Diagnostics;
-
-using JetBrains.Annotations;
-
-using OpenCollar.Azure.ReliableQueue.Services;
-using OpenCollar.Extensions;
-
 namespace OpenCollar.Azure.ReliableQueue.Model
 {
-    /// <summary>A token used to represent an individual subscription to callbacks for messages arriving on a reliable queue.</summary>
-    /// <seealso cref="OpenCollar.Extensions.Disposable"/>
-    [DebuggerDisplay("SubscriptionToken: {" + nameof(ReliableQueueKey) + ",nq}")]
+    using System;
+    using System.Diagnostics;
+
+    using JetBrains.Annotations;
+
+    using OpenCollar.Azure.ReliableQueue.Services;
+    using OpenCollar.Extensions;
+
+    /// <summary>
+    /// Defines the <see cref="SubscriptionToken" />.
+    /// </summary>
+    [DebuggerDisplay("SubscriptionToken: {" + nameof(QueueKey) + ",nq}")]
     public sealed class SubscriptionToken : Disposable
     {
-        /// <summary>The event handler that will be called if a message arrives.</summary>
+        /// <summary>
+        /// Defines the _eventHandler.
+        /// </summary>
         [NotNull]
         private readonly EventHandler<ReceivedMessageEventArgs> _eventHandler;
 
-        /// <summary>The key identifying the reliable queue to which the subscription belongs.</summary>
-        [NotNull]
-        private readonly ReliableQueueKey _reliableQueueKey;
-
-        /// <summary>The reliable queue service to which the subscription belongs.</summary>
+        /// <summary>
+        /// Defines the _owner.
+        /// </summary>
         [NotNull]
         private readonly ReliableQueueService _owner;
 
-        /// <summary>Initializes a new instance of the <see cref="SubscriptionToken"/> class.</summary>
-        /// <param name="reliableQueueKey">The key identifying the reliable queue to which the subscription belongs.</param>
+        /// <summary>
+        /// Defines the _queueKey.
+        /// </summary>
+        [NotNull]
+        private readonly QueueKey _queueKey;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubscriptionToken"/> class.
+        /// </summary>
+        /// <param name="queueKey">The key identifying the reliable queue to which the subscription belongs.</param>
         /// <param name="eventHandler">The event handler that will be called if a message arrives.</param>
         /// <param name="owner">The reliable queue service to which the subscription belongs.</param>
-        internal SubscriptionToken([NotNull] ReliableQueueKey reliableQueueKey, [NotNull] EventHandler<ReceivedMessageEventArgs> eventHandler,
+        internal SubscriptionToken([NotNull] QueueKey queueKey, [NotNull] EventHandler<ReceivedMessageEventArgs> eventHandler,
             [NotNull] ReliableQueueService owner)
         {
             _eventHandler = eventHandler;
-            _reliableQueueKey = reliableQueueKey;
+            _queueKey = queueKey;
             _owner = owner;
         }
 
-        /// <summary>Gets an ID that uniquely identifies this subscription.</summary>
-        /// <value>The ID that uniquely identifies this subscription.</value>
+        /// <summary>
+        /// Gets the Id.
+        /// </summary>
         public Guid Id { get; } = Guid.NewGuid();
 
-        /// <summary>Gets or sets the event handler that will be called if a message arrives.</summary>
-        /// <value>The event handler that will be called if a message arrives.</value>
+        /// <summary>
+        /// Gets the EventHandler.
+        /// </summary>
         [NotNull]
         internal EventHandler<ReceivedMessageEventArgs> EventHandler => _eventHandler;
 
-        /// <summary>Gets or sets the key identifying the reliable queue to which the subscription belongs.</summary>
-        /// <value>The key identifying the reliable queue to which the subscription belongs.</value>
-        [NotNull]
-        internal ReliableQueueKey ReliableQueueKey => _reliableQueueKey;
-
-        /// <summary>Gets or sets the reliable queue service to which the subscription belongs.</summary>
-        /// <value>The reliable queue service to which the subscription belongs.</value>
+        /// <summary>
+        /// Gets the Owner.
+        /// </summary>
         [NotNull]
         internal ReliableQueueService Owner => _owner;
 
-        /// <summary>Releases unmanaged and - optionally - managed resources.</summary>
-        /// <param name="disposing">
-        ///     <see langword="true"/> to release both managed and unmanaged resources; <see langword="false"/> to release only unmanaged
-        ///     resources.
-        /// </param>
+        /// <summary>
+        /// Gets the QueueKey.
+        /// </summary>
+        [NotNull]
+        internal QueueKey QueueKey => _queueKey;
+
+        /// <summary>
+        /// The Dispose.
+        /// </summary>
+        /// <param name="disposing">The disposing<see cref="bool"/>.</param>
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
+            if (disposing)
             {
                 _owner.Unsubscribe(this);
             }
