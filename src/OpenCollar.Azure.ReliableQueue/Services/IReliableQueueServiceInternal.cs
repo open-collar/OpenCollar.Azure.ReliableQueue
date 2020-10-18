@@ -60,9 +60,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
-        /// <param name="topic">The topic<see cref="Topic?"/>.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="topic">The topic<see cref="Topic"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that performs the action specified.</returns>
         public Task SendMessageAsync([NotNull] QueueKey queueKey, [CanBeNull] byte[]? body, [CanBeNull] Topic? topic = null,
             TimeSpan? timeout = null, [CanBeNull] CancellationToken? cancellationToken = null);
@@ -72,9 +72,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
-        /// <param name="topic">The topic<see cref="Topic?"/>.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="topic">The topic<see cref="Topic"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that performs the action specified.</returns>
         public Task SendMessageAsync([NotNull] QueueKey queueKey, [CanBeNull] Stream? body, [CanBeNull] Topic? topic = null,
             TimeSpan? timeout = null, [CanBeNull] CancellationToken? cancellationToken = null);
@@ -84,9 +84,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to create the message.</param>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
-        /// <param name="topic">The topic<see cref="Topic?"/>.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="topic">The topic<see cref="Topic"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that performs the action specified.</returns>
         public Task SendMessageAsync([NotNull] QueueKey queueKey, [CanBeNull] string? body, [CanBeNull] Topic? topic = null,
             TimeSpan? timeout = null, [CanBeNull] CancellationToken? cancellationToken = null);

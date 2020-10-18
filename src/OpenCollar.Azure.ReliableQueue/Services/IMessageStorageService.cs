@@ -38,7 +38,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to delete the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be deleted.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to delete the message body to the BLOB storage.</param>
         /// <returns>A task that deletes the message body to the BLOB storage.</returns>
         [NotNull]
@@ -63,8 +63,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to write the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be written.</param>
-        /// <param name="blob">The blob<see cref="Stream?"/>.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="blob">The blob<see cref="Stream"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
         [NotNull]

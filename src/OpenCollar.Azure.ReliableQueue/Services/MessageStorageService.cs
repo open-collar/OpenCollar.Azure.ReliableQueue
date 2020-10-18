@@ -101,7 +101,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to delete the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be deleted.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to delete the message body to the BLOB storage.</param>
         /// <returns>A task that deletes the message body to the BLOB storage.</returns>
         public async Task DeleteMessageAsync(QueueKey queueKey, Message message, TimeSpan? timeout = null,
@@ -329,7 +329,7 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// <param name="queueKey">The key identifying the reliable queue for which to write the body of a message.</param>
         /// <param name="message">The details of the message for which the BLOB is to be written.</param>
         /// <param name="blob">A stream containing the BLOB to write into the BLOB storage.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
         /// <param name="cancellationToken">A cancellation token that can be used to abandon the attempt to write the message body to the BLOB storage.</param>
         /// <returns>A task that writes the message body to the BLOB storage.</returns>
         public async Task<Message> WriteMessageAsync(QueueKey queueKey, Message message, Stream? blob, TimeSpan? timeout = null,

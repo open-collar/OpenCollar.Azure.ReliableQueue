@@ -127,8 +127,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="base64">The Base-64 encoded JSON representation of the serialized message.</param>
         /// <param name="reliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that processes the message supplied.</returns>
         public async Task OnReceivedAsync(string base64, IReliableQueueServiceInternal reliableQueueService, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)

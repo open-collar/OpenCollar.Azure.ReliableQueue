@@ -110,8 +110,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to add the new message.</param>
         /// <param name="message">The current state of the message to record.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>The new state of the message that was created, with updated properties.</returns>
         public async Task<Message> AddNewMessageAsync(QueueKey queueKey, Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
@@ -181,8 +181,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue from which to return messages.</param>
         /// <param name="topic">The topic from which to take messages.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>The <see cref="IEnumerable{Message}"/>.</returns>
         public IEnumerable<Message> GetQueuedMessagesInTopic(QueueKey queueKey, Topic topic, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)
@@ -401,8 +401,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to add the new message.</param>
         /// <param name="message">The current state of the message to queue.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>The new state of the message that was created, with updated properties.</returns>
         public async Task<Message> QueueMessageAsync(QueueKey queueKey, Message message, TimeSpan? timeout = null,
             CancellationToken? cancellationToken = null)

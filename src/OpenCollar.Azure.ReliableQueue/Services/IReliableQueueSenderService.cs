@@ -37,8 +37,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="queueKey">The key identifying the reliable queue for which to add the new message.</param>
         /// <param name="message">The current state of the message to record.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>The new state of the message that was created, with updated properties.</returns>
         [NotNull]
         public Task<Message> SendMessageAsync([NotNull] QueueKey queueKey, [NotNull] Message message, TimeSpan? timeout = null,

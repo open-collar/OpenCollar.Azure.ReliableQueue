@@ -78,8 +78,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         ///     for any reliable queue.
         /// </summary>
         /// <param name="base64">The Base-64 encoded JSON representation of the serialized message.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that processes the message supplied.</returns>
         public Task OnReceivedAsync(string base64, TimeSpan? timeout = null, CancellationToken? cancellationToken = null) =>
             _reliableQueueService.OnReceivedAsync(base64, timeout, cancellationToken);
@@ -88,9 +88,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// The SendMessageAsync.
         /// </summary>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
-        /// <param name="topic">The topic<see cref="Topic?"/>.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="topic">The topic<see cref="Topic"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that performs the action specified.</returns>
         public Task SendMessageAsync(byte[]? body, Topic? topic = null, TimeSpan? timeout = null, CancellationToken? cancellationToken = null) =>
             _reliableQueueService.SendMessageAsync(QueueKey, body, topic, timeout, cancellationToken);
@@ -99,9 +99,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// The SendMessageAsync.
         /// </summary>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
-        /// <param name="topic">The topic<see cref="Topic?"/>.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="topic">The topic<see cref="Topic"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that performs the action specified.</returns>
         public Task SendMessageAsync(Stream? body, Topic? topic = null, TimeSpan? timeout = null, CancellationToken? cancellationToken = null) =>
             _reliableQueueService.SendMessageAsync(QueueKey, body, topic, timeout, cancellationToken);
@@ -110,9 +110,9 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// The SendMessageAsync.
         /// </summary>
         /// <param name="body">The body of the message to send.  This can be <see langword="null"/> or contain any content.</param>
-        /// <param name="topic">The topic<see cref="Topic?"/>.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="topic">The topic<see cref="Topic"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A task that performs the action specified.</returns>
         public Task SendMessageAsync(string? body, Topic? topic = null, TimeSpan? timeout = null, CancellationToken? cancellationToken = null) =>
             _reliableQueueService.SendMessageAsync(QueueKey, body, topic, timeout, cancellationToken);

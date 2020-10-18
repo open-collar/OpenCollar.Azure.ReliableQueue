@@ -7,6 +7,29 @@ namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
     public sealed class QueueKeyTests
     {
         [Fact]
+        public void TestCompareOperands()
+        {
+            var a = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
+            var a1 = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
+            var b = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("BBB");
+            var c = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("CCC");
+
+            Assert.True(a == a);
+            Assert.True(a == a1);
+            Assert.False(a > a);
+            Assert.True(a >= a);
+
+            Assert.False(a != a);
+            Assert.False(a < a);
+            Assert.True(a <= a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+            Assert.True(a < b);
+            Assert.True(a <= b);
+        }
+
+        [Fact]
         public void TestCompareTo()
         {
             var a = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
@@ -63,6 +86,33 @@ namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
             Assert.True(a.Equals(a1));
             Assert.False(a.Equals(22));
             Assert.False(a.Equals(b));
+        }
+
+        [Fact]
+        public void TestEqualsObjects()
+        {
+            var a = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
+            var a1 = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
+            var b = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("BBB");
+            var c = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("CCC");
+
+            Assert.False(a.Equals((object)null));
+            Assert.True(a.Equals((object)a));
+            Assert.True(a.Equals((object)a1));
+            Assert.False(a.Equals((object)22));
+            Assert.False(a.Equals((object)b));
+        }
+
+        [Fact]
+        public void TestToString()
+        {
+            var a = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
+            var a1 = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("AAA");
+            var b = new OpenCollar.Azure.ReliableQueue.Model.QueueKey("BBB");
+
+            Assert.Equal(a.GetHashCode(), a.GetHashCode());
+            Assert.Equal(a.GetHashCode(), a1.GetHashCode());
+            Assert.NotEqual(a.GetHashCode(), b.GetHashCode());
         }
     }
 }

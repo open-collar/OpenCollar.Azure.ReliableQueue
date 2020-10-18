@@ -37,8 +37,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// The GetLiveTopics.
         /// </summary>
         /// <param name="queueKey">The key identifying the queue from which to read the topics.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>A sequence containing the topics found to be active.</returns>
         [NotNull]
         public IEnumerable<Topic> GetLiveTopics([NotNull] QueueKey queueKey, TimeSpan? timeout = null,
@@ -49,8 +49,8 @@ namespace OpenCollar.Azure.ReliableQueue.Services
         /// </summary>
         /// <param name="message">The message received.</param>
         /// <param name="ReliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan?"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken?"/>.</param>
+        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
+        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
         /// <returns>The <see cref="Task{bool}"/>.</returns>
         [NotNull]
         public Task<bool> OnReceivedAsync([NotNull] Message message, [NotNull] IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
