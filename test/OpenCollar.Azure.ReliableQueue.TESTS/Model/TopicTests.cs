@@ -14,8 +14,17 @@ namespace OpenCollar.Azure.ReliableQueue.TOPICS.Model
             Assert.Equal(a, "AAA");
             Assert.Equal("AAA", a);
 
-            Assert.NotEqual(a, null);
-            Assert.NotEqual(null, a);
+            string xa = "AAA";
+            OpenCollar.Azure.ReliableQueue.Model.Topic ya = (OpenCollar.Azure.ReliableQueue.Model.Topic)xa;
+
+            string xn = null;
+            OpenCollar.Azure.ReliableQueue.Model.Topic yn = null;
+
+            Assert.NotEqual(xa, xn);
+            Assert.NotEqual(xn, xa);
+
+            Assert.Equal(xa, ya);
+            Assert.Equal(ya, xa);
         }
 
         [Fact]
