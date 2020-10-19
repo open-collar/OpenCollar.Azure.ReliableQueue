@@ -17,13 +17,12 @@
  * Copyright © 2020 Jonathan Evans (jevans@open-collar.org.uk).
  */
 
-using System;
-
 using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
 using OpenCollar.Azure.ReliableQueue;
+
+#pragma warning disable CS8604 // Possible null reference argument.
 
 namespace ReliableQueueReceiverFunctionTestRig
 {

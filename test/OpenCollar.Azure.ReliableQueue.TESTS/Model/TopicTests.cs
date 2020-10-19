@@ -2,7 +2,9 @@
 
 using Xunit;
 
-namespace OpenCollar.Azure.ReliableQueue.TOPICS.Model
+#pragma warning disable CS1718 // Comparison made to same variable
+
+namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
 {
     public sealed class TopicTests
     {
@@ -18,13 +20,16 @@ namespace OpenCollar.Azure.ReliableQueue.TOPICS.Model
             OpenCollar.Azure.ReliableQueue.Model.Topic ya = (OpenCollar.Azure.ReliableQueue.Model.Topic)xa;
 
             string xn = null;
-            OpenCollar.Azure.ReliableQueue.Model.Topic yn = null;
+            OpenCollar.Azure.ReliableQueue.Model.Topic yn = (OpenCollar.Azure.ReliableQueue.Model.Topic)xn;
 
             Assert.NotEqual(xa, xn);
             Assert.NotEqual(xn, xa);
 
             Assert.Equal(xa, ya);
             Assert.Equal(ya, xa);
+
+            Assert.Equal(xn, yn);
+            Assert.Equal(yn, xn);
         }
 
         [Fact]

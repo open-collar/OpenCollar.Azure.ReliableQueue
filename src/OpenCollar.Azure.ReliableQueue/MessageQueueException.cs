@@ -18,6 +18,7 @@
  */
 
 #pragma warning disable CA1032 // Implement standard exception constructors
+
 namespace OpenCollar.Azure.ReliableQueue
 {
     using System;
@@ -29,15 +30,17 @@ namespace OpenCollar.Azure.ReliableQueue
     using OpenCollar.Extensions.Validation;
 
     /// <summary>
-    /// Defines the <see cref="ReliableQueueException" />.
+    ///     Defines the <see cref="ReliableQueueException" />.
     /// </summary>
     [Serializable]
     public class ReliableQueueException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReliableQueueException"/> class.
+        ///     Initializes a new instance of the <see cref="ReliableQueueException" /> class.
         /// </summary>
-        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
+        /// <param name="queueKey">
+        ///     The key identifying the reliable queue involved.
+        /// </param>
         public ReliableQueueException([CanBeNull] QueueKey queueKey) : base(
             $@"An error occurred involving the reliable queue with the key: {GetQueueKey(queueKey)}.")
         {
@@ -45,21 +48,32 @@ namespace OpenCollar.Azure.ReliableQueue
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReliableQueueException"/> class.
+        ///     Initializes a new instance of the <see cref="ReliableQueueException" /> class.
         /// </summary>
-        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
-        /// <param name="message">The message that describes the error.</param>
+        /// <param name="queueKey">
+        ///     The key identifying the reliable queue involved.
+        /// </param>
+        /// <param name="message">
+        ///     The message that describes the error.
+        /// </param>
         public ReliableQueueException([CanBeNull] QueueKey queueKey, [CanBeNull] string message) : base(message)
         {
             QueueKey = queueKey;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReliableQueueException"/> class.
+        ///     Initializes a new instance of the <see cref="ReliableQueueException" /> class.
         /// </summary>
-        /// <param name="queueKey">The key identifying the reliable queue involved.</param>
-        /// <param name="message">The error message that explains the reason for the exception.</param>
-        /// <param name="innerException">The exception that is the cause of the current exception, or <see langword="null"/> if no inner exception is specified.</param>
+        /// <param name="queueKey">
+        ///     The key identifying the reliable queue involved.
+        /// </param>
+        /// <param name="message">
+        ///     The error message that explains the reason for the exception.
+        /// </param>
+        /// <param name="innerException">
+        ///     The exception that is the cause of the current exception, or <see langword="null" /> if no inner
+        ///     exception is specified.
+        /// </param>
         public ReliableQueueException([NotNull] QueueKey queueKey, [CanBeNull] string message, [CanBeNull] Exception innerException) : base(
             message, innerException)
         {
@@ -67,31 +81,40 @@ namespace OpenCollar.Azure.ReliableQueue
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReliableQueueException"/> class.
+        ///     Initializes a new instance of the <see cref="ReliableQueueException" /> class.
         /// </summary>
-        /// <param name="info">The info<see cref="SerializationInfo"/>.</param>
-        /// <param name="context">The context<see cref="StreamingContext"/>.</param>
+        /// <param name="info">
+        ///     The info <see cref="SerializationInfo" />.
+        /// </param>
+        /// <param name="context">
+        ///     The context <see cref="StreamingContext" />.
+        /// </param>
         protected ReliableQueueException([CanBeNull] SerializationInfo info, StreamingContext context) : base(info, context)
         {
             var queueKey = info.GetString(nameof(QueueKey));
-            if (!(queueKey is null))
+            if(queueKey is null)
             {
-                QueueKey = new QueueKey(queueKey);
+                throw new SerializationException($"'{nameof(QueueKey)}' is null.");
             }
+            QueueKey = new QueueKey(queueKey);
         }
 
         /// <summary>
-        /// Gets the QueueKey.
+        ///     Gets the QueueKey.
         /// </summary>
         [CanBeNull]
         public QueueKey QueueKey { get; }
 
         /// <summary>
-        /// When overridden in a derived class, sets the <see cref="System.Runtime.Serialization.SerializationInfo"></see> with information about the
-        ///     exception.
+        ///     When overridden in a derived class, sets the <see cref="System.Runtime.Serialization.SerializationInfo">
+        ///     </see> with information about the exception.
         /// </summary>
-        /// <param name="info">The info<see cref="SerializationInfo"/>.</param>
-        /// <param name="context">The context<see cref="StreamingContext"/>.</param>
+        /// <param name="info">
+        ///     The info <see cref="SerializationInfo" />.
+        /// </param>
+        /// <param name="context">
+        ///     The context <see cref="StreamingContext" />.
+        /// </param>
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.Validate(nameof(info), ObjectIs.NotNull);
@@ -101,19 +124,23 @@ namespace OpenCollar.Azure.ReliableQueue
         }
 
         /// <summary>
-        /// The GetQueueKey.
+        ///     The GetQueueKey.
         /// </summary>
-        /// <param name="queueKey">The reliable queue key, can be <see langword="null"/>.</param>
-        /// <returns>The reliable queue key, quoted if appropriate, or placeholders for special values.</returns>
+        /// <param name="queueKey">
+        ///     The reliable queue key, can be <see langword="null" />.
+        /// </param>
+        /// <returns>
+        ///     The reliable queue key, quoted if appropriate, or placeholders for special values.
+        /// </returns>
         [NotNull]
         protected internal static string GetQueueKey([CanBeNull] QueueKey queueKey)
         {
-            if (queueKey is null)
+            if(queueKey is null)
             {
                 return @"[NULL]";
             }
 
-            if (string.IsNullOrWhiteSpace(queueKey))
+            if(string.IsNullOrWhiteSpace(queueKey))
             {
                 return @"[EMPTY]";
             }

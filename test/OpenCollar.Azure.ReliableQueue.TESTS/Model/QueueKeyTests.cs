@@ -2,6 +2,8 @@
 
 using Xunit;
 
+#pragma warning disable CS1718 // Comparison made to same variable
+
 namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
 {
     public sealed class QueueKeyTests
@@ -18,13 +20,16 @@ namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
             OpenCollar.Azure.ReliableQueue.Model.QueueKey ya = (OpenCollar.Azure.ReliableQueue.Model.QueueKey)xa;
 
             string xn = null;
-            OpenCollar.Azure.ReliableQueue.Model.QueueKey yn = null;
+            OpenCollar.Azure.ReliableQueue.Model.QueueKey yn = (OpenCollar.Azure.ReliableQueue.Model.QueueKey)xn;
 
             Assert.NotEqual(xa, xn);
             Assert.NotEqual(xn, xa);
 
             Assert.Equal(xa, ya);
             Assert.Equal(ya, xa);
+
+            Assert.Equal(xn, yn);
+            Assert.Equal(yn, xn);
         }
 
         [Fact]

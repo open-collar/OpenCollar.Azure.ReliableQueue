@@ -27,12 +27,18 @@ using Microsoft.Extensions.Logging;
 
 using OpenCollar.Azure.ReliableQueue;
 
+#pragma warning disable CS8604 // Possible null reference argument.
+
 namespace ReliableQueueReceiverFunctionTestRig
 {
-    /// <summary>This function runs just once when the host starts-up and can be used to complete initialization where necessary.</summary>
+    /// <summary>
+    ///     This function runs just once when the host starts-up and can be used to complete initialization where necessary.
+    /// </summary>
     public class InitializationFunction
     {
-        /// <summary>A count of the number of times this function has run.</summary>
+        /// <summary>
+        ///     A count of the number of times this function has run.
+        /// </summary>
         private int _runCount;
 
         private readonly IReliableQueue _reliableQueue;
@@ -57,19 +63,26 @@ namespace ReliableQueueReceiverFunctionTestRig
             e.Handled = true;
         }
 
-        /// <summary>This function runs just once when the host starts-up and can be used to complete initialization where necessary.</summary>
-        /// <param name="timer">My timer that fired this function.</param>
-        /// <param name="log">The log in which to record information.</param>
+        /// <summary>
+        ///     This function runs just once when the host starts-up and can be used to complete initialization where necessary.
+        /// </summary>
+        /// <param name="timer">
+        ///     My timer that fired this function.
+        /// </param>
+        /// <param name="log">
+        ///     The log in which to record information.
+        /// </param>
 #pragma warning disable CA1801 // Parameter is never used. Remove the parameter or use it in the method body
 
         [FunctionName("InitializationFunction")]
-        public async Task Run([TimerTrigger(@"99:23:59" /* Fire every 100 days. */, RunOnStartup = true)]
+        public void Run([TimerTrigger(@"99:23:59" /* Fire every 100 days. */, RunOnStartup = true)]
             TimerInfo timer, ILogger log)
 #pragma warning restore CA1801 // Parameter is never used. Remove the parameter or use it in the method body
         {
             if(Interlocked.Increment(ref _runCount) > 1)
             {
-                // On the off-chance this app has been in memory for more than 100 days then we'll drop straight out to avoid re-initializing.
+                // On the off-chance this app has been in memory for more than 100 days then we'll drop straight out to
+                // avoid re-initializing.
                 return;
             }
 

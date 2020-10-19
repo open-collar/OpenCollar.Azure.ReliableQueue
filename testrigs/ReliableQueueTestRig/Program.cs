@@ -30,6 +30,8 @@ using OpenCollar.Azure.ReliableQueue;
 using OpenCollar.Azure.ReliableQueue.Model;
 using OpenCollar.Azure.ReliableQueue.Services;
 
+#pragma warning disable CS8604 // Possible null reference argument.
+
 namespace ReliableQueueTestRig
 {
     internal class Program

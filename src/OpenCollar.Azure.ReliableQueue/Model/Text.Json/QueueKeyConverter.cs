@@ -28,49 +28,72 @@ namespace OpenCollar.Azure.ReliableQueue.Model.Text.Json
     using OpenCollar.Extensions.Validation;
 
     /// <summary>
-    /// Defines the <see cref="QueueKeyConverter" />.
+    ///     Defines the <see cref="QueueKeyConverter" />.
     /// </summary>
     public sealed class QueueKeyConverter : JsonConverter<QueueKey?>
     {
         /// <summary>
-        /// Gets the Instance.
+        ///     Gets the Instance.
         /// </summary>
         [NotNull]
         public static QueueKeyConverter Instance { get; } = new QueueKeyConverter();
 
         /// <summary>
-        /// The Read.
+        ///     The Read.
         /// </summary>
-        /// <param name="reader">The reader.</param>
-        /// <param name="typeToConvert">The type to convert.</param>
-        /// <param name="options">An object that specifies serialization options to use.</param>
-        /// <returns>The converted value.</returns>
+        /// <param name="reader">
+        ///     The reader.
+        /// </param>
+        /// <param name="typeToConvert">
+        ///     The type to convert.
+        /// </param>
+        /// <param name="options">
+        ///     An object that specifies serialization options to use.
+        /// </param>
+        /// <returns>
+        ///     The converted value.
+        /// </returns>
         public override QueueKey? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonTokenType.Null)
+            if(reader.TokenType == JsonTokenType.Null)
             {
                 throw new JsonException("Null values 'QueueKey' not permitted.", null, null, reader.TokenStartIndex);
             }
 
-            if (reader.TokenType == JsonTokenType.String)
+            if(reader.TokenType == JsonTokenType.String)
             {
-                return new QueueKey(reader.GetString());
+                var value = reader.GetString();
+                if(string.IsNullOrWhiteSpace(value))
+                {
+                    throw new System.Text.Json.JsonException("Invalid token value.  Null or empty not permitted.");
+                }
+                return new QueueKey(value);
+            }
+            else
+            {
+                throw new System.Text.Json.JsonException("Unexpected token type.  Expected token type 'String'.");
             }
 
             throw new JsonException("Unexpected token type.  Expected token type 'String'.", null, null, reader.TokenStartIndex);
         }
 
         /// <summary>
-        /// The Write.
+        ///     The Write.
         /// </summary>
-        /// <param name="writer">The writer to write to.</param>
-        /// <param name="value">The value to convert to JSON.</param>
-        /// <param name="options">An object that specifies serialization options to use.</param>
+        /// <param name="writer">
+        ///     The writer to write to.
+        /// </param>
+        /// <param name="value">
+        ///     The value to convert to JSON.
+        /// </param>
+        /// <param name="options">
+        ///     An object that specifies serialization options to use.
+        /// </param>
         public override void Write(Utf8JsonWriter writer, QueueKey? value, JsonSerializerOptions options)
         {
             writer.Validate(nameof(writer), ObjectIs.NotNull);
 
-            if (value is null)
+            if(value is null)
             {
                 writer.WriteNullValue();
             }

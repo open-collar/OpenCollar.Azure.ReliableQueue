@@ -31,34 +31,56 @@ using OpenCollar.Extensions.Validation;
 
 namespace OpenCollar.Azure.ReliableQueue.Model
 {
-    /// <summary>A class representing a topic affinity recorded in a storage table.</summary>
-    /// <seealso cref="Microsoft.Azure.Cosmos.Table.TableEntity"/>
+    /// <summary>
+    ///     A class representing a topic affinity recorded in a storage table.
+    /// </summary>
+    /// <seealso cref="Microsoft.Azure.Cosmos.Table.TableEntity" />
     [DebuggerDisplay("Queue: {QueueKey,nq}; Topic: {Topic,nq}; Owner: {Owner,nq}.")]
     internal sealed class TopicAffinity : TableEntity
     {
-        /// <summary>The default value used in <see cref="DateTime"/> fields to prevent Azure Tables from throwing out-of-range errors.</summary>
+        /// <summary>
+        ///     The default value used in <see cref="DateTime" /> fields to prevent Azure Tables from throwing
+        ///     out-of-range errors.
+        /// </summary>
         public static readonly DateTime DefaultDateTime = new DateTime(1970, 1, 1);
 
-        /// <summary>Initializes a new instance of the <see cref="TopicAffinity"/> class.</summary>
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="TopicAffinity" /> class.
+        /// </summary>
+#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
+
         public TopicAffinity()
+#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="TopicAffinity"/> class.</summary>
-        /// <param name="queueKey">The key identifying the queue to which the message belongs.</param>
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="TopicAffinity" /> class.
+        /// </summary>
+        /// <param name="queueKey">
+        ///     The key identifying the queue to which the message belongs.
+        /// </param>
         /// <param name="owner">
-        ///     The ID of the endpoint that most recently processed messages for this topic. This will change throughout the lifetime of the queue, but will
-        ///     never be <see langword="null"/>.
+        ///     The ID of the endpoint that most recently processed messages for this topic. This will change throughout
+        ///     the lifetime of the queue, but will never be <see langword="null" />.
         /// </param>
         /// <param name="topic">
-        ///     A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
-        ///     at creation.  The value in <see cref="Model.Topic.Default"/> will be used if the one specified is <see langword="null"/>, zero-length or contains
-        ///     only white-space characters
+        ///     A key used to identify messages that are related to one-another. These are guaranteed to be delivered
+        ///     sequentially and in order. This is fixed at creation. The value in <see cref="Model.Topic.Default" />
+        ///     will be used if the one specified is <see langword="null" />, zero-length or contains only white-space characters
         /// </param>
-        /// <exception cref="System.ArgumentNullException"><paramref name="owner"/> was <see langword="null"/>.</exception>
-        /// <exception cref="System.ArgumentException"><paramref name="owner"/> was zero-length or contains only white-space characters.</exception>
-        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
-        /// <exception cref="System.ArgumentNullException"><paramref name="topic"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException">
+        ///     <paramref name="owner" /> was <see langword="null" />.
+        /// </exception>
+        /// <exception cref="System.ArgumentException">
+        ///     <paramref name="owner" /> was zero-length or contains only white-space characters.
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        ///     <paramref name="queueKey" /> was <see langword="null" />.
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">
+        ///     <paramref name="topic" /> was <see langword="null" />.
+        /// </exception>
         [JsonConstructor]
         public TopicAffinity([NotNull] QueueKey queueKey, [NotNull] string owner, [NotNull] Topic topic)
         {
@@ -75,38 +97,46 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         }
 
         /// <summary>
-        ///     Get or set the UTC date/time at which the topic ownership last changed state.  This will change throughout the lifetime of the topic
-        ///     ownership.
+        ///     Get or set the UTC date/time at which the topic ownership last changed state. This will change
+        ///     throughout the lifetime of the topic ownership.
         /// </summary>
-        /// <value>The UTC date/time at which the topic ownership last changed state.  This will change throughout the lifetime of the topic ownership.</value>
+        /// <value>
+        ///     The UTC date/time at which the topic ownership last changed state. This will change throughout the
+        ///     lifetime of the topic ownership.
+        /// </value>
         public DateTime LastUpdated { get; set; } = DefaultDateTime;
 
-        /// <summary>Gets or sets the key identifying the reliable queue on which the topic is being processed.  This is fixed at creation.</summary>
-        /// <value>The key identifying the reliable queue on which the topic is being processed.  This is fixed at creation.</value>
+        /// <summary>
+        ///     Gets or sets the key identifying the reliable queue on which the topic is being processed. This is fixed
+        ///     at creation.
+        /// </summary>
+        /// <value>
+        ///     The key identifying the reliable queue on which the topic is being processed. This is fixed at creation.
+        /// </value>
         [NotNull]
         [JsonConverter(typeof(QueueKeyConverter))]
         [System.Text.Json.Serialization.JsonConverter(typeof(Text.Json.QueueKeyConverter))]
         public QueueKey QueueKey { get; set; }
 
         /// <summary>
-        ///     Get or set the ID of the endpoint that most recently processed messages for this topic. This will change throughout the lifetime of the message,
-        ///     but will never be <see langword="null"/>.
+        ///     Get or set the ID of the endpoint that most recently processed messages for this topic. This will change
+        ///     throughout the lifetime of the message, but will never be <see langword="null" />.
         /// </summary>
         /// <value>
-        ///     The ID of the endpoint that most recently processed messages for this topic. This will change throughout the lifetime of the message, but will
-        ///     never be <see langword="null"/>.
+        ///     The ID of the endpoint that most recently processed messages for this topic. This will change throughout
+        ///     the lifetime of the message, but will never be <see langword="null" />.
         /// </value>
         [NotNull]
         public string Owner { get; set; }
 
         /// <summary>
-        ///     Get or set a key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This
-        ///     is fixed at creation.
+        ///     Get or set a key used to identify messages that are related to one-another. These are guaranteed to be
+        ///     delivered sequentially and in order. This is fixed at creation.
         /// </summary>
         /// <value>
-        ///     A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
-        ///     at creation.  The value in <see cref="Model.Topic.Default"/> will be used if the one specified is <see langword="null"/>, zero-length or contains
-        ///     only white-space characters.
+        ///     A key used to identify messages that are related to one-another. These are guaranteed to be delivered
+        ///     sequentially and in order. This is fixed at creation. The value in <see cref="Model.Topic.Default" />
+        ///     will be used if the one specified is <see langword="null" />, zero-length or contains only white-space characters.
         /// </value>
         [NotNull]
         [JsonConverter(typeof(TopicConverter))]
@@ -114,20 +144,24 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         public Topic Topic { get; set; }
 
         /// <summary>
-        ///     Creates a new topic affinity, with the <see cref="Topic"/> and <see cref="QueueKey"/> set from the arguments given, and the
-        ///     <see cref="Owner"/> property set to the current host identity, <see cref="Identity.Current"/>.
+        ///     Creates a new topic affinity, with the <see cref="Topic" /> and <see cref="QueueKey" /> set from the
+        ///     arguments given, and the <see cref="Owner" /> property set to the current host identity, <see cref="Identity.Current" />.
         /// </summary>
-        /// <param name="queueKey">The key identifying the reliable queue for which to create the topic affinity.</param>
+        /// <param name="queueKey">
+        ///     The key identifying the reliable queue for which to create the topic affinity.
+        /// </param>
         /// <param name="topic">
-        ///     A key used to identify messages that are related to one-another.  These are guaranteed to be delivered sequentially and in order. This is fixed
-        ///     at creation.  The value in <see cref="Model.Topic.Default"/> will be used if the one specified is <see langword="null"/>, zero-length or contains
-        ///     only white-space characters
+        ///     A key used to identify messages that are related to one-another. These are guaranteed to be delivered
+        ///     sequentially and in order. This is fixed at creation. The value in <see cref="Model.Topic.Default" />
+        ///     will be used if the one specified is <see langword="null" />, zero-length or contains only white-space characters
         /// </param>
         /// <returns>
-        ///     A new topic affinity, with the <see cref="Topic"/> and <see cref="QueueKey"/> set from the arguments given, and the <see cref="Owner"/>
-        ///     property set to the current host identity, <see cref="Identity.Current"/>.
+        ///     A new topic affinity, with the <see cref="Topic" /> and <see cref="QueueKey" /> set from the arguments
+        ///     given, and the <see cref="Owner" /> property set to the current host identity, <see cref="Identity.Current" />.
         /// </returns>
-        /// <exception cref="System.ArgumentNullException"><paramref name="queueKey"/> was <see langword="null"/>.</exception>
+        /// <exception cref="System.ArgumentNullException">
+        ///     <paramref name="queueKey" /> was <see langword="null" />.
+        /// </exception>
         public static TopicAffinity CreateNew([NotNull] QueueKey queueKey, [NotNull] Topic topic)
         {
             queueKey.Validate(nameof(queueKey), ObjectIs.NotNull);

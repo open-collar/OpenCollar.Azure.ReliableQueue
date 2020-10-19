@@ -19,17 +19,18 @@
 
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 
 using OpenCollar.Azure.ReliableQueue;
 
+#pragma warning disable CS8604 // Possible null reference argument.
+
 namespace ReliableQueueReceiverTestRig
 {
     internal class Program
     {
-        private static async Task Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Starting Message Queue Listener Test Rig");
 
@@ -41,10 +42,10 @@ namespace ReliableQueueReceiverTestRig
 
             var services = servicesCollection.BuildServiceProvider();
 
-            await TestQueueListenerAsync(services);
+            TestQueueListener(services);
         }
 
-        private static async Task TestQueueListenerAsync(ServiceProvider services)
+        private static void TestQueueListener(ServiceProvider services)
         {
             const string queueName = "TEST+1";
 

@@ -198,7 +198,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         /// <returns>
         ///     A string that represents the current object.
         /// </returns>
-        public override string ToString() => _key;
+        public override string? ToString() => _key;
 
         /// <summary>
         ///     Returns a value that indicates whether the values of two
@@ -258,7 +258,7 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     The result of the conversion.
         /// </returns>
         [CanBeNull]
-        public static implicit operator string(Topic value) => value?._key;
+        public static implicit operator string?(Topic? value) => value?._key;
 
         /// <summary>
         ///     Performs an implicit conversion from <see cref="string" /> to <see cref="Topic" />.
@@ -270,7 +270,21 @@ namespace OpenCollar.Azure.ReliableQueue.Model
         ///     The result of the conversion.
         /// </returns>
         [NotNull]
-        public static implicit operator Topic([CanBeNull] string value) => value is null ? Default : new Topic(value);
+        public static implicit operator Topic([CanBeNull] string? value) => value is null ? Default : new Topic(value);
+
+        /// <summary>
+        ///     Converts a <see cref="string" /> to a <see cref="Topic" />.
+        /// </summary>
+        /// <param name="value">
+        ///     The value to convert.
+        /// </param>
+        /// <returns>
+        ///     The result of the conversion.
+        /// </returns>
+        public static Topic? ToTopic(string? value)
+        {
+            return value is null ? Default : new Topic(value);
+        }
 
         /// <summary>
         ///     Returns a value that indicates whether two <see cref="OpenCollar.Azure.ReliableQueue.Model.Topic" />
