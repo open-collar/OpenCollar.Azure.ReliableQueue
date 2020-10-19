@@ -29,29 +29,47 @@ namespace OpenCollar.Azure.ReliableQueue.Services
     using OpenCollar.Azure.ReliableQueue.Model;
 
     /// <summary>
-    /// Defines the <see cref="IMessageTopicService" />.
+    ///     Defines the <see cref="IMessageTopicService" />.
     /// </summary>
     internal interface IMessageTopicService
     {
         /// <summary>
-        /// The GetLiveTopics.
+        ///     The GetLiveTopics.
         /// </summary>
-        /// <param name="queueKey">The key identifying the queue from which to read the topics.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
-        /// <returns>A sequence containing the topics found to be active.</returns>
+        /// <param name="queueKey">
+        ///     The key identifying the queue from which to read the topics.
+        /// </param>
+        /// <param name="timeout">
+        ///     The timeout <see cref="TimeSpan" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        ///     The cancellationToken <see cref="CancellationToken" />.
+        /// </param>
+        /// <returns>
+        ///     A sequence containing the topics found to be active.
+        /// </returns>
         [NotNull]
         public IEnumerable<Topic> GetLiveTopics([NotNull] QueueKey queueKey, TimeSpan? timeout = null,
             [CanBeNull] CancellationToken? cancellationToken = null);
 
         /// <summary>
-        /// The OnReceivedAsync.
+        ///     The OnReceivedAsync.
         /// </summary>
-        /// <param name="message">The message received.</param>
-        /// <param name="ReliableQueueService">The reliable queue service that received the message and will be responsible for notifying consumers.</param>
-        /// <param name="timeout">The timeout<see cref="TimeSpan"/>.</param>
-        /// <param name="cancellationToken">The cancellationToken<see cref="CancellationToken"/>.</param>
-        /// <returns>The <see cref="Task{bool}"/>.</returns>
+        /// <param name="message">
+        ///     The message received.
+        /// </param>
+        /// <param name="ReliableQueueService">
+        ///     The reliable queue service that received the message and will be responsible for notifying consumers.
+        /// </param>
+        /// <param name="timeout">
+        ///     The timeout <see cref="TimeSpan" />.
+        /// </param>
+        /// <param name="cancellationToken">
+        ///     The cancellationToken <see cref="CancellationToken" />.
+        /// </param>
+        /// <returns>
+        ///     The <see cref="Task{T}" />.
+        /// </returns>
         [NotNull]
         public Task<bool> OnReceivedAsync([NotNull] Message message, [NotNull] IReliableQueueService ReliableQueueService, TimeSpan? timeout = null,
             [CanBeNull] CancellationToken? cancellationToken = null);

@@ -13,6 +13,9 @@ namespace OpenCollar.Azure.ReliableQueue.TESTS.Model
 
             Assert.Equal(a, "AAA");
             Assert.Equal("AAA", a);
+
+            Assert.NotEqual(a, null);
+            Assert.NotEqual(null, a);
         }
 
         [Fact]
