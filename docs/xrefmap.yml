@@ -1044,6 +1044,12 @@ references:
   commentId: F:OpenCollar.Azure.ReliableQueue.Model.Topic.Default
   fullName: OpenCollar.Azure.ReliableQueue.Model.Topic.Default
   nameWithType: Topic.Default
+- uid: OpenCollar.Azure.ReliableQueue.Model.Topic.DefaultIdentifier
+  name: DefaultIdentifier
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Topic.html#OpenCollar_Azure_ReliableQueue_Model_Topic_DefaultIdentifier
+  commentId: F:OpenCollar.Azure.ReliableQueue.Model.Topic.DefaultIdentifier
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Topic.DefaultIdentifier
+  nameWithType: Topic.DefaultIdentifier
 - uid: OpenCollar.Azure.ReliableQueue.Model.Topic.Equals(OpenCollar.Azure.ReliableQueue.Model.Topic)
   name: Equals(Topic)
   href: api/OpenCollar.Azure.ReliableQueue.Model.Topic.html#OpenCollar_Azure_ReliableQueue_Model_Topic_Equals_OpenCollar_Azure_ReliableQueue_Model_Topic_
