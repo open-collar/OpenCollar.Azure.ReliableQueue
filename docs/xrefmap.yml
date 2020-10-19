@@ -853,6 +853,19 @@ references:
   isSpec: "True"
   fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.TableIdentifier
   nameWithType: QueueKey.TableIdentifier
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToQueueKey(System.String)
+  name: ToQueueKey(String)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_ToQueueKey_System_String_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToQueueKey(System.String)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToQueueKey(System.String)
+  nameWithType: QueueKey.ToQueueKey(String)
+- uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToQueueKey*
+  name: ToQueueKey
+  href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_ToQueueKey_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToQueueKey
+  isSpec: "True"
+  fullName: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToQueueKey
+  nameWithType: QueueKey.ToQueueKey
 - uid: OpenCollar.Azure.ReliableQueue.Model.QueueKey.ToString
   name: ToString()
   href: api/OpenCollar.Azure.ReliableQueue.Model.QueueKey.html#OpenCollar_Azure_ReliableQueue_Model_QueueKey_ToString
@@ -1227,6 +1240,19 @@ references:
   isSpec: "True"
   fullName: OpenCollar.Azure.ReliableQueue.Model.Topic.ToString
   nameWithType: Topic.ToString
+- uid: OpenCollar.Azure.ReliableQueue.Model.Topic.ToTopic(System.String)
+  name: ToTopic(String)
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Topic.html#OpenCollar_Azure_ReliableQueue_Model_Topic_ToTopic_System_String_
+  commentId: M:OpenCollar.Azure.ReliableQueue.Model.Topic.ToTopic(System.String)
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Topic.ToTopic(System.String)
+  nameWithType: Topic.ToTopic(String)
+- uid: OpenCollar.Azure.ReliableQueue.Model.Topic.ToTopic*
+  name: ToTopic
+  href: api/OpenCollar.Azure.ReliableQueue.Model.Topic.html#OpenCollar_Azure_ReliableQueue_Model_Topic_ToTopic_
+  commentId: Overload:OpenCollar.Azure.ReliableQueue.Model.Topic.ToTopic
+  isSpec: "True"
+  fullName: OpenCollar.Azure.ReliableQueue.Model.Topic.ToTopic
+  nameWithType: Topic.ToTopic
 - uid: OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs
   name: ReceivedMessageEventArgs
   href: api/OpenCollar.Azure.ReliableQueue.ReceivedMessageEventArgs.html
